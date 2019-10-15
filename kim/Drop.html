@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML API | DRAG & DROP</title>
+    <style type="text/css">
+        #dd
+        {
+            margin: auto;
+            border: 3px solid thistle;
+            width: 1000px;
+            height: 500px;
+            margin-top: 40px;
+        }
+        .images
+        {
+            width:25%;
+            height:25%;            
+            }
+    </style>
+    <script type="text/ecmascript" src="jquery-1.7.1.js"></script>
+    <script type="text/ecmascript">
+        $(document).ready(function () { //document가 모두 준비되면 function을 실행
+
+        });
+
+        function imagesSelected(myFiles) {
+            for (var i = 0, f; f = myFiles[i]; i++) { // 박스안에 이미지를 넣으면 배열에 저장
+                if (!f.type.match('image.*')) { //이미지면서 타입은 아무타입이 아니면 못들어감
+                    alert("이미지 파일만 가능합니다."); //못들어간 파일은 알림메시지를 띄움
+                    continue;
+                }
+                var imageReader = new FileReader(); //이미지를 읽기 위한 객체 생성
+                imageReader.onload = (function (aFile) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+                    return function (e) {
+                        var span = document.createElement('span'); //제이쿼리를 사용하지않고 HTML문서안에 HTML요소(Element)를 만들어주는 메소드
+
+                        span.innerHTML = ['<img class="images" src="', e.target.result, '" title="', aFile.name, '"/>'].join('');
+                        document.getElementById('thumbs').insertBefore(span, null); //개체(span)을 null개체의 바로앞에 추가
+                    };
+                })(f);
+                imageReader.readAsDataURL(f); //이미지 내용을 읽어 dataURL형식의 문자열로 저장
+            }
+        }
+
+        function onDropIt(event) {
+            imagesSelected(event.dataTransfer.files); //데이터로 변환된 파일을 선택
+            event.stopPropagation();
+            event.preventDefault(); // 기본 이벤트 차단
+        }    
+    </script>
+</head>
+<body>
+    <div id="dd" ondragenter="return false" ondragover="return false" ondrop="onDropIt(event)">
+    <output id="thumbs"></output>
+    </div>
+</body>
+</html>

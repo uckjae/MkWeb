@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>semiproject</name>
+=======
+	<name>git</name>
+>>>>>>> e630e8e1ccac959bd80e1bd2b0deba0a906acea0
 	<comment></comment>
 	<projects>
 	</projects>
