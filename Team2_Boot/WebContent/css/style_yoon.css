@@ -1,0 +1,166 @@
+html,
+body {
+    height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+em {
+    color: ivory;
+}
+
+img {
+    width: 90%;
+    border-radius: 5%;
+
+}
+@media (max-width:767px) {
+    .dropdown-menu>li>a {
+        color: #f5f820;
+    }
+
+    .dropdown-menu>li>a:hover,
+    .dropdown-menu>li>a:focus {
+        color: #bbbbbb;
+    }
+}
+div.home {
+    background-color: black;
+    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;
+    float: none;
+    padding: 25%;
+    padding-top: 75px;
+    padding-bottom: 0;
+    height: 680px;
+}
+
+@media (max-width:600px) {
+    div.home {
+        height: auto;
+    }
+}
+
+.navbar {
+    background-color: ivory;
+}
+
+div.sectionGrid {
+    background-color: black;
+    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;
+    float: none;
+    height: auto;
+    width: 100%;
+    padding: 10%;
+    padding-bottom: 0;
+    padding-top: 12%;
+}
+
+div.footer {
+    background-color: black;
+    overflow: hidden;
+    justify-content: space-around;
+    align-items: center;
+    float: none;
+    padding: 5% 10%;
+}
+
+div.favoriteBox {
+    padding-top: 5%;
+    border-radius: 20px;
+    border: ivory solid 0.5px;
+    background-color: ivory;
+    box-sizing: content-box;
+}
+
+h2.mainHeader {
+    font-weight: 800;
+    margin-bottom: 10%;
+}
+
+.subHeader {
+    font-weight: 500;
+    color:black;
+    margin: 10% 0;
+}
+
+.notLink {
+    text-decoration-color: transparent;
+    text-decoration-line: none;
+    text-decoration: none;
+}
+
+a.snsGrid {
+    margin: 10%;
+}
+
+.msgRbox {
+    border-radius: 20px;
+    background-color: #2bec4b;
+    width: fit-content;
+    margin: 10px;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    float: right;
+    clear: both;
+    font-weight: 600;
+}
+
+.msgLbox {
+    border-radius: 20px;
+    background-color: lightgray;
+    width: fit-content;
+    margin: 10px;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    float: left;
+    clear: both;
+    font-weight: 600;
+}
+
+i {
+    font-size: 30px;
+    color: lightslategrey;
+    margin: 10px 10px;
+}
+
+i.mail:hover {
+    color: #d44638;
+}
+
+i.facebook:hover {
+    color: #3b5998;
+}
+
+i.insta:hover {
+    color: palevioletred;
+}
+
+i.github:hover {
+    color: purple;
+}
+
+i.map:hover {
+    color: dodgerblue;
+}
+
+i.phone:hover {
+    color: green;
+}
+
+.modal-lg {
+    max-width: 60%;
+    max-height: 50%;
+}
+
+p.contactIcon {
+    margin-bottom: 0;
+}
