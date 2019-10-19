@@ -1,0 +1,93 @@
+<html>
+   <head>
+        <meta charset="UTF-8">
+       <title>
+           설명
+       </title>
+       <style>
+            td, th{
+           border: 1px solid;
+             }
+            div {
+                float: left;
+                width:  288px;
+                height: 175px;
+                margin: 20px;
+                padding: 0px;
+                border: 3px solid thistle;
+              }   
+       </style>
+       <script>
+           function d2(e){
+	e.preventDefault();
+}
+function d1(e){
+	e.dataTransfer.setData("Text", e.target.id);
+}
+function d3(e){
+	e.preventDefault();
+	var img=e.dataTransfer.getData("Text");
+	e.target.appendChild(document.getElementById(img));
+}
+            </script>
+   </head>
+   <body>
+       <h3>드래그 가능한 대상에서 발생하는 이벤트</h3>
+    <table style="border: 1px solid black;">
+        <tr>
+            <th>함수 & 이벤트 이름</th>
+            <th>설명 </th>
+        </tr>
+        <tr>
+                <td>ondragstart</td>
+                <td>사용자가 요소를 드래그 끌기 시작할 때 발생한다.</td>
+            </tr>
+            <tr>
+                    <td>ondragend</td>
+                    <td>사용자가 요소를 드래그 끌기를 마쳤을 때 발생한다.</td>
+                </tr>
+                <tr>
+                    <td>ondrag</td>
+                    <td>요소를 드래그 끌고 다니기 시작할 때 발생한다.</td>
+                </tr>
+    </table>
+    <h3>놓을 대상에서 발생하는 이벤트</h3>
+    <table style="border: 1px solid black;">
+            <tr>
+                    <th>함수 & 이벤트 이름</th>
+                    <th>설명 </th>
+                </tr>
+        <tr>
+            <td>ondrop</td>
+            <td>드래그 된 요소가 놓을 대상에 놓일 때 반응한다.</td>
+        </tr>
+        <tr>
+            <td>ondragenter</td>
+            <td>드래그 한 요소가 놓을 대상에 들어 갈 때 반응한다.</td>
+        </tr>
+        <tr>
+            <td>ondragover</td>
+            <td>드래그 한 요소가 놓을 대상 위에 있을 때 발생한다. <br>
+                    ※참고사항 : 요소를 드래그 하는동안 ondragover <br> 이벤트는 350 Millimeter (0.35초) 마다 발생 합니다.
+            </td>
+        </tr>
+                <tr>
+                        <td>ondragleave</td>
+                        <td>드래그 한 요소를 놓을 대상에서  떠날 때 발생한다.</td>
+                    </tr>
+
+    </table>
+    <hr>
+    <h3>Drag & Drop 예시</h3>
+
+    <div ondrop="d3(event)" ondragover="d2(event)">
+            <img src="img/ben.jpg" alt="icon" draggable="true" ondragstart="d1(event)" id="drag">
+          </div>
+        
+            <div ondrop="d3(event)" ondragover="d2(event)">
+            
+                    </div>
+                    <div ondrop="d3(event)" ondragover="d2(event)"></div>
+   </body> 
+</html>
+
