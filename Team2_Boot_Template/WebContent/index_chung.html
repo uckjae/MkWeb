@@ -35,7 +35,31 @@
 */
 
 #no1,#no2,#no3,.kor { font-family: 'Hanna', sans-serif; 
+
 }
+table{
+		  border-collapse: separate;
+		  border-spacing: 1px;
+		  text-align: center;
+		  line-height: 1.5;
+		  width: 100%;
+		  overflow: auto;
+		}
+		th{
+		  width: 50%;
+		  
+		  font-weight: bold;
+		  vertical-align: top;
+		  color: #fff;
+		  background: #ce4869 ;
+		}
+		td{
+		  width: 50%;
+		  
+		  vertical-align: top;
+		  border-bottom: 1px solid #ccc;
+		  background: #eee;
+		}
 
 </style>
 </head>
@@ -763,7 +787,36 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/agency.min.js"></script>
-
+  
+  <script>
+      if(localStorage.getItem("chungmessage")!==null){
+        var messages = localStorage.getItem("chungmessage").split(",");
+        var senders = localStorage.getItem("chungsender").split(",");
+        
+        var newtable = document.createElement("table");
+        var trhead = document.createElement("tr");
+        var th1 = document.createElement("th");
+        var th2 = document.createElement("th");
+        th1.innerHTML="보낸이";
+        th2.innerHTML="메세지";
+        trhead.appendChild(th1);
+        trhead.appendChild(th2);
+        newtable.appendChild(trhead);
+        for(var index in messages){
+          var who = senders[index];
+          var what = messages[index];
+          var newtr = document.createElement("tr");
+          var td1 = document.createElement("td");
+          td1.innerHTML=who;
+          var td2 = document.createElement("td");
+          td2.innerHTML=what;
+          newtr.appendChild(td1);
+          newtr.appendChild(td2);
+          newtable.appendChild(newtr);
+        }
+        document.getElementById("contact").appendChild(newtable);
+      }
+      </script>
 </body>
 
 </html>
