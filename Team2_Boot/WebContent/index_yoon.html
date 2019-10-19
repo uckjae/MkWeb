@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>윤다정</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <!-- fontawesome.com -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="css/style_yoon.css">
+    <script>
+        window.onload = function () {
+            var interval = 0;
+            var lMessages = ["What is your name?", "When is your birthday?", "How old are you?",
+                "Where do you live?", "What is your major?", "SNS?"
+            ];
+            var rMessages = ["❤️ Yoon Da Jeong ❤️", "🥳 1995.05.06 🍰", "🤟 25 years old 🤟",
+                "🏡 Gangseo-gu, Seoul 👨‍👩‍👧‍👧", "🖥️Computer Engineering 📚"
+            ];
+
+            for (var index in lMessages) {
+                interval++;
+                loopL(index, interval);
+                loopR(index, (++interval));
+            }
+
+            function loopL(index, interval) {
+                setTimeout(function () {
+                    var target = document.getElementById("MessageBox");
+                    var left = document.createElement("div");
+                    left.setAttribute("class", "msgLbox");
+                    left.innerHTML = lMessages[index];
+                    target.insertBefore(left, target.lastElementChild);
+                }, interval * 1000, index);
+            }
+
+            function loopR(index, interval) {
+                setTimeout(function () {
+                    var target = document.getElementById("MessageBox");
+                    if (index == rMessages.length) {
+                        document.getElementById("snsBox").setAttribute("style", "display: block;");
+                    } else {
+                        var right = document.createElement("div");
+                        right.setAttribute("class", "msgRbox");
+                        right.innerHTML = rMessages[index];
+                        target.insertBefore(right, target.lastElementChild);
+                    }
+                }, interval * 1000, index);
+            }
+        }
+    </script>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top">
+        <a class="navbar-brand" href="#about">Yoon</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#favorite">Favorite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#motto">Motto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ABOUT -->
+    <div class="home container-fluid" id="about">
+        <div class="container-fluid" id="MessageBox">
+            <div class="msgRbox" id="snsBox" style="display: none;">
+                <div style="text-align: center; margin-bottom: 3%;">
+                    Follow<br />
+                    👇👇👇👇👇
+                    <div class="row" style="align-content: center; justify-content: center;">
+                        <p class="contactIcon">
+                            <a href="mailto:djyoon956@gmaail.com" style="text-decoration-line: none;">
+                                <i class="mail fas fa-envelope-square"></i></a>
+                        </p>
+                        <p class="contactIcon">
+                            <a href="https://ko-kr.facebook.com" style="text-decoration-line: none;"><i
+                                    class="facebook fab fa-facebook-square"></i></a>
+                        </p>
+                        <p class="contactIcon">
+                            <a href="https://www.instagram.com" style="text-decoration-line: none;"><i
+                                    class="insta fab fa-instagram"></i></a>
+                        </p>
+                        <p class="contactIcon">
+                            <a href="https://github.com/djyoon956" style="text-decoration-line: none; color: white;"><i
+                                    class="github fab fa-github-square"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAVORITE -->
+    <div class="sectionGrid container-fluid" id="favorite">
+        <h2 class="mainHeader text-center">My Favorite</h2>
+        <div class="row text-center">
+            <div class="col-sm-4 ">
+                <div class="favoriteBox">
+                    <img src="img/yoon/travel.jpg" alt="Travel">
+                    <h4 class="subHeader"><strong>Travel</strong></h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="favoriteBox">
+                    <img src="img/yoon/movie.jpg" alt="Movie">
+                    <h4 class="subHeader"><strong>Movie</strong></h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="favoriteBox">
+                    <img src="img/yoon/eat.jpg" alt="Eat">
+                    <h4 class="subHeader"><strong>Eat</strong></h4>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center" style="margin-top: 3%;">
+            <div class="col-sm-4">
+                <div class="favoriteBox">
+                    <img src="img/yoon/cafe.jpg" alt="Coffee">
+                    <h4 class="subHeader"><strong>Coffee</strong></h4>
+                </div>
+            </div>
+            <div class="col-sm-4 ">
+                <div class="favoriteBox">
+                    <img src="img/yoon/channel.jpg" alt="Exhibition">
+                    <h4 class="subHeader"><strong>Exhibition</strong></h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="favoriteBox">
+                    <img src="img/yoon/lion.jpg" alt="Character">
+                    <h4 class="subHeader"><strong>Character</strong></h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOTTO -->
+        <div class="sectionGrid container-fluid text-center" id="motto">
+            <h2 class="mainHeader">My Motto</h2>
+            <div id="carouselContent" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active text-center p-4">
+                        <h5>Slow but steady.</h5>
+                        <em>꾸준히 노력하는 사람이 되자.</em>
+                    </div>
+                    <div class="carousel-item text-center p-4">
+                        <h5>Those who mind don’t matter,<br />those who matter don’t mind</h5>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer container-fluid" id="contact">
+            <h6 class="text-center">CONTACT FOR ME</h6>
+            <div class="row" style="align-content: center; justify-content: center;">
+                <p class="contactIcon">
+                    <a href="#" style="text-decoration-line: none;">
+                        <i class="map fas fa-map-marker-alt"></i></a>
+                </p>
+                <p class="contactIcon">
+                    <a href="mailto:djyoon956@gmaail.com" style="text-decoration-line: none;">
+                        <i class="mail fas fa-envelope-square"></i></a>
+                </p>
+                <p class="contactIcon">
+                    <a href="https://ko-kr.facebook.com" style="text-decoration-line: none;"><i
+                            class="facebook fab fa-facebook-square"></i></a>
+                </p>
+                <p class="contactIcon">
+                    <a href="https://www.instagram.com" style="text-decoration-line: none;"><i
+                            class="insta fab fa-instagram"></i></a>
+                </p>
+                <p class="contactIcon">
+                    <a href="https://github.com/djyoon956" style="text-decoration-line: none; color: white;"><i
+                            class="github fab fa-github-square"></i></a>
+                </p>
+            </div>
+        </div>
+</body>
+
+</html>
