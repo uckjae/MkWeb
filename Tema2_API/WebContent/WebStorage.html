@@ -11,18 +11,33 @@ window.onload=  function clickCounter() {
     } else {
       localStorage.clickcount = 1;
     }
-    document.getElementById("result").innerHTML = + localStorage.clickcount + "번째 방문자입니다.";
+    document.getElementById("resultlocal").innerHTML = + localStorage.clickcount + "번째 방문하였습니다";
   } else {
-    document.getElementById("result").innerHTML = "web storage를 지원하지 않습니다.";
+    document.getElementById("resultlocal").innerHTML = "web storage를 지원하지 않습니다.";
   }
+  
+  if (typeof(Storage) !== "undefined") {
+	    if (sessionStorage.clickcount) {
+	      sessionStorage.clickcount = Number(sessionStorage.clickcount)+1;
+	    } else {
+	      sessionStorage.clickcount = 1;
+	    }
+	    document.getElementById("resultsession").innerHTML = sessionStorage.clickcount + " 번째 방문하였습니다";
+	  } else {
+	    document.getElementById("resultsession").innerHTML = "session storage를 지원하지 않습니다.";
+	  }
 }
 </script>
 </head>
 <body>
-
-<h3>방문자 수 확인하기</h3>
-<div id="result"></div>
-
-
+<h3>1. local storage </h3>
+<h3>페이지 방문횟수 확인하기</h3>
+<div id="resultlocal"></div>
+<p>local storage는 만료 날짜가 없는 데이터를 저장한다. 브라우저를 닫을 때 데이터는 삭제되지 않으며 다음에도 사용할 수 있다.</p>
+<br>
+<h3>2. session storage</h3>
+<h3>페이지 방문횟수 확인하기</h3>
+<div id="resultsession"></div>
+<p>session storage는 한 세션에 대한 데이터를 저장한다. 사용자가 브라우저를 닫으면 데이터가 삭제된다.</p>
 </body>
 </html>
