@@ -25,6 +25,10 @@
     <!-- fontawesome.com -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding|Noto+Sans+KR|Roboto&display=swap"
+        rel="stylesheet">
+
     <!--CSS-->
     <link rel="stylesheet" href="css/style_kakaotalk.css">
 
@@ -91,11 +95,26 @@
         }];
 
         window.onload = function () {
+            mainInit();
+        }
+
+        function mainInit() {
+            setKatalkSize();
             var interval = 0;
             for (var index in messages) {
                 interval++;
                 loop(messages[index], interval);
             }
+        }
+
+        function setKatalkSize() {
+            var w = window.innerWidth / 3 + "px";
+            var h = window.innerHeight + "px";
+            var control = document.getElementById("main");
+            var s = "width : " + w + ";" +
+                "height : " + h + ";" +
+                "background-size : " + w + " " + h + ";"
+            control.setAttribute("style", s);
         }
 
         function loop(msg, interval) {

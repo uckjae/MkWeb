@@ -1,3 +1,9 @@
+* {
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
 html,
 body {
     height: 100%;
@@ -7,9 +13,6 @@ body {
     background-image: url("../img/main/main.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 512px 752px;
-    height: 752px;
-    width: 512px;
     margin: auto;
     padding-top: 70px;
     padding-left: 15px;
