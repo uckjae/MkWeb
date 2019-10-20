@@ -1,0 +1,81 @@
+* {
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.main {
+    background-image: url("../img/main/main.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: auto;
+    padding-top: 70px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.kakao {
+    height: auto;
+
+    clear: both;
+    margin: 10px;
+}
+
+.kakao img {
+    border-radius: 20px;
+    width: 45px;
+    height: 45px;
+}
+
+.kakao.L {
+    float: left;
+}
+
+.kakao.L sup {
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.kakao.R {
+    float: right;
+}
+
+.kakao.R sup {
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.talkRbox {
+    border-radius: 20px;
+    background-color: yellow;
+    margin-bottom: 0;
+    padding: 5px 15px;
+    float: right;
+    clear: both;
+    font-weight: 600;
+    margin-top: -25px;
+    margin-right: 60px;
+    margin-bottom: 30px;
+}
+
+.talkLbox {
+    border-radius: 20px;
+    background-color: white;
+    padding: 5px 15px;
+    float: left;
+    clear: both;
+    font-weight: 600;
+    margin-top: -25px;
+    margin-left: 60px;
+    margin-bottom: 30px;
+}
+
+.talkLbox a,
+.talkRbox a {
+    text-decoration: underline;
+}
