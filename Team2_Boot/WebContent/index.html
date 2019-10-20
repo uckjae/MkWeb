@@ -26,80 +26,140 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!--CSS-->
-    <!-- <link rel="stylesheet" href="css/style_yoon.css"> -->
-    <style>
-        img {
-            border-radius: 20px;
-            width: 45px;
-            height: 45px;
+    <link rel="stylesheet" href="css/style_kakaotalk.css">
+
+    <script>
+        var messages = [{
+            name: "덥지않니?",
+            imagePath: "img/main/KakaoTalk_lee.jpg",
+            talks: ["애들아 개인 홈페이지 링크 빨리 올려"],
+            links: {
+                h: "index_lee.html",
+                v: "http://www.uckjae.com"
+            },
+            position: "right"
+        }, {
+            name: "반말인편",
+            imagePath: "img/main/KakaoTalk_yoon.jpg",
+            talks: [],
+            links: {
+                h: "index_yoon.html",
+                v: "http://www.dajeong.com"
+            },
+            position: "left"
+        }, {
+            name: "예서엄마",
+            imagePath: "img/main/KakaoTalk_chung.jpg",
+            talks: [],
+            links: {
+                h: "index_choi.html",
+                v: "http://www.euna.com"
+            },
+            position: "left"
+        }, {
+            name: "도박패망",
+            imagePath: "img/main/KakaoTalk_won.jpg",
+            talks: [],
+            links: {
+                h: "index_won.html",
+                v: "http://www.boyeon.com"
+            },
+            position: "left"
+        }, {
+            name: "비행중년",
+            imagePath: "img/main/KakaoTalk_kim.jpg",
+            talks: [],
+            links: {
+                h: "index_kim.html",
+                v: "http://www.ilgyeom.com"
+            },
+            position: "left"
+        }, {
+            name: "덥지않니?",
+            imagePath: "img/main/KakaoTalk_lee.jpg",
+            talks: ["경열 어디야 수업 곧 시작함"],
+            position: "right"
+        }, {
+            name: "지각머슬",
+            imagePath: "img/main/KakaoTalk_choi.jpg",
+            talks: ["다이소유"],
+            links: {
+                h: "index_choi.html",
+                v: "http://www.kyungyeul.com"
+            },
+            position: "left"
+        }];
+
+        window.onload = function () {
+            var interval = 0;
+            for (var index in messages) {
+                interval++;
+                loop(messages[index], interval);
+            }
         }
 
-        .talkRbox {
-            border-radius: 20px;
-            background-color: yellow;
-            margin-bottom: 0;
-            padding: 5px 15px;
-            float: right;
-            clear: both;
-            font-weight: 600;
-            margin-top: -20px;
-            margin-right: 60px;
-            margin-bottom: 25px;
+        function loop(msg, interval) {
+            setTimeout(function () {
+                var classValue = "";
+                var classValue2 = "";
+                if (msg.position === "left") {
+                    classValue = "kakao L";
+                    classValue2 = "talkLbox";
+                } else {
+                    classValue = "kakao R";
+                    classValue2 = "talkRbox";
+                }
+
+                var main = document.getElementById("main");
+
+                //프로필
+                var profileControl = document.createElement("div");
+                profileControl.setAttribute("class", classValue);
+
+                var subControl = document.createElement("sup");
+                subControl.innerHTML = msg.name;
+
+                var imageControl = document.createElement("img");
+                imageControl.setAttribute("src", msg.imagePath);
+
+                if (msg.position === "left") {
+                    profileControl.appendChild(imageControl);
+                    profileControl.appendChild(subControl);
+                } else {
+                    profileControl.appendChild(subControl);
+                    profileControl.appendChild(imageControl);
+                }
+                main.appendChild(profileControl);
+
+                var messageControls = [];
+                for (var index in msg.talks) {
+                    var messageControl = document.createElement("div");
+                    messageControl.setAttribute("class", classValue2);
+                    messageControl.innerHTML = msg.talks[index];
+                    messageControls.push(messageControl);
+                }
+
+                if (msg.links != undefined) {
+                    var messageControl = document.createElement("div");
+                    messageControl.setAttribute("class", classValue2);
+                    var aControl = document.createElement("a");
+                    aControl.setAttribute("href", msg.links.h);
+                    aControl.innerHTML = msg.links.v;
+                    messageControl.appendChild(aControl);
+                    messageControls.push(messageControl);
+                }
+
+                messageControls[messageControls.length - 1].setAttribute("style", "margin-bottom:0")
+                messageControls.forEach(x => main.appendChild(x));
+            }, interval * 1000);
         }
-
-        .talkLbox {
-            border-radius: 20px;
-            background-color: yellow;
-            margin-bottom: 0;
-            padding: 5px 15px;
-            float: left;
-            clear: both;
-            font-weight: 600;
-            margin-top: -20px;
-            margin-left: 60px;
-            margin-bottom: 25px;
-        }
-
-
-        .kakao {
-            height: auto;
-
-            clear: both;
-            margin: 10px;
-        }
-
-        .kakao.L {
-            float: left;
-        }
-
-        .kakao.R {
-            float: right;
-        }
-    </style>
+    </script>
 </head>
 
-<body>
-    <div class="kakao R">
-        <sup style="font-size: 15px;">덥지않아?</sup>
-        <img src="img/main/KakaoTalk_lee.jpg" style="width: 45px;">
+<body style="background-color: lightgray;">
+    <div class="main" id="main">
+
     </div>
-    <div class="talkRbox"> 애들아 개인 홈페이지 링크 빨리 올려</div>
-    <div class="talkRbox"> 애들아 개인 홈페이지 링크 빨리 올려</div>
-
-    <div class="kakao L">
-        <sup style="font-size: 15px;"></sup>
-        <img src="img/main/KakaoTalk_lee.jpg" style="width: 45px;">
-        반말인편
-    </div>
-    <div class="talkLbox"> <a href="index_yoon.html">http://www.dajeong.com</a></div>
-
-    <div class="kakao L">
-            <sup style="font-size: 15px;"></sup>
-            <img src="img/main/KakaoTalk_lee.jpg" style="width: 45px;">
-            반말인편
-        </div>
-        <div class="talkLbox"> <a href="index_yoon.html">http://www.dajeong.com</a></div>
-
 </body>
 
 </html>
