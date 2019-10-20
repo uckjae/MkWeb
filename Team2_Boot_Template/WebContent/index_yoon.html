@@ -11,6 +11,37 @@
 
 <title>Agency - Start Bootstrap Theme</title>
 
+<style>
+		@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+	
+		.kor {
+		  font-family: 'Hanna', sans-serif;
+		}
+		table{
+		  border-collapse: separate;
+		  border-spacing: 1px;
+		  text-align: center;
+		  line-height: 1.5;
+		  width: 100%;
+		  overflow: auto;
+		}
+		th{
+		  width: 50%;
+		  
+		  font-weight: bold;
+		  vertical-align: top;
+		  color: #fff;
+		  background: #212529 ;
+		}
+		td{
+		  width: 50%;
+		  
+		  vertical-align: top;
+		  border-bottom: 1px solid #ccc;
+		  background: #eee;
+		}
+	  </style>
+
 <!-- Bootstrap core CSS -->
 <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!-- Bootstrap core JavaScript -->
@@ -381,7 +412,35 @@
 	</footer>
 
 	<!-- Portfolio Modals -->
-
+	<script>
+			if(localStorage.getItem("yoonmessage")!==null){
+			  var messages = localStorage.getItem("yoonmessage").split(",");
+			  var senders = localStorage.getItem("yoonsender").split(",");
+			  
+			  var newtable = document.createElement("table");
+			  var trhead = document.createElement("tr");
+			  var th1 = document.createElement("th");
+			  var th2 = document.createElement("th");
+			  th1.innerHTML="보낸이";
+			  th2.innerHTML="메세지";
+			  trhead.appendChild(th1);
+			  trhead.appendChild(th2);
+			  newtable.appendChild(trhead);
+			  for(var index in messages){
+				var who = senders[index];
+				var what = messages[index];
+				var newtr = document.createElement("tr");
+				var td1 = document.createElement("td");
+				td1.innerHTML=who;
+				var td2 = document.createElement("td");
+				td2.innerHTML=what;
+				newtr.appendChild(td1);
+				newtr.appendChild(td2);
+				newtable.appendChild(newtr);
+			  }
+			  document.getElementById("contact").appendChild(newtable);
+			}
+			</script>
 
 
 
