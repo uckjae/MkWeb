@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>euna's page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+<style>
+
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css); 
+
+.kor {
+  font-family: "Hanna";
+}
+
+body {font-family:  "Lato", sans-serif}
+.mySlides {display: none}
+.carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    .menu {letter-spacing:4px;
+    }
+
+    .interestpic, .tlheadpic {
+      padding-top: 20px;
+      margin-bottom:20px;
+      padding-top:32px;
+      padding-bottom:32px;
+    }
+
+    .inpic, .tlpic {
+      margin-bottom:25px;
+    }
+
+    #profile,#qa {
+      background-color:#f1f1f1;
+      margin-top:20px;
+      margin-bottom:20px;
+      padding-top:35px;
+      padding-bottom:30px;
+    }
+    #qa{
+      margin-bottom:0;
+    }
+    #interest, #timeline {
+      margin-top:15px;
+      margin-bottom:20px;
+      padding-top:30px;
+      padding-bottom:20px;
+    }
+    .table>tbody>tr>td,
+    .table>tbody>tr>th {
+      border-top: none;
+    }
+
+    .ico:hover{
+      opacity:0.60
+      }
+    
+    .ico {
+      padding-left:5px;
+      padding-right: 5px;
+    }
+
+    .foot {
+      margin-top:0;
+      padding:20px;
+      color:#000;
+      /*
+      background-color:#f1f1f1; */
+  
+      opacity: 0.6;
+      padding-bottom:10px;
+    }
+    .city{
+      padding-top: 30px;
+    }
+    
+    /*
+    .table>tbody>tr>td {
+      letter-spacing: 0.5px;
+    }
+    */
+    .inter,.inter1,.kor,.table>tbody>tr>td,.qalist {
+      font-size: medium;
+      font-weight: lighter;
+      letter-spacing: 0.3px;
+    }
+    .inter,.inter1,.qalist {
+      font-size:large;
+    }
+    ::selection {
+     background:#fed136;
+    }
+</style>
+
+<body  data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!-- nav 시작 -->
+<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #3A3838;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">EUNA</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">HOME</a></li>
+        <li><a href="#interest">INTEREST</a></li>
+        <li><a href="#profile">PROFILE</a></li>
+        <li><a href="#timeline">TIMELINE</a></li>
+        <li><a href="#qa">Q&A</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- nav 끝 -->
+  
+<!--carousel 시작-->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="img/chung/giraffe.gif">
+      </div>
+      <div class="item">
+        <img src="img/chung/plant.jpg">
+      </div>  
+      <div class="item">
+        <img src="img/chung/paper.png">
+      </div>
+    </div>
+
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+<!--carousel 끝-->
+
+<!-- interest 시작-->
+<div class="container-fluid text-center" id="interest">
+  <div class="row">
+    <h2 class="menu" >INTEREST</h2>
+    <p><i>recent interest</i></p>
+    <br>
+    <p class="kor inter1"> 최근에 면허를 따서 차에 관심이 생겼다. 언젠가 자차를 마련하는 것이 내 소박한 버킷리스트</p>
+    <p class="kor inter" style="text-align: center;"> 개발자가 되기로 결심하고 프로그래밍을 배우고 있다. java,oracle,html/css,javascript등 다양한 분야를
+        섭렵 중이라고 생각하고 있다.</p>
+    <p class="kor inter" style="text-align: center;">이때까지 했던 운동 중에 가장 잘 맞는 것이라 생각한다. 실력이 더 늘면 철인3종 경기에도 나가보고 싶다.</p>
+    <div class="interestpic">
+      <div class="inpic col-md-4">
+          <img src="img/chung/car.jpg"  alt="driving" style="border-radius: 50%; width:60%;">
+      </div>
+       <div class="inpic col-md-4">
+          <img src="img/chung/coding.jpg"  alt="programming" style="border-radius: 50%;width:60%;">
+      </div>
+       <div class="inpic col-md-4">
+          <img src="img/chung/swim2.jpg" alt="swim" style="border-radius: 50%;width:60%;">
+        </div>  
+      </div>
+  </div>
+</div>
+<!-- interest 끝-->
+
+<!--profile 시작-->
+<div class="container-fluid" id="profile">
+  <div class="row"> 
+      <h2 class="menu text-center">PROFILE</h2>
+      <p class="text-center"><i>about me</i></p> <br>
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-6">
+          <table class="table" style="margin-bottom: 30px;">
+          <tbody>
+            <tr>
+              <td>NAME</td>
+              <td class="kor">정은아</td>
+            </tr>
+            <tr>
+              <td>BIRTH DATE</td>
+              <td class="kor">1992년 11월 24일</td>
+            </tr>
+            <tr>
+                <td>HOROSCOPE</td>
+                <td class="kor">사수자리</td>
+              </tr>
+            <tr>
+                <td>FAMILY</td>
+                <td class="kor">1남 1녀 중 장녀</td>
+              </tr>
+            <tr>
+            <tr>
+              <td>BLOODTYPE</td>
+              <td class="kor">O형</td>
+            </tr>
+            <tr>
+                <td>MBTI</td>
+                <td class="kor">ISTP</td>
+              </tr>
+              <tr>
+                  <td>LIKE</td>
+                  <td class="kor">쉬기 먹기</td>
+                </tr>
+              <tr>
+                  <tr>
+                      <td>DISLIKE</td>
+                      <td class="kor">쉼 없는 생활</td>
+                    </tr>
+                  <tr>
+              <td>PHONENUMBER</td>
+              <td class="kor">010-2274-3913</td>
+            </tr>
+            <tr>
+              <td>EMAIL</td>
+              <td class="kor">local456a@gmail.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+<!--profile 끝-->
+
+
+<!--timeline 시작-->
+<div class="container-fluid text-center" id="timeline">
+  <div class="row">
+      <h2 class="menu text-center">TIMELINE</h2>
+      <p class="text-center"><i>where I lived</i></p> <br>
+      <div class="tlheadpic">
+      <div class="tlpic col-md-4">
+          <img src="img/chung/child1.JPG" alt="child1" style="width:60%">
+          <p class="city"><b>Changwon,&nbsp;&nbsp;Korea</b></p>
+          <p class="w3-opacity">1992 ~ 1997</p>
+      </div>
+      <div class="tlpic col-md-4">
+          <img src="img/chung/child2.JPG" alt="child2" style="width:60%" >
+          <p class="city"><b> Jakarta,&nbsp;&nbsp;Indonesia</b></p>
+          <p class="w3-opacity">1997 ~ 2000</p>
+      </div>
+      <div class="tlpic col-md-4">
+          <img src="img/chung/seoulcity.JPG" alt="seoul" style="width:60%">
+          <p class="city"><b>Seoul,&nbsp;&nbsp; Korea</b></p>
+          <p class="">2000 ~ ing</p>
+        </div>
+      </div>
+  </div>
+</div>
+<!--timeline 끝-->
+
+<!--30Q about me-->
+<div class ="container-fluid " id="qa">
+  <div class="row">
+      <h2 class="menu text-center">30 QUESTIONS ABOUT ME</h2>
+      <p class="text-center"><i>tell you more about me</i></p> <br>
+      <div class="col-sm-12 kor text-center qalist">
+        <p>Q1. 내 삶의 목적은 무엇인가?</p>
+        <p>A1. 헹복하게 살기</p>
+        <p>Q2. 당장 기분을 좋게하는 비법이 있는가?</p>
+        <p>A2. 단 거 먹기</p>
+        <p>Q3. 오늘 나에게 동기를 부여해준 일은?</p>
+        <p>A3. 얼마 남지 않은 시간</p>
+        <p>Q4. 다음에 여행하고 싶은 곳은 어디인가?</p>
+        <p>A4. 북유럽 쪽. 오로라를 보고싶다</p>
+        <p>Q5. 최근에 가장 맛있었던 식사는?</p>
+        <p>A5. 마라탕 요즘 마라탕을 자주 먹는다</p>
+        <p>Q6. 가장 자신있게 만들 수 있는 요리는?</p>
+        <p>A6. 라면</p>
+        <p>Q7. 몹시 기다려지는 일이 있는가?</p>
+        <p>A7. 공휴일</p>
+        <p>Q8. 좋아하는 TV 프로그램은?</p>
+        <p>A8. 나혼자산다. 최근에는 못 챙겨봤다</p>
+        <p>Q9. 여름이 좋은가? 겨울이 좋은가?</p>
+        <p>A9. 겨울. 추운 것보다 습한 것이 싫다</p>
+        <p>Q10. 오늘 나의 하루는 짠맛인가, 달달한 맛인가?</p>
+        <p>A10. 솔티드 카라멜 같은 하루</p>
+        <p>Q11. 내가 본 최악의 영화는?</p>
+        <p>A11. 미스트. 결말이 충격적이었다</p>
+        <p>Q12. 긴 머리와 짧은 머리 중에 하나를 고르라면?</p>
+        <p>A12. 긴 머리</p>
+        <p>Q13. 현재 가장 큰 지출을 차지하는 부분은?</p>
+        <p>A13. 커피. 카페인 없이는 살 수가 없다</p>
+        <p>Q14. 오늘 일어나기를 바라는 일은?</p>
+        <p>A14. 로또 당첨</p>
+        <p>Q15. 계속 머릿속에 맴도는 노래가 있다면?</p>
+        <p>A15. Feel Special</p>
+        <p>Q16. 첫눈이 내리면 가장 먼저 하고 싶은 일은?</p>
+        <p>A16. 새벽에 아무도 안 밟은 눈 밟기</p>
+        <p>Q17. 올해 가장 기억에 남는 일은?</p>
+        <p>A17. 비트캠프 개강한 것. 첫날에 비왔던 기억이 아직도 난다</p>
+        <p>Q18. 오늘 커피를 몇 잔 마셨는가?</p>
+        <p>A18. 두 잔</p>
+        <p>Q19. 현재 읽고있는 글이나 책이 있다면?</p>
+        <p>A19. 자바? 컴퓨터책만 읽는 중이다</p>
+        <p>Q20. 직감을 믿는 편인가?</p>
+        <p>A20. 믿는 편이다. 직감은 빅데이터다</p>
+        <p>Q21. 나의 일요일 아침은 어떤 풍경인가?</p>
+        <p>A21. 늦잠 자기 일요일의 시작은 오후 두시부터다</p>
+        <p>Q22. 지금 당장 사고 싶은 것은?</p>
+        <p>A22. 에어팟 케이스</p>
+        <p>Q23. 가장 좋아하는 외식 메뉴는?</p>
+        <p>A23. 떡볶이</p>
+        <p>Q24. 나를 잘 나타내주는 노래는?</p>
+        <p>A24. 말하는대로</p>
+        <p>Q25. 나는 내년에 어떤 모습일까?</p>
+        <p>A25. 직장인이었으면 좋겠다</p>
+        <p>Q26. 오늘 가장 좋았던 시간은 언제인가?</p>
+        <p>A26. 목욕하고 잠들기 전</p>
+        <p>Q27. 내가 지나치게 자주 사용하는 단어는?</p>
+        <p>A27. 진짜</p>
+        <p>Q28. 나는 돈을 충분히 버는가?</p>
+        <p>A28. 나라에서 주는 돈으로 근근히 먹고산다</p>
+        <p>Q29. 나에게 없어서는 안될 인류의 발명품은?</p>
+        <p>A29. 컴퓨터</p>
+        <p>Q30. 오늘 감사하게 생각하는 일은?</p>
+        <p>A30. 공부할 기회가 주어졌다는 것이 감사하다</p>
+      </div>
+  </div>
+
+
+</div>
+
+<!-- 푸터 시작 -->
+<div class="container-fluid foot">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+        <a href="https://www.facebook.com/" target="_blank"><i class="ico fa fa-facebook-official fa-2x"></i></a>
+        <a target="_blank" href="https://www.instagram.com/"><i class="ico fa fa-instagram fa-2x"></i></a>
+        <a target="_blank" href="https://github.com/chungeuna"><i class="ico fa fa-github fa-2x"></i></a>
+        <a target="_blank" href="https://www.pinterest.co.kr/"><i class="ico fa fa-pinterest-p fa-2x"></i></a>
+        <a target="_blank" href="https://twitter.com"><i class="ico fa fa-twitter fa-2x"></i></a> 
+        <h5 class="w3-medium">Copyright &copy; 2019 chungeuna </h5>
+    </div>
+  </div> 
+</div>
+<!-- 푸터 끝-->
+</body>
+</html>
