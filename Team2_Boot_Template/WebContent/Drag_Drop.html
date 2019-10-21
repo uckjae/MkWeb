@@ -45,14 +45,31 @@
                 ev.target.appendChild(document.getElementById(data));
                 var boxId = (ev.target.id).replace("box", "");
                 var itemId = data.split("/")[0];
-                console.log(boxId + "/" + itemId);
-                results[boxId - 1] = boxId == itemId ? true : false;
+                results[boxId - 1] = boxId === itemId ? true : false;
                 dropCount++;
             }
         }
 
         function gameEnd() {
-            console.log(results);
+            if (oldselect === 0)
+                gameEndNumber();
+            else
+                gameEndImage();
+        }
+
+        function gameEndNumber() {
+            var result = "성공입니다.";
+            for (var i = 0; i < results.length - 1; i++) {
+                if (results[i] === false) {
+                    result = "실패입니다.";
+                    break;
+                }
+            }
+
+            alert(result + "\n" + "시도 횟 수 : " + dropCount);
+        }
+
+        function gameEndImage() {
             var result = "성공입니다.";
             for (var i = 0; i < results.length; i++) {
                 if (results[i] === false) {
@@ -74,7 +91,6 @@
 
         function shuifflePuzzel(num) {
             var datas = [];
-            console.log(num);
             do {
                 var random = Math.trunc((Math.random() * num) + 1);
                 var test = datas.find(x => x === random);
@@ -165,7 +181,7 @@
             var puzzleControl = document.getElementById("puzzleGrid");
             var numberValue = "";
             var puzzleValue = "";
-            console.log("dix:" + oldselect);
+
             if (oldselect === 0) {
                 numberValue = "display:block; ";
                 puzzleValue = "display:none; ";
@@ -185,7 +201,7 @@
             if (oldselect === index)
                 return;
             oldselect = index;
-            console.log("in : " + oldselect);
+
             switch (oldselect) {
                 case 0:
                     setDisplay();
@@ -259,9 +275,11 @@
             <option value="puzzle">퍼즐 맞추기</option>
         </select>
         <button type="button" onclick="gameEnd()">제출</button>
-        <div class="grid" id="numberGrid">
-        </div>
 
+
+    </div>
+
+    <div class="grid" id="numberGrid">
     </div>
     <div id="puzzleGrid">
         <div class="grid" id="puzzleValue" style="float: left;">
