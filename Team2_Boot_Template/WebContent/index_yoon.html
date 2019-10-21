@@ -377,6 +377,9 @@
 			  trhead.appendChild(th1);
 			  trhead.appendChild(th2);
 			  newtable.appendChild(trhead);
+			  var badge = document.createElement("span");
+    badge.setAttribute("class","badge");
+    badge.innerHTML = "new";
 			  for(var index in messages){
 				var who = senders[index];
 				var what = messages[index];
@@ -385,6 +388,7 @@
 				td1.innerHTML=who;
 				var td2 = document.createElement("td");
 				td2.innerHTML=what;
+				td1.appendChild(badge);
 				newtr.appendChild(td1);
 				newtr.appendChild(td2);
 				newtable.appendChild(newtr);
