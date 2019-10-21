@@ -1,62 +1,256 @@
 <html>
-   <head>
-        <meta charset="UTF-8">
-       <title>
-           설명
-       </title>
-       <style>
-            td, th{
-           border: 1px solid;
-             }
-            div {
-                float: left;
-                width:  288px;
-                height: 175px;
-                margin: 20px;
-                padding: 0px;
-                border: 3px solid thistle;
-              }   
-       </style>
-       <script>
-           function d2(e){
-	e.preventDefault();
-}
-function d1(e){
-	e.dataTransfer.setData("Text", e.target.id);
-}
-function d3(e){
-	e.preventDefault();
-	var img=e.dataTransfer.getData("Text");
-	e.target.appendChild(document.getElementById(img));
-}
-            </script>
-   </head>
-   <body>
-       <h3>드래그 가능한 대상에서 발생하는 이벤트</h3>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        설명
+    </title>
+    <style>
+        td,
+        th {
+            border: 1px solid;
+        }
+
+        .grid {
+            width: 456px;
+            height: 456px;
+        }
+
+        .box {
+            width: 150px;
+            height: 150px;
+            float: left;
+            border: 1px black solid;
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev, obj) {
+            ev.preventDefault();
+
+            if (obj.getElementsByTagName("img").length === 0) {
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById(data));
+                var boxId = (ev.target.id).replace("box", "");
+                var itemId = data.split("/")[0];
+                results[boxId - 1] = boxId === itemId ? true : false;
+                dropCount++;
+            }
+        }
+
+        function gameEnd() {
+            if (oldselect === 0)
+                gameEndNumber();
+            else
+                gameEndImage();
+        }
+
+        function gameEndNumber() {
+            var result = "성공입니다.";
+            for (var i = 0; i < results.length - 1; i++) {
+                if (results[i] === false) {
+                    result = "실패입니다.";
+                    break;
+                }
+            }
+
+            alert(result + "\n" + "시도 횟 수 : " + dropCount);
+        }
+
+        function gameEndImage() {
+            var result = "성공입니다.";
+            for (var i = 0; i < results.length; i++) {
+                if (results[i] === false) {
+                    result = "실패입니다.";
+                    break;
+                }
+            }
+
+            alert(result + "\n" + "시도 횟 수 : " + dropCount);
+        }
+
+        var results = [false, false, false, false, false, false, false, false, false];
+        var dropCount = 0;
+
+        function initGameValue() {
+            results = [false, false, false, false, false, false, false, false, false];
+            dropCount = 0;
+        }
+
+        function shuifflePuzzel(num) {
+            var datas = [];
+            do {
+                var random = Math.trunc((Math.random() * num) + 1);
+                var test = datas.find(x => x === random);
+
+                if (!test)
+                    datas.push(random);
+
+            } while (datas.length < num)
+
+            return datas;
+        }
+
+        function clearChild(control) {
+            while (control.hasChildNodes()) {
+                control.removeChild(control.firstChild);
+            }
+        }
+
+        function initNumberPuzzleGame() {
+            initGameValue();
+            var datas = shuifflePuzzel(8);
+            var mainControl = document.getElementById("numberGrid");
+            clearChild(mainControl);
+
+            var blankControl = document.createElement("div");
+            blankControl.setAttribute("class", "box");
+            blankControl.setAttribute("ondrop", "drop(event,this)");
+            blankControl.setAttribute("ondragover", "allowDrop(event)");
+            blankControl.setAttribute("id", "9box");
+            mainControl.appendChild(blankControl);
+
+            for (var index in datas) {
+                var boxs = getBoxs(8);
+
+                var image = document.createElement("img");
+                image.setAttribute("src", "img/dragDrop1/" + datas[index] + ".png");
+                image.setAttribute("id", datas[index] + "/number");
+                image.setAttribute("draggable", true);
+                image.setAttribute("ondragstart", "drag(event)");
+
+                boxs[index].appendChild(image);
+                mainControl.insertBefore(boxs[index], blankControl);
+            }
+        }
+
+        function initImagePuzzleGame() {
+            initGameValue();
+
+            var datas = shuifflePuzzel(9);
+            var valueControl = document.getElementById("puzzleValue");
+            var resultControl = document.getElementById("puzzleResult");
+            clearChild(valueControl);
+            clearChild(resultControl);
+
+            for (var index in datas) {
+                var boxs = getBoxs(9);
+
+                var image = document.createElement("img");
+                image.setAttribute("src", "img/dragDrop2/" + datas[index] + ".jpg");
+                image.setAttribute("id", datas[index] + "/image");
+                image.setAttribute("draggable", true);
+                image.setAttribute("ondragstart", "drag(event)");
+
+                boxs[index].appendChild(image);
+                valueControl.appendChild(boxs[index]);
+            }
+
+            getBoxs(9).forEach(x => resultControl.appendChild(x));
+
+        }
+
+        function getBoxs(count) {
+            var boxs = [];
+            for (var i = 0; i < count; i++) {
+                var box = document.createElement("div");
+                var id = Number(i) + 1;
+                box.setAttribute("id", id + "box");
+                box.setAttribute("class", "box");
+                box.setAttribute("ondrop", "drop(event,this)");
+                box.setAttribute("ondragover", "allowDrop(event)");
+                boxs.push(box);
+            }
+            return boxs;
+        }
+
+        function setDisplay() {
+            var numberControl = document.getElementById("numberGrid");
+            var puzzleControl = document.getElementById("puzzleGrid");
+            var numberValue = "";
+            var puzzleValue = "";
+
+            if (oldselect === 0) {
+                numberValue = "display:block; ";
+                puzzleValue = "display:none; ";
+            } else {
+                numberValue = "display:none;";
+                puzzleValue = "display:block; ";
+            }
+
+            numberControl.setAttribute("style", numberValue);
+            puzzleControl.setAttribute("style", puzzleValue);
+        }
+
+        var oldselect = 0;
+
+        function gameChange(selected) {
+            var index = selected.selectedIndex
+            if (oldselect === index)
+                return;
+            oldselect = index;
+
+            switch (oldselect) {
+                case 0:
+                    setDisplay();
+                    initNumberPuzzleGame();
+                    break;
+                case 1:
+                    setDisplay();
+                    initImagePuzzleGame();
+                    break;
+            }
+
+        }
+
+        window.onload = function () {
+            initNumberPuzzleGame();
+        }
+    </script>
+</head>
+
+<body>
+    <h3>드래그 가능한 대상에서 발생하는 이벤트</h3>
     <table style="border: 1px solid black;">
         <tr>
-            <th>함수 & 이벤트 이름</th>
+            <th>속성</th>
             <th>설명 </th>
         </tr>
+        	<tr>
+			<td>draggable</td>
+			<td>draggable 속성은 요소를 드래그 할 수 있는지 여부를 지정합니다. (Default : true)</td>
+		<tr>
         <tr>
-                <td>ondragstart</td>
-                <td>사용자가 요소를 드래그 끌기 시작할 때 발생한다.</td>
-            </tr>
-            <tr>
-                    <td>ondragend</td>
-                    <td>사용자가 요소를 드래그 끌기를 마쳤을 때 발생한다.</td>
-                </tr>
-                <tr>
-                    <td>ondrag</td>
-                    <td>요소를 드래그 끌고 다니기 시작할 때 발생한다.</td>
-                </tr>
+            <td>ondragstart</td>
+            <td>사용자가 요소를 드래그 끌기 시작할 때 발생한다.</td>
+        </tr>
+        <tr>
+            <td>ondragend</td>
+            <td>사용자가 요소를 드래그 끌기를 마쳤을 때 발생한다.</td>
+        </tr>
+        <tr>
+            <td>ondrag</td>
+            <td>요소를 드래그 끌고 다니기 시작할 때 발생한다.</td>
+        </tr>
     </table>
     <h3>놓을 대상에서 발생하는 이벤트</h3>
     <table style="border: 1px solid black;">
-            <tr>
-                    <th>함수 & 이벤트 이름</th>
-                    <th>설명 </th>
-                </tr>
+        <tr>
+            <th>속성</th>
+            <th>설명 </th>
+        </tr>
         <tr>
             <td>ondrop</td>
             <td>드래그 된 요소가 놓을 대상에 놓일 때 반응한다.</td>
@@ -68,26 +262,36 @@ function d3(e){
         <tr>
             <td>ondragover</td>
             <td>드래그 한 요소가 놓을 대상 위에 있을 때 발생한다. <br>
-                    ※참고사항 : 요소를 드래그 하는동안 ondragover <br> 이벤트는 350 Millimeter (0.35초) 마다 발생 합니다.
+                ※참고사항 : 요소를 드래그 하는동안 ondragover <br> 이벤트는 350 Millimeter (0.35초) 마다 발생 합니다.
             </td>
         </tr>
-                <tr>
-                        <td>ondragleave</td>
-                        <td>드래그 한 요소를 놓을 대상에서  떠날 때 발생한다.</td>
-                    </tr>
+        <tr>
+            <td>ondragleave</td>
+            <td>드래그 한 요소를 놓을 대상에서 떠날 때 발생한다.</td>
+        </tr>
 
     </table>
     <hr>
     <h3>Drag & Drop 예시</h3>
+    <div>
+        <select onclick="gameChange(this)" style="margin-bottom: 20px;">
+            <option value="number" selected>숫자 맞추기</option>
+            <option value="puzzle">퍼즐 맞추기</option>
+        </select>
+        <button type="button" onclick="gameEnd()">제출</button>
 
-    <div ondrop="d3(event)" ondragover="d2(event)">
-            <img src="img/ben.jpg" alt="icon" draggable="true" ondragstart="d1(event)" id="drag">
-          </div>
-        
-            <div ondrop="d3(event)" ondragover="d2(event)">
-            
-                    </div>
-                    <div ondrop="d3(event)" ondragover="d2(event)"></div>
-   </body> 
+
+    </div>
+
+    <div class="grid" id="numberGrid">
+    </div>
+    <div id="puzzleGrid">
+        <div class="grid" id="puzzleValue" style="float: left;">
+        </div>
+        <div class="grid" id="puzzleResult" style="float: left;margin-left: 50px;">
+        </div>
+    </div>
+
+</body>
+
 </html>
-

@@ -128,7 +128,7 @@
           <span class="fa-stack fa-4x">
             <!-- <i class="fas fa-circle fa-stack-2x text-primary"></i>
             <i class="fas fa-lock fa-stack-1x fa-inverse"></i> -->
-            <img src="img/kim/py.PNG" class="rounded-circle fas fa-circle fa-stack-2x text-primary" alt="Cinque Terre">
+            <img src="img/kim/py.png" class="rounded-circle fas fa-circle fa-stack-2x text-primary" alt="Cinque Terre">
           </span>
           <h4 class="service-heading">Residence</h4>
           <p class="text-muted"> Where do you live?</p>
@@ -659,6 +659,9 @@
         trhead.appendChild(th1);
         trhead.appendChild(th2);
         newtable.appendChild(trhead);
+        var badge = document.createElement("span");
+    badge.setAttribute("class","badge");
+    badge.innerHTML = "new";
         for(var index in messages){
           var who = senders[index];
           var what = messages[index];
@@ -667,6 +670,7 @@
           td1.innerHTML=who;
           var td2 = document.createElement("td");
           td2.innerHTML=what;
+          td1.appendChild(badge);
           newtr.appendChild(td1);
           newtr.appendChild(td2);
           newtable.appendChild(newtr);
