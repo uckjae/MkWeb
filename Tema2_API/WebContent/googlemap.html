@@ -29,11 +29,12 @@
 	'</div>';
 	var myLatlng = new google.maps.LatLng(Y_point, X_point);
 	var mapOptions = {
-						zoom: zoomLevel,
+						zoom: zoomLevel, //지도확대레벨
 						center: myLatlng, //지도 가운데 위치할곳
 						mapTypeId: google.maps.MapTypeId.ROADMAP
 					}
-	var map = new google.maps.Map(document.getElementById('map_ma'), mapOptions); // 지도유형 저장 옵션(지도 줌, 위치갑)
+	var map = new google.maps.Map(document.getElementById('map_ma'), mapOptions);
+	// 지도유형 저장 옵션(지도 줌, 위치갑) ,id가 map_ma인 div안에 mapoptions이용해  맵을 만듬.
 	var marker = new google.maps.Marker({
 											position: myLatlng, //위치
 											map: map,           //지도줌 ,위치값
@@ -41,8 +42,8 @@
 	});
 	var infowindow = new google.maps.InfoWindow( //마커
 												{
-													content: contentString, 
-													maxWizzzdth: markerMaxWidth
+													content: contentString,  //마커클릭시 나오는 텍스트
+													maxWizzzdth: markerMaxWidth //마커 텍스트 크기
 												}
 			);
 	google.maps.event.addListener(marker, 'click', function() {
