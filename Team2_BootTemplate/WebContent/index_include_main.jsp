@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="index_include_head.jsp"></jsp:include>
+<jsp:include page="./common/head.jsp"></jsp:include>
 
 </head>
 <body>

@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 <head>
-  <jsp:include page="index_include_head.jsp"></jsp:include>
+  <jsp:include page="./common/head.jsp"></jsp:include>
 </head>
-<body>
+
 <!-- navbar -->
 <jsp:include page="index_include_navbar.jsp"></jsp:include>
 
@@ -43,4 +43,3 @@
     </div>
 </form>
 </div>
-</body>
