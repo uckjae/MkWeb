@@ -10,7 +10,7 @@
 <!-- navbar -->
 <jsp:include page="navbar_lee.jsp"></jsp:include>
 <!-- header -->
-<jsp:include page="index_include_header.jsp"></jsp:include>
+<jsp:include page="index_include_login.jsp"></jsp:include>
 
 </body>
 </html>

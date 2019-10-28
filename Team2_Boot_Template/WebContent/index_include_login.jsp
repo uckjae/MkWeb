@@ -7,7 +7,7 @@
 
 .login {
 	width: 360px;
-	padding: 20% 0 0;
+	padding: 10% 0 0;
 	margin: auto;
 }
 
@@ -19,8 +19,7 @@
 	margin: 0 auto 100px;
 	padding: 45px;
 	text-align: center;
-	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0
-		rgba(0, 0, 0, 0.24);
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
 .form .message {
@@ -28,7 +27,7 @@
   color: #b3b3b3;
   font-size: 12px;
 }
-button{
+.login button{
 width: 100%
 }
 </style>
