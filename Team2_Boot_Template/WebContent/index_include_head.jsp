@@ -36,11 +36,5 @@
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
     <style type="text/css">
-    body{
-
-    	background-image: url("img/yoon/main3.gif");
-    	background-repeat: no-repeat;
-    	background-size: cover;
-    }
     </style>
 </head>
