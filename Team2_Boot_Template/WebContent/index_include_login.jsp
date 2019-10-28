@@ -32,7 +32,8 @@
 }
 </style>
 </head>
-
+<!-- navbar -->
+<jsp:include page="navbar_lee.jsp"></jsp:include>
 <div class="login">
 	<div class="form">
 		<form>
