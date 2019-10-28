@@ -35,4 +35,6 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/agency.min.js"></script>
+    <style type="text/css">
+    </style>
 </head>
