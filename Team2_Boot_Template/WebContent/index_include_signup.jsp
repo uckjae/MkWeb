@@ -4,9 +4,15 @@
 <head>
   <jsp:include page="index_include_head.jsp"></jsp:include>
 </head>
+<body>
+<!-- navbar -->
+<jsp:include page="navbar_lee.jsp"></jsp:include>
+
 <div class="container">
-<h3>회원가입</h3>
-<form>
+<br><br><br>
+<br>
+<form style="color: white">
+<h3 >회원가입</h3>
   <div class="form-group" >
       <label for="ID col-sm-5">ID:</label>
       <input type="text" class="form-control" id="ID">
@@ -37,3 +43,4 @@
     </div>
 </form>
 </div>
+</body>
