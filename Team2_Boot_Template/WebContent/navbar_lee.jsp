@@ -16,7 +16,7 @@
             <a class="nav-link js-scroll-trigger" href="index_include_main.jsp">Main</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index_include_register.jsp">회원가입</a>
+            <a class="nav-link js-scroll-trigger" href="index_include_signup.jsp">회원가입</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="index_include_login.jsp">로그인</a>
