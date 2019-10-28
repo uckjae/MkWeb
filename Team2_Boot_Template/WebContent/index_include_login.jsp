@@ -28,7 +28,7 @@
   font-size: 12px;
 }
 .login button{
-width: 100%
+	width: 100%
 }
 </style>
 </head>
