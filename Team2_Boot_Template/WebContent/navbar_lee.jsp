@@ -13,20 +13,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">Main</a>
+            <a class="nav-link js-scroll-trigger" href="index_include_main.jsp">Main</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#portfolio">회원가입</a>
+            <a class="nav-link js-scroll-trigger" href="index_include_register.jsp">회원가입</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">로그인</a>
+            <a class="nav-link js-scroll-trigger" href="index_include_login.jsp">로그인</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#team">Link</a>
-          </li> -->
-          
-          
-          
+         
         </ul>
       </div>
     </div>
