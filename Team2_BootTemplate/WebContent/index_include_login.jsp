@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="./index_include_head.jsp"></jsp:include>
+<jsp:include page="./common/head.jsp"></jsp:include>
 <style type="text/css">
 
 .login {
