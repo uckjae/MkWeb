@@ -81,13 +81,16 @@ public class FrontController extends HttpServlet {
 		} 
 		//won
 		// Register 화면
-		else if (url_Command.equals("/Register.won")) {
-			action = new RegisterOkService_won();
-			forward = action.execute(request, response);
+		else if (url_Command.equals("/Register_won.do")) {
+			System.out.println("cmd .do 타고와서");
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+			System.out.println("cmd 빠져나가고");
 		}
 		// Register 진행
-		else if (url_Command.equals("/RegisterOk.won")) {
-			
+		else if (url_Command.equals("/RegisterOk_won.do")) {
+			action = new RegisterOkService_won();
+			forward = action.execute(request, response);
 		} 
 		//kim
 		// Register 화면
@@ -142,6 +145,7 @@ public class FrontController extends HttpServlet {
 		}
 
 		if (forward != null) {
+			System.out.println("포워드가 null 값이 아니니?");
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {

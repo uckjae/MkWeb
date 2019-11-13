@@ -31,7 +31,7 @@ public class EmpDao_won {
 			
 			resultrow = pstmt.executeUpdate();
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("여기 date 오류?");
 		}finally {
 			DBHelper.close(pstmt);
 			DBHelper.close(connection);

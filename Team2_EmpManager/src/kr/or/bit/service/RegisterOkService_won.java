@@ -50,7 +50,7 @@ public class RegisterOkService_won implements Action {
 				forward.setPath("/WEB-INF/views/login/Login.jsp");
 			} else { // -1 (제약, 컬럼길이 문제)
 				forward.setRedirect(false); // forward 방식
-				forward.setPath("/WEB-INF/views/register/register.jsp");
+				forward.setPath("/WEB-INF/views/register/register_won.jsp");
 			}
 
 		}catch (Exception e) {
