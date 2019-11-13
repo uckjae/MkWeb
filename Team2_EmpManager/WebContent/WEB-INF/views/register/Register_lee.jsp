@@ -34,13 +34,13 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="No" required="required" autofocus="autofocus">
+                                                            <input type="number" id="empno" name="empno" class="form-control" placeholder="No" required="required" autofocus="autofocus">
                                                             <label for="empno">No</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="Name" required="required">
+                                                            <input type="text" id="ename" name="ename" class="form-control" placeholder="Name" required="required">
                                                             <label for="ename">Name</label>
                                                         </div>
                                                     </div>
@@ -50,30 +50,14 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="Hire Date" required="required">
-	                                                        <label for="">Hire Date</label>
+                                                            <input type="date" id="hiredate" name="hiredate" class="form-control" placeholder="Hire Date" required="required">
+	                                                        <label for="hiredate">Hire Date</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="Job" required="required">
-                                                            <label for="">Job</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="form-row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="Dept No" required="required">
-                                                            <label for="">Dept No</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-label-group">
-                                                        	<input type="" id="" name="" class="form-control" placeholder="Manager" required="required">
-                                                        	<label for="">Manager</label>
+                                                            <input type="text" id="job" name="job" class="form-control" placeholder="Job" required="required">
+                                                            <label for="job">Job</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -82,14 +66,30 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="Sal" required="required">
-                                                            <label for="">Salary</label>
+                                                            <input type="number" id="deptno" name="deptno" class="form-control" placeholder="Dept No" required="required">
+                                                            <label for="deptno">Dept No</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="" id="" name="" class="form-control" placeholder="Commission" required="required">
-                                                            <label for="">Commission</label>
+                                                        	<input type="number" id="mgr" name="mgr" class="form-control" placeholder="Manager" required="required">
+                                                        	<label for="mgr">Manager</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                            <input type="number" id="sal" name="sal" class="form-control" placeholder="Sal" required="required">
+                                                            <label for="sal">Salary</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                            <input type="number" id="sal" name="sal" class="form-control" placeholder="Commission" required="required">
+                                                            <label for="sal">Commission</label>
                                                         </div>
                                                     </div>
                                                 </div>
