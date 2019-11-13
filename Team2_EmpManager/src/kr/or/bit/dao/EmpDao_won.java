@@ -1,6 +1,7 @@
 package kr.or.bit.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -10,8 +11,33 @@ import kr.or.bit.utils.DBHelper;
 
 public class EmpDao_won {
 	public int insertEmp(Emp emp) {
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		int resultrow = 0;
 		
-		return 0;
+		try {
+			//"insert into memo(id,email,content) values(?,?,?)";
+			connection = DBHelper.getConnection("oracle");
+			String sql = "insert into Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) value(?,?,?,?,?,?,?,?)";
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, emp.getEmpno());
+			pstmt.setString(2, emp.getEname());
+			pstmt.setString(3, emp.getJob());
+			pstmt.setInt(4, emp.getMgr());
+			pstmt.setDate(5, (Date)emp.getHiredate());
+			pstmt.setInt(6, emp.getSal());
+			pstmt.setInt(7, emp.getComm());
+			pstmt.setInt(8, emp.getDeptno());
+			
+			resultrow = pstmt.executeUpdate();
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(connection);
+		}
+		
+		return resultrow;
 	}
 
 	public Emp getEmpByEmpno(int no) {
