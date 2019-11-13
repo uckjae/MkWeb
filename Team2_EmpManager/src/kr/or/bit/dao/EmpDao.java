@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.bit.dto.Emp;
 import kr.or.bit.utils.DBHelper;
 
@@ -15,21 +18,9 @@ public class EmpDao {
 	}
 
 	public Emp getEmpByEmpno(int no) {
-		Connection connection = DBHelper.getConnection("oracle");
-		ResultSet resultSet = null;
-		PreparedStatement pstmt = null;
 		
-		String sql = "Select empno from emp where empno=?";
+		  return this.getEmpByEmpno(no);
 		
-		try {
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			resultSet = pstmt.executeQuery();
-		}catch (Exception e) {
-
-		}
-
-		return null;
 	}
 
 	public boolean checkAdminLogin(String userid, String pwd) {
@@ -101,5 +92,41 @@ public class EmpDao {
 		
 		return 0;
 	}
+	
+	public Emp getEdit(HttpServletRequest request) {
+		try {
+			String no = request.getParameter("empno");
+			String ename = request.getParameter("ename");
+			String job = request.getParameter("job");
+			String mgr = request.getParameter("mgr");
+			String date = request.getParameter("hiredate");
+			String sal = request.getParameter("sal");
+			String comm = request.getParameter("comm");
+			String dept = request.getParameter("deptno");
+			
+			Connection conn = null;
+			ResultSet rs = null;
+			PreparedStatement pstmt = null;
+			
+			String sql = "select no from emp where=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
+			
+			conn = DBHelper.getConnection("oracle");
+			
+			rs = pstmt.executeQuery();
+			
+			
+		}catch (Exception e) {
+
+		}
+		
+		
+		
+		return null;
+
+	}
+	
+	
   
 }
