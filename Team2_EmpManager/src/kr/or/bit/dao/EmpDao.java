@@ -22,9 +22,11 @@ public class EmpDao {
 		String sql = "Select empno from emp where empno=?";
 		
 		try {
-			
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			resultSet = pstmt.executeQuery();
 		}catch (Exception e) {
-			// TODO: handle exception
+
 		}
 
 		return null;
