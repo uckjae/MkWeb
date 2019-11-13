@@ -6,7 +6,9 @@
 
 <!DOCTYPE html>
 <html>
-
+<script type="text/javascript">
+	
+</script>
 <head>
     <meta charset="UTF-8">
     <jsp:include page="/common/HeadTag.jsp"></jsp:include>
@@ -18,7 +20,6 @@
     <div id="wrapper">
         <!-- Left Menu -->
         <jsp:include page="/common/Left.jsp"></jsp:include>
-
         <div id="content-wrapper">
             <!-- !! Content !! -->
 
@@ -26,7 +27,9 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-user-edit"></i>
-                        회원 정보 수정 [<b> 님</b>]
+<c:forEach var="emp" items="emplist"> </c:forEach>
+                        회원 정보 수정 [<b>${emp.getName() }님</b>]
+               
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -112,8 +115,9 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="button" class="btn btn-danger btn-block" value="Cancel"
-                                                        		onClick="MemberList.do'">
+                                                        		onClick="MemberList.do">
                                                 </div>
+                                               
                                             </div>
                                         </form>
                                     </div>
@@ -125,5 +129,6 @@
             </div>
         </div>
     </div>
+    
 </body>
 </html>

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.bit.dto.Emp;
@@ -54,7 +55,7 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
-		String sql = "select empno, ename, job, mgr, hiredate, sal, comm, deptno, imagefilename from emp";
+		String sql = "select empno, ename, hiredate from emp";
 		
 		ArrayList<Emp> emplist = new ArrayList<Emp>();
 		try {
@@ -65,12 +66,7 @@ public class EmpDao {
 			Emp emp = new Emp();
 			emp.setEmpno(resultSet.getInt("empno"));
 			emp.setEname(resultSet.getString("ename"));
-			emp.setJob(resultSet.getString("job"));
-			emp.setMgr(resultSet.getInt("mgr"));
 			emp.setHiredate(resultSet.getDate("hiredate"));
-			emp.setSal(resultSet.getInt("sal"));
-			emp.setComm(resultSet.getInt("comm"));
-			emp.setDeptno(resultSet.getInt("deptno"));
 			emplist.add(emp);
 		}
 		}catch(Exception e) {
@@ -93,40 +89,46 @@ public class EmpDao {
 		return 0;
 	}
 	
-	public Emp getEdit(HttpServletRequest request) {
+	public int getEdit(HttpServletRequest emp) {
+		
+		String no = emp.getParameter("empno");
+		String name = emp.getParameter("ename");
+		String job = emp.getParameter("job");
+		String mgr = emp.getParameter("mgr");
+		String date = emp.getParameter("date");
+		String sal = emp.getParameter("sal");
+		String comm = emp.getParameter("comm");
+		String dept = emp.getParameter("deptno");
+		
+		System.out.println(no +" , " + name +" , " + job +" , " + mgr +" , " + date +" , " + sal +" , " + comm +" , " + dept);
+		
+		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		int row = 0;
+		String sql = "select empno, ename, job, hiredate, sal, comm, deptno, imagefilename from emp where ename=?";
 		try {
-			String no = request.getParameter("empno");
-			String ename = request.getParameter("ename");
-			String job = request.getParameter("job");
-			String mgr = request.getParameter("mgr");
-			String date = request.getParameter("hiredate");
-			String sal = request.getParameter("sal");
-			String comm = request.getParameter("comm");
-			String dept = request.getParameter("deptno");
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1,name);
+			resultSet = pstmt.executeQuery();
 			
-			Connection conn = null;
-			ResultSet rs = null;
-			PreparedStatement pstmt = null;
+			while(resultSet.next()) {
 			
-			String sql = "select no from emp where=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, no);
+				
+				row = pstmt.executeUpdate();
+			}
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				DBHelper.close(resultSet);
+				DBHelper.close(pstmt);
+				DBHelper.close(connection);
+			}
+		return row;
 			
-			conn = DBHelper.getConnection("oracle");
-			
-			rs = pstmt.executeQuery();
-			
-			
-		}catch (Exception e) {
+		
+		
 
-		}
-		
-		
-		
-		return null;
-
+	
 	}
-	
-	
-  
 }
