@@ -90,35 +90,5 @@ public class EmpDao {
 		
 		return 0;
 	}
-    public String getJob() {
-        
-        Connection conn = null;
-        ResultSet rs = null;
-        PreparedStatement pstmt = null;
-        List<String> job = new ArrayList<>();
-        
-        
-        try {
-        	String sql = "select DISTINCT job from emp";
-            conn = DBHelper.getConnection("oracle");
-            pstmt = conn.prepareStatement(sql);
-            
-            rs = pstmt.executeQuery();
-            
-           while(rs.next()) {
-            	Emp emp = new Emp();
-            	job.add(emp.setJob(rs.getString("job")));
-            }
-            
-        	
-        	
-        	
-        }catch (Exception e) {
-
-        }
-        
-        
-        
-        return null;
-    }
+  
 }
