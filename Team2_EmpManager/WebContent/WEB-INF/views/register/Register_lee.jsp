@@ -29,7 +29,7 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="RegisterOk.do" method="post">
+                                        <form action="RegisterOk_lee.do" method="post">
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
@@ -88,8 +88,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="number" id="sal" name="sal" class="form-control" placeholder="Commission" required="required">
-                                                            <label for="sal">Commission</label>
+                                                            <input type="number" id="comm" name="comm" class="form-control" placeholder="Commission" required="required">
+                                                            <label for="comm">Commission</label>
                                                         </div>
                                                     </div>
                                                 </div>
