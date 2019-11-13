@@ -61,11 +61,13 @@ public class FrontController extends HttpServlet {
 		}
 		// MemberEdit 화면
 		else if (url_Command.equals("/MemberEdit.do")) {
-			
+			action = new MemberEditService();
+			forward = action.execute(request, response);
 		}
 		// MemberEdit 진행
 		else if (url_Command.equals("/MemberEditOk.do")) {
-			
+			action = new MemberEditOkService();
+			forward = action.execute(request, response);
 		}
 		// MemberDelete 진헹
 		else if (url_Command.equals("/MemberDelete.do")) {
