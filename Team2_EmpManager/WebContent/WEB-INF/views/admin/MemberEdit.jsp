@@ -27,9 +27,9 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-user-edit"></i>
- <c:forEach var="emp" items="${emplist}" >
-                        회원 정보 수정 [<b>${ename } 님</b>]
-                         </c:forEach>
+<c:forEach var="emp" items="emplist"> </c:forEach>
+                        회원 정보 수정 [<b>${emp.getName() }님</b>]
+               
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -42,14 +42,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="number" id="empno" name="empno" class="form-control" placeholder="No" required="required" autofocus="autofocus"
-                                                            			readonly value="${emp.empno }">
+                                                            			readonly value="">
                                                             <label for="empno">No</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="text" id="ename" name="ename" class="form-control" placeholder="Name" required="required"
-                                                            			value="${emp.ename }">
+                                                            			value="">
                                                             <label for="ename">Name</label>
                                                         </div>
                                                     </div>
