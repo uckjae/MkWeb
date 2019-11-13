@@ -3,6 +3,7 @@ package kr.or.bit.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.bit.dto.Emp;
@@ -64,13 +65,27 @@ public class EmpDao {
 	}
     public String getJob() {
         
-        Connection conn = DBHelper.getConnection("oracle");
+        Connection conn = null;
         ResultSet rs = null;
         PreparedStatement pstmt = null;
+        List<String> job = new ArrayList<>();
         
-        String sql = "select DISTINCT job from emp";
+        
         try {
+        	String sql = "select DISTINCT job from emp";
+            conn = DBHelper.getConnection("oracle");
+            pstmt = conn.prepareStatement(sql);
             
+            rs = pstmt.executeQuery();
+            
+           while(rs.next()) {
+            	Emp emp = new Emp();
+            	job.add(emp.setJob(rs.getString("job")));
+            }
+            
+        	
+        	
+        	
         }catch (Exception e) {
 
         }
