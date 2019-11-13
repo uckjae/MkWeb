@@ -1,6 +1,7 @@
 package kr.or.bit.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,23 +16,36 @@ public class MemberEditService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		
-			ActionForward forward = null;
-		try {
-			String no = request.getParameter("empno");
-			if(no == null || no.trim().equals("")) {
+		ActionForward forward = null;
+		String no = request.getParameter("empno");
+		String name = request.getParameter("ename");
+		String job = request.getParameter("job");
+		String mgr = request.getParameter("mgr");
+		String date = request.getParameter("hiredate");
+		String sal = request.getParameter("sal");
+		String comm = request.getParameter("comm");
+		String dept = request.getParameter("deptno");
+		
+		if(no == null || no.trim().equals("")) {
+			try {
+				EmpDao empdao = new EmpDao();
+				List<Emp> emplist = empdao.getEmps();
+				request.setAttribute("emplist", emplist);
 				
-					response.sendRedirect("MemberEdit.jsp");
-					EmpDao dao = new EmpDao();
-			}
+				forward = new ActionForward();
+				forward.setRedirect(false); //forward 방식
+			  	forward.setPath("/WEB-INF/views/admin/MemberEdit.jsp");
+	
+		
+		
+		  	
 		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
 			
 		}
 		
-		
-		
-		
-		
-		
-		return null;
 	}
+		return forward;
+}
 }
