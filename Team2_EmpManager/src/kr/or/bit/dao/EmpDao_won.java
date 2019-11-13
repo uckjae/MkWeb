@@ -8,7 +8,7 @@ import java.util.List;
 import kr.or.bit.dto.Emp;
 import kr.or.bit.utils.DBHelper;
 
-public class EmpDao {
+public class EmpDao_won {
 	public int insertEmp(Emp emp) {
 		
 		return 0;
