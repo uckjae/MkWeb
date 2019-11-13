@@ -48,6 +48,66 @@ public class FrontController extends HttpServlet {
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk.do")) {
 			
+		}
+		//chung
+		// Register 화면
+		else if (url_Command.equals("/Register.do")) {
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk.do")) {
+			
+		} 
+		//lee
+		// Register 화면
+		else if (url_Command.equals("/Register.do")) {
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk.do")) {
+			
+		} 
+		//choi
+		// Register 화면
+		else if (url_Command.equals("/Register.do")) {
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk.do")) {
+			
+		} 
+		//won
+		// Register 화면
+		else if (url_Command.equals("/Register.do")) {
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk.do")) {
+			
+		} 
+		//kim
+		// Register 화면
+		else if (url_Command.equals("/Register.do")) {
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk.do")) {
+			
+		} 
+		//yoon
+		// Register 화면
+		else if (url_Command.equals("/Register.do")) {
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk.do")) {
+			
 		} 
 		// MemberList 화면
 		else if (url_Command.equals("/MemberList.do")) {
@@ -72,7 +132,8 @@ public class FrontController extends HttpServlet {
 		}
 		// MemberDelete 진헹
 		else if (url_Command.equals("/MemberDelete.do")) {
-			
+			action = new MemberDeleteService();
+			forward = action.execute(request, response);
 		}
 		// Logout 진헹
 		else if (url_Command.equals("/Logout.do")) {
