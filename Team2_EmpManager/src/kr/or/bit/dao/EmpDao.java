@@ -15,8 +15,17 @@ public class EmpDao {
 	}
 
 	public Emp getEmpByEmpno(int no) {
+		Connection connection = DBHelper.getConnection("oracle");
+		ResultSet resultSet = null;
+		PreparedStatement pstmt = null;
 		
-
+		String sql = "Select empno from emp where empno=?";
+		
+		try {
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
 
 		return null;
 	}
