@@ -42,7 +42,8 @@ public class FrontController extends HttpServlet {
 		} 
 		// Register 화면
 		else if (url_Command.equals("/Register.do")) {
-			
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register.jsp");
 		}
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk.do")) {
