@@ -1,5 +1,7 @@
 package kr.or.bit.service;
 
+import java.sql.Connection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +13,18 @@ public class MemberDeleteService implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		return null;
+		ActionForward forward = new ActionForward();
+		int empno = Integer.parseInt(request.getParameter("empno"));
+		EmpDao dao = new EmpDao();
+		int row = dao.deleteEmpByEmpno(empno);		
+		String url = "";
+		//if(row > 0){
+			url="/MemberList.do";
+		//} else 
+			
+		//request.setAttribute("url", url);		
+		forward.setRedirect(false);
+		forward.setPath(url);
+		return forward;
 	}
 }
