@@ -55,7 +55,7 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
-		String sql = "select empno, ename, job, mgr, hiredate, sal, comm, deptno, imagefilename from emp";
+		String sql = "select empno, ename, hiredate from emp";
 		
 		ArrayList<Emp> emplist = new ArrayList<Emp>();
 		try {
@@ -66,12 +66,7 @@ public class EmpDao {
 			Emp emp = new Emp();
 			emp.setEmpno(resultSet.getInt("empno"));
 			emp.setEname(resultSet.getString("ename"));
-			emp.setJob(resultSet.getString("job"));
-			emp.setMgr(resultSet.getInt("mgr"));
 			emp.setHiredate(resultSet.getDate("hiredate"));
-			emp.setSal(resultSet.getInt("sal"));
-			emp.setComm(resultSet.getInt("comm"));
-			emp.setDeptno(resultSet.getInt("deptno"));
 			emplist.add(emp);
 		}
 		}catch(Exception e) {
