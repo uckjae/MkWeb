@@ -100,27 +100,20 @@ public class EmpDao {
 		String comm = emp.getParameter("comm");
 		String dept = emp.getParameter("deptno");
 		
+		System.out.println(no +" , " + name +" , " + job +" , " + mgr +" , " + date +" , " + sal +" , " + comm +" , " + dept);
+		
 		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 		int row = 0;
 		String sql = "select empno, ename, job, hiredate, sal, comm, deptno, imagefilename from emp where ename=?";
-		String sql_update = "update emp set empno=? , ename=? , job=?," 
-				+ "sal=? ,comm =?,deptno = ? where idx=?";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1,name);
 			resultSet = pstmt.executeQuery();
 			
 			while(resultSet.next()) {
-				pstmt = connection.prepareStatement(sql_update);
-				pstmt.setString(1,no);
-				pstmt.setString(2, name);
-				pstmt.setString(3, job);
-				pstmt.setString(4, sal);
-				pstmt.setString(5, comm);
-				pstmt.setString(6, dept);
-				pstmt.setString(7, no);
+			
 				
 				row = pstmt.executeUpdate();
 			}
