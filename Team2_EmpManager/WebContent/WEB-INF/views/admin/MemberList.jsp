@@ -23,6 +23,7 @@
 </head>
 
 <body id="page-top">
+<c:set var="emplist" value="${requestScope.emplist}"/>
     <!-- Top -->
     <jsp:include page="/common/Top.jsp"></jsp:include>
     <div id="wrapper">
@@ -41,33 +42,43 @@
                                 <table class="table table-bordered" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Name</th>
+                                            <th>ENAME</th>
+                                            <th>EMPNO</th>
+                                            <th>JOB</th>
+                                            <th>MGR</th>
+                                            <th>HIREDATE</th>
+                                            <th>SAL</th>
+                                            <th>COMM</th>
+                                            <th>DEPTNO</th>
                                             <th class="iconColumn" data-orderable="false">EDIT</th>
                                             <th class="iconColumn" data-orderable="false">DELETE</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-	                                   
-	                                    	<tr>
-	                                            <td class="sorting_1">
-	                                                <a href="MemberDetail.do?"></a>
-	                                            </td>
-	                                            <td></td>
-	                                            <td class="iconColumn">
-	                                                <a href="MemberEdit.do?">
-	                                                	<i class="fas fa-user-edit"></i>
-                                                	</a>
-	                                            </td>
-	                                            <td class="iconColumn">
-	                                                <a href="#" data-toggle="modal" data-target="#deleteModal" >
-	                                                	<i class="fas fa-trash-alt"></i>
-	                                                </a>
-	                                            </td>
-	                                        </tr>
-	                                    
-                                    </tbody>
-                                </table>
+								<tbody>
+									<c:forEach var="emp" items="${emplist}">
+										<tr>
+											<td class="sorting_1"><a href="MemberDetail.do?">${emp.ename}</a></td>
+											<td>${emp.empno}</td>
+											<td>${emp.job}</td>
+											<td>${emp.mgr}</td>
+											<td>${emp.hiredate}</td>
+											<td>${emp.sal}</td>
+											<td>${emp.comm}</td>
+											<td>${emp.deptno}</td>
+											<td class="iconColumn">
+												<a href="MemberEdit.do?">
+													<i class="fas fa-user-edit"/>
+												</a>
+											</td>
+											<td class="iconColumn">
+												<a href="#" data-toggle="modal" data-target="#deleteModal">
+													<i class="fas fa-trash-alt"/>
+												</a>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
                             </div>
                         </div>
                     </div>
