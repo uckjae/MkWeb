@@ -1,5 +1,7 @@
 package kr.or.bit.service;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,10 +15,18 @@ public class MemberEditService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		String no = request.getParameter("empno");
-		if(no == null || no.trim().equals("")) {
-			response.sendRedirect("MemberList.jsp");
+			ActionForward forward = null;
+		try {
+			String no = request.getParameter("empno");
+			if(no == null || no.trim().equals("")) {
+				
+					response.sendRedirect("MemberEdit.jsp");
+					EmpDao dao = new EmpDao();
+			}
+		}catch (Exception e) {
+			
 		}
+		
 		
 		
 		
