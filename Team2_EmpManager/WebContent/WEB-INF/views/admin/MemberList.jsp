@@ -67,12 +67,12 @@
 											<td>${emp.deptno}</td>
 											<td class="iconColumn">
 												<a href="MemberEdit.do?">
-													<i class="fas fa-user-edit"/>
+													<i class="fas fa-user-edit"></i>
 												</a>
 											</td>
 											<td class="iconColumn">
 												<a href="#" data-toggle="modal" data-target="#deleteModal">
-													<i class="fas fa-trash-alt"/>
+													<i class="fas fa-trash-alt"></i>
 												</a>
 											</td>
 										</tr>
