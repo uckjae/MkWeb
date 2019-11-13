@@ -90,4 +90,21 @@ public class EmpDao {
 		
 		return 0;
 	}
+    public String getJob() {
+        
+        Connection conn = DBHelper.getConnection("oracle");
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        
+        String sql = "select DISTINCT job from emp";
+        try {
+            
+        }catch (Exception e) {
+
+        }
+        
+        
+        
+        return null;
+    }
 }
