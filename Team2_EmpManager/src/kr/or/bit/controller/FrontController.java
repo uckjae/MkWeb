@@ -51,7 +51,9 @@ public class FrontController extends HttpServlet {
 		} 
 		// MemberList 화면
 		else if (url_Command.equals("/MemberList.do")) {
-			
+			action = new MemberListService();
+			forward = action.execute(request, response);
+    		System.out.println("리스트 보기");
 		}
 		// MemberDetail 화면
 		else if (url_Command.equals("/MemberDetail.do")) {
