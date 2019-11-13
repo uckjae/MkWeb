@@ -13,6 +13,15 @@ public class MemberEditService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		
+		String no = request.getParameter("empno");
+		if(no == null || no.trim().equals("")) {
+			response.sendRedirect("MemberList.jsp");
+		}
+		
+		
+		
+		
+		
 		return null;
 	}
 }
