@@ -43,7 +43,7 @@ public class FrontController extends HttpServlet {
 		// Register 화면
 		else if (url_Command.equals("/Register.do")) {
 			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register.jsp");
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
 		}
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk.do")) {
@@ -63,6 +63,7 @@ public class FrontController extends HttpServlet {
 		else if (url_Command.equals("/MemberEdit.do")) {
 			action = new MemberEditService();
 			forward = action.execute(request, response);
+			System.out.println("수정");
 		}
 		// MemberEdit 진행
 		else if (url_Command.equals("/MemberEditOk.do")) {
@@ -71,7 +72,8 @@ public class FrontController extends HttpServlet {
 		}
 		// MemberDelete 진헹
 		else if (url_Command.equals("/MemberDelete.do")) {
-			
+			action = new MemberDeleteService();
+			forward = action.execute(request, response);
 		}
 		// Logout 진헹
 		else if (url_Command.equals("/Logout.do")) {
