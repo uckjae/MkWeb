@@ -68,7 +68,7 @@ public class FrontController extends HttpServlet {
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk_lee.do")) {
 			forward = new ActionForward();
-			forward.setPath(path);
+			forward.setPath("");
 		} 
 		//choi
 		// Register 화면
