@@ -111,11 +111,14 @@
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
-                                                        <div class="form-label-group">
-                                                            <input type="number" id="empno" name="empno" class="form-control" placeholder="No" required="required" autofocus="autofocus">
-                                                            <label for="empno">No</label>
-                                                            <button id="empnoCheck">중복확인</button>
-                                                        </div>
+                                                    <div class="input-group">
+												        <input type="number" id="empno" name="empno"  class="form-control" placeholder="No" aria-label="Search" aria-describedby="basic-addon2">
+												        <div class="input-group-append">
+												          <button class="btn btn-primary" type="button" id="empnoCheck">
+												            <i class="fas fa-check"></i>
+												          </button>
+												        </div>
+												      </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
