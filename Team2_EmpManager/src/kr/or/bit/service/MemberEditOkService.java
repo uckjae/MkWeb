@@ -25,7 +25,7 @@ public class MemberEditOkService implements Action {
 	         emp.setComm(Integer.parseInt(request.getParameter("comm")));
 	         emp.setDeptno(Integer.parseInt(request.getParameter("deptno")));
 	         
-	         int result = dao.getEditOk(emp);
+	         int result = dao.updateEmp(emp);
 	         
 	         if(result > 0 ) {
 

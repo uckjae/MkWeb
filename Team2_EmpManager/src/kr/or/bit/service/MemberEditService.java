@@ -17,7 +17,7 @@ public class MemberEditService implements Action {
 		      EmpDao dao = new EmpDao();
 		      try {
 		    	  
-		         Emp emp = dao.getEdit(no);
+		         Emp emp = dao.getEmpByEmpno(no);
 		         System.out.println(emp.getEname());
 		             request.setAttribute("emp",emp);
 		             forward.setPath("/WEB-INF/views/admin/MemberEdit.jsp");
