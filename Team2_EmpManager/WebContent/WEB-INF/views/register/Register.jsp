@@ -68,8 +68,10 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="number" id="deptno" name="deptno" class="form-control" placeholder="Dept No" required="required">
-                                                            <label for="deptno">Dept No</label>
+                                                            <select id="deptSelect" style="height: 49px; width: 310px;">
+                                                            	<option>선택하시오</option>
+                                                            </select>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -143,6 +145,21 @@
     					
     				}
     			});
+    		}
+    	});
+    	
+    	$.ajax({
+    		url:"GetDeptNos",
+    		dataType:"json",
+    		success:function(data){
+    			var dArray = [];
+    			dArray = data.deptno;
+    			
+    			for(var i=0; i<dArray.length;i++){
+    				var option = document.createElement("option");
+    				$(option).text(dArray[i]);
+    				$("#deptSelect").append(option);
+    			}
     		}
     	});
     
