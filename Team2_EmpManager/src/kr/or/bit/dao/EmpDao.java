@@ -267,6 +267,7 @@ public class EmpDao {
 	
 
 	public List<AvgMaxMinSalaryByDept> ChartSalByDept() {
+		System.out.println("here");
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
@@ -287,6 +288,10 @@ public class EmpDao {
 				
 				empdata.add(data);
 			}
+			System.out.println("empdata:"+empdata.get(0));
+			System.out.println(empdata.get(1));
+			System.out.println(empdata.get(2));
+			System.out.println(empdata.get(3));
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}finally {
