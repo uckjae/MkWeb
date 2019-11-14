@@ -1,10 +1,9 @@
 $(function() {
   let table = $('#dataTable').DataTable();
   
-  $('#dataTable_filter').prepend('<select id="select" class="custom-select" style="margin-right : 10px; width: 80px"></select>');
+  $('#dataTable_filter').prepend('<select id="select" class="custom-select" style="margin-right : 10px; width: 100px"></select>');
   $('#dataTable_filter').prepend('<select id="deptSelect" class="custom-select" style="margin-right : 10px; width: 80px"></select>');
-  
-  
+  $("#deptSelect").append("<option>10</option>");
   
   // 검색 th 칼럼 별로 할 수 있게 select 생성
   let ths = $('#dataTable > thead > tr > th');
