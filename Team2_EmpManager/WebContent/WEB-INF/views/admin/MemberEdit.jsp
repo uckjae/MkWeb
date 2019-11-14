@@ -22,12 +22,13 @@
         <jsp:include page="/common/Left.jsp"></jsp:include>
         <div id="content-wrapper">
             <!-- !! Content !! -->
-
+			<c:set var="emp" value="${requestScope.emp }"/>
             <div class="container-fluid">
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-user-edit"></i>
-                        회원 정보 수정 [<b>님</b>]
+                 
+                        회원 정보 수정 [<b>${emp.ename}님</b>]
                
                     </div>
                     <div class="card-body">
@@ -41,14 +42,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="number" id="empno" name="empno" class="form-control" placeholder="No" required="required" autofocus="autofocus"
-                                                            			readonly value="">
+                                                            			readonly value="${emp.empno}">
                                                             <label for="empno">No</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="text" id="ename" name="ename" class="form-control" placeholder="Name" required="required"
-                                                            			value="">
+                                                            			value="${emp.ename}">
                                                             <label for="ename">Name</label>
                                                         </div>
                                                     </div>
