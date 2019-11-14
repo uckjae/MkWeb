@@ -73,11 +73,9 @@ public class FrontController extends HttpServlet {
 			forward = action.execute(request, response);
 		}
 		// MemberDelete 진헹
-		else if (url_Command.equals("/MemberDelete.do")) {
-			System.out.println("삭제 비포");			
+		else if (url_Command.equals("/MemberDelete.do")) {			
 			action = new MemberDeleteService();
 			forward = action.execute(request, response);
-			System.out.println("삭제 애프터");
 		}
 		// Logout 진헹
 		else if (url_Command.equals("/Logout.do")) {
