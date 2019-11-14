@@ -45,11 +45,11 @@
 					let minsal = [];
 					$.each(data, function(index, element){
 						labels.push(element.deptno);
-						avgdat.push(element.avgsal);
-						maxdat.push(element.maxsal);
-						mindat.push(element.minsal);	
+						avgsal.push(element.avgsal);
+						maxsal.push(element.maxsal);
+						minsal.push(element.minsal);	
 					})
-					
+					console.log("here?");
 					setChart(labels, avgsal, maxsal, minsal);
 				}
 			});
@@ -114,26 +114,26 @@
 </head>
 
 <body id="page-top">
-    <!-- Top -->
-    <jsp:include page="/common/Top.jsp"></jsp:include>
-    <div id="wrapper">
-        <!-- Left Menu -->
-        <jsp:include page="/common/Left.jsp"></jsp:include>
+	<!-- Top -->
+	<jsp:include page="/common/Top.jsp"></jsp:include>
+	<div id="wrapper">
+		<!-- Left Menu -->
+		<jsp:include page="/common/Left.jsp"></jsp:include>
 
-        <div id="content-wrapper">
+		<div id="content-wrapper">
 
-            <!-- Content -->
-            <div class="container-fluid">
-            	<div class="row">
-	            	 <p >부서별 임금 그래프 </p>
-           		</div>
-                <canvas id="canvas"></canvas>
-            </div>
-            
-            <!-- Bottom -->
-            <jsp:include page="/common/Bottom.jsp"></jsp:include>
-        </div>
-    </div>
+			<!-- Content -->
+			<div class="container-fluid">
+				<div class="row">
+					<p>부서별 임금 그래프</p>
+				</div>
+				<canvas id="canvas" width="500" height="200"></canvas>
+			</div>
+
+			<!-- Bottom -->
+			<jsp:include page="/common/Bottom.jsp"></jsp:include>
+		</div>
+	</div>
 </body>
 
 </html>

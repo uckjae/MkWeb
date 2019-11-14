@@ -53,7 +53,6 @@ public class SalaryRankingServlet_won extends HttpServlet {
 				e.printStackTrace();
 			}
 			out.print(json);
-			System.out.println(json);
 		}
 	}
 
