@@ -11,7 +11,29 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script type="text/javascript">
 $(function(){
-
+	
+	$.ajax(
+			{
+				//http://192.168.0.3:8090/WebServlet_4_memo_mvc/MemoId
+				url:"LocCount.do",
+				data:data:{cmd: "chart"},
+				dataType:"json"	,
+				success:function(data) {
+					let city = [];
+					let count = [];
+					$.each(data,function(index,element)){
+						city.push()
+						count.push()
+					}
+				}
+				
+				
+				}
+					);
+	
+});
+	
+function chart () {
 		Highcharts.chart('container', {
 		    chart: {
 		        plotBackgroundColor: null,
@@ -55,7 +77,8 @@ $(function(){
 		        }]
 		    }]
 		});
-	});	 
+	
+}
 </script>
 <title>Insert title here</title>
 </head>
