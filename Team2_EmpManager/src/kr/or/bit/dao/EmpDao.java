@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
-
 import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
@@ -21,34 +18,8 @@ public class EmpDao {
 	}
 
 	public Emp getEmpByEmpno(int no) {
-		Connection conn = DBHelper.getConnection("oracle");
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "select empno from emp where empno=?";
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				rs.getInt(no);
-			}
-		}catch (Exception e) {
-			System.out.println("get : " + e.getMessage());
-		}finally {
-			try {
-				conn.close();
-				pstmt.close();
-				rs.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
-		
 		return null;
+		
 	
 	}
 
@@ -141,6 +112,7 @@ public class EmpDao {
 	}
 	
 	public Emp getEdit(int empno) {
+
 			Connection conn =  DBHelper.getConnection("oracle");  
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
