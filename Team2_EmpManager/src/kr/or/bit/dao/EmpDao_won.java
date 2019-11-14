@@ -16,6 +16,8 @@ public class EmpDao_won {
 		int resultrow = 0;
 		
 		try {
+			System.out.println("dao 타고");
+			emp.toString();
 			//"insert into memo(id,email,content) values(?,?,?)";
 			connection = DBHelper.getConnection("oracle");
 			String sql = "insert into Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) value(?,?,?,?,?,?,?,?)";
@@ -31,7 +33,7 @@ public class EmpDao_won {
 			
 			resultrow = pstmt.executeUpdate();
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("dao 에서 익셉션");
 		}finally {
 			DBHelper.close(pstmt);
 			DBHelper.close(connection);

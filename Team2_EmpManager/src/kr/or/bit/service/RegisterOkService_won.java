@@ -21,7 +21,7 @@ public class RegisterOkService_won implements Action {
 		try {
 			Emp emp = new Emp();
 			String date = request.getParameter("hiredate");
-			SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date hiredate = sdf.parse(date);
 			
 			emp.setEname(request.getParameter("ename"));
@@ -50,7 +50,7 @@ public class RegisterOkService_won implements Action {
 				forward.setPath("/WEB-INF/views/login/Login.jsp");
 			} else { // -1 (제약, 컬럼길이 문제)
 				forward.setRedirect(false); // forward 방식
-				forward.setPath("/WEB-INF/views/register/register.jsp");
+				forward.setPath("/WEB-INF/views/register/register_won.jsp");
 			}
 
 		}catch (Exception e) {
