@@ -51,7 +51,7 @@
 		            </a>
 		            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 		                <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
-		                <a class="dropdown-item" href="/WEB-INF/views/chart/SalaryRankingChart.jsp">Chart_1</a>
+		                <a class="dropdown-item" href="SalaryRanking.do?cmd=show">Chart_1</a>
 		                <a class="dropdown-item" href="바꿔^^">Chart_2</a>
 		                <a class="dropdown-item" href="바꿔^^">Chart_3</a>
 		                <a class="dropdown-item" href="바꿔^^">Chart_4</a>
