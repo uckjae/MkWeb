@@ -32,6 +32,10 @@ public class SalaryRankingServlet_won extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		String command = request.getParameter("cmd");
+		
+		if(command.equals("show")) {
+			
+		}
 		EmpDao dao = null;
 		JSONArray json = null;
 		try {
