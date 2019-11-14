@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jettison.json.JSONArray;
 
 import kr.or.bit.dao.EmpDao;
+import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 
 @WebServlet("/SalaryRanking_won.do")
@@ -44,7 +45,7 @@ public class SalaryRankingServlet_won extends HttpServlet {
 			try {
 				dao = new EmpDao();
 				int count =Integer.parseInt(request.getParameter("count")) ;
-				List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(count);
+				List<AvgMaxMinSalaryByDept> results = dao.ChartSalByDept();
 				StringBuilder datalist = new StringBuilder();
 				datalist.append("[");
 				for (TotalSaleryChart salery : results)
