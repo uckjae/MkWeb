@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.bit.dto.Emp;
+import kr.or.bit.dto.YearChart;
+import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
 
@@ -210,5 +213,37 @@ public class EmpDao {
 		}
 
 		return results;
+	}
+	public List<DataByYear> dataByYear() {
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		String sql = "select to_char(hiredate,'YYYY')as hiredate, round(avg(sal),0) as avgsal ,max(sal) as maxsal ,min(sal)as minsal" + 
+				" from emp group by to_char(hiredate,'YYYY')";
+		ResultSet rs = null;
+		List<DataByYear> data = new ArrayList<DataByYear>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				DataByYear yearchart = new DataByYear();
+				yearchart.setHiredate(rs.getString("hiredate"));
+				yearchart.setAvgsal(rs.getInt("avgsal"));
+				yearchart.setMaxsal(rs.getInt("maxsal"));
+				yearchart.setMinsal(rs.getInt("minsal"));
+				data.add(yearchart);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return data;
 	}
 }
