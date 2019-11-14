@@ -56,7 +56,7 @@
 											<td>${emp.empno}</td>
 											<td>${emp.hiredate}</td>
 											<td class="iconColumn">
-												<a href="MemberEdit.do?">
+												<a href="MemberEdit.do">
 													<i class="fas fa-user-edit"></i>
 												</a>
 											</td>

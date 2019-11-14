@@ -26,7 +26,7 @@ public class FrontController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String url_Command = requestURI.substring(contextPath.length());
-
+		System.out.println("3 : " + url_Command);
 		ActionForward forward = null;
 		Action action = null;
 
@@ -126,7 +126,6 @@ public class FrontController extends HttpServlet {
 		else if (url_Command.equals("/MemberList.do")) {
 			action = new MemberListService();
 			forward = action.execute(request, response);
-    		System.out.println("리스트 보기");
 		}
 		// MemberDetail 화면
 		else if (url_Command.equals("/MemberDetail.do")) {
@@ -134,9 +133,9 @@ public class FrontController extends HttpServlet {
 		}
 		// MemberEdit 화면
 		else if (url_Command.equals("/MemberEdit.do")) {
-			action = new MemberEditService();
-			forward = action.execute(request, response);
 			System.out.println("너 안들어가?");
+			action = new MemberEditService();
+			forward = action.execute(request, response);	
 		}
 		// MemberEdit 진행
 		else if (url_Command.equals("/MemberEditOk.do")) {
@@ -157,7 +156,6 @@ public class FrontController extends HttpServlet {
 		}
 
 		if (forward != null) {
-			System.out.println("1 : " + forward);
 			System.out.println("포워드가 null 값이 아니니?");
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
