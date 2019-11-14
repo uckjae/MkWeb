@@ -4,6 +4,9 @@ public class LocDept {
 	private int Newyork;
 	private int Dallas;
 	private int Chicago;
+	
+	
+	
 	public int getNewyork() {
 		return Newyork;
 	}
@@ -22,10 +25,12 @@ public class LocDept {
 	public void setChicago(int chicago) {
 		Chicago = chicago;
 	}
+	
 	@Override
 	public String toString() {
 		return "LocDept [Newyork=" + Newyork + ", Dallas=" + Dallas + ", Chicago=" + Chicago + "]";
 	}
+
 	
 	
 }
