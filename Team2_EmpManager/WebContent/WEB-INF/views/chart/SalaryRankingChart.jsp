@@ -55,7 +55,7 @@ p {
 			var barChartData = {
 					labels: labels,
 					datasets: [{
-						label: 'Total Salery',
+						label: 'SaleryByDept',
 						backgroundColor: getAnotherChartColor(0),
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
