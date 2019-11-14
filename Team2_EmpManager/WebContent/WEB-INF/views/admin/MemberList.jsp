@@ -52,8 +52,8 @@
 								<tbody>
 									<c:forEach var="emp" items="${emplist}">
 										<tr>
-											<td class="sorting_1"><a href="MemberDetail.do?">${emp.ename}</a></td>
-											<td>${emp.empno}</td>
+											<td class="sorting_1"><a href="MemberDetail.do?">${emp.empno}</a></td>
+											<td>${emp.ename}</td>
 											<td>${emp.hiredate}</td>
 											<td class="iconColumn">
 												<a href="MemberEdit.do">

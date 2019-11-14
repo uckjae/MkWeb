@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.TotalSaleryChart;

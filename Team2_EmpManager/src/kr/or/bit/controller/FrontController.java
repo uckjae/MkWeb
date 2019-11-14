@@ -43,85 +43,14 @@ public class FrontController extends HttpServlet {
 		// Register 화면
 		else if (url_Command.equals("/Register.do")) {
 			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+			forward.setPath("/WEB-INF/views/register/Register.jsp");
 		}
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk.do")) {
-			
-		}
-		//chung
-		// Register 화면
-		else if (url_Command.equals("/Register.do")) {
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk.do")) {
-			
-		} 
-		//lee
-		// Register 화면
-		else if (url_Command.equals("/Register_lee.do")) {
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_lee.jsp");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk_lee.do")) {
-			action = new RegisterOkService_lee();
-			forward = action.execute(request, response);
-		} 
-		//choi
-		// Register 화면
-		else if (url_Command.equals("/Register.do")) {
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk.do")) {
-			
-		} 
-		//won
-		// Register 화면
-
-		else if (url_Command.equals("/Register_won.do")) {
-			System.out.println(".do 타고와서");
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-			System.out.println("do 빠져나가고");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk_won.do")) {
-			action = new RegisterOkService_won();
+			action = new RegisterOkService();
 			forward = action.execute(request, response);
 		}
-		else if (url_Command.equals("/Register.do")) {
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk.do")) {
-
-		} 
-		//kim
-		// Register 화면
-		else if (url_Command.equals("/Register.do")) {
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk.do")) {
-			
-		} 
-		//yoon
-		// Register 화면
-		else if (url_Command.equals("/Register.do")) {
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-		}
-		// Register 진행
-		else if (url_Command.equals("/RegisterOk.do")) {
-			
-		} 
+		
 		// MemberList 화면
 		else if (url_Command.equals("/MemberList.do")) {
 			action = new MemberListService();

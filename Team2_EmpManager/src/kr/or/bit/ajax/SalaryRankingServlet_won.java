@@ -28,12 +28,14 @@ public class SalaryRankingServlet_won extends HttpServlet {
 	private void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		String id = request.getParameter("id");
-		System.out.println(id);
+		String command = request.getParameter("cmd");
+		
+		if(command.equals("show")) {
+			
+		}
 		EmpDao dao = null;
 		JSONArray json = null;
 		try {
