@@ -5,6 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <jsp:include page="/common/HeadTag.jsp"/>
 </head>
 
@@ -36,6 +37,7 @@
                                                         <div class="form-label-group">
                                                             <input type="number" id="empno" name="empno" class="form-control" placeholder="No" required="required" autofocus="autofocus">
                                                             <label for="empno">No</label>
+                                                            <button id="empnoCheck">중복확인</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -116,6 +118,13 @@
             <jsp:include page="/common/Bottom.jsp"></jsp:include>
         </div>
     </div>
+    
+    <script type="text/javascript">
+    	document.getElementById("empnoCheck").onclick(function(){
+    		if
+    	})
+    
+    </script>
 </body>
 
 </html>
