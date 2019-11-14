@@ -32,6 +32,7 @@ public class SalaryRankingServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		String command = request.getParameter("cmd");
+
 		if (command.equals("show")) { // 화면 보기
 			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/views/chart/SalaryRankingChart.jsp");
 			dis.forward(request, response);
