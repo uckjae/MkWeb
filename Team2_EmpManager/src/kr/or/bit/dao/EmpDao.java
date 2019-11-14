@@ -278,7 +278,9 @@ public class EmpDao {
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 
-		String sql = "select deptno, trunc(avg(sal),0) as '평균급여' , max(sal), min(sal) from emp group by deptno";
+		String sql = "select e.deptno, round(avg(e.sal),0) as avgsal , max(e.sal) as maxsal, min(e.sal) as minsal"
+					+ "from emp e join dept d on e.deptno = d.deptno"
+					+ "group by e.deptno;";
 
 		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
 		try {
