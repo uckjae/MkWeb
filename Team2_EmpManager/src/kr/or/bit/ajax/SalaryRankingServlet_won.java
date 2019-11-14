@@ -41,15 +41,14 @@ public class SalaryRankingServlet_won extends HttpServlet {
 			JSONArray json = null;
 			try {
 				dao = new EmpDao();
-				List<AvgMaxMinSalaryByDept> results = dao.ChartSalByDept();
+				List<AvgMaxMinSalaryByDept> chart = dao.ChartSalByDept();
 				StringBuilder datalist = new StringBuilder();
 				datalist.append("[");
-				for (AvgMaxMinSalaryByDept salery : results)
+				for (AvgMaxMinSalaryByDept salery : chart)
 					datalist.append(
 						String.format("{deptno : %d, avgsal : %d, maxsal : %d , minsal : %d},"
 										, salery.getDeptno(), salery.getAvg(), salery.getMax(), salery.getMin()));
-
-				datalist.append("]");
+					datalist.append("]");
 				json = new JSONArray(datalist.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
