@@ -37,7 +37,7 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="Admin_MemberEditOk.jsp" method="post">
+                                        <form action="MemberList.do" method="post">
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
@@ -110,7 +110,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="button" class="btn btn-primary btn-block" value="Ok" onClick="MemberList.do'">
+                                            <input type="submit" class="btn btn-primary btn-block" value="Ok" onClick="MemberList.do">
                                         </form>
                                     </div>
                                 </div>
