@@ -1,4 +1,5 @@
-.metadata/
-Servers/
 .class
 /Team2_EmpManager/build/
+.metadata/
+Servers/
+*.zip
