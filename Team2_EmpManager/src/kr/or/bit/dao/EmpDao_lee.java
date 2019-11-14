@@ -3,10 +3,10 @@ package kr.or.bit.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.bit.dto.Emp;
@@ -14,8 +14,35 @@ import kr.or.bit.utils.DBHelper;
 
 public class EmpDao_lee {
 	public int insertEmp(Emp emp) {
-		
-		return 0;
+		Connection conn = null;
+		System.out.println("done");
+		PreparedStatement pstmt = null;
+		int resultrow = 0;
+		try {
+			
+			
+			
+			conn = DBHelper.getConnection("oracle");
+			String sql = "insert into EMP (empno,ename,hiredate,job,deptno,mgr,sal,comm) values(?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, emp.getEmpno());
+			pstmt.setString(2,emp.getEname());
+			pstmt.setDate(3,(java.sql.Date)emp.getHiredate());
+			pstmt.setString(4, emp.getJob());
+			pstmt.setInt(5, emp.getDeptno());
+			pstmt.setInt(6, emp.getMgr());
+			pstmt.setInt(7, emp.getSal());
+			pstmt.setInt(8, emp.getComm());
+			resultrow = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			
+		}finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(conn);
+			
+		}
+		return resultrow;
 	}
 
 	public Emp getEmpByEmpno(int no) {

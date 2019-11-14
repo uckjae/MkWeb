@@ -1,9 +1,6 @@
 package kr.or.bit.service;
 
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.utils.DBHelper;
+import kr.or.bit.dao.EmpDao_lee;
+import kr.or.bit.dto.Emp;
 
 public class RegisterOkService_lee implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward forward;
+		ActionForward forward = null;
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+		
 		
 		try {
 			int empno = Integer.parseInt(request.getParameter("empno"));
@@ -36,26 +33,28 @@ public class RegisterOkService_lee implements Action {
 			int sal = Integer.parseInt(request.getParameter("sal"));
 			int comm = Integer.parseInt(request.getParameter("comm"));
 			
+			Emp emp = new Emp();
+			emp.setEmpno(empno);
+			emp.setEname(ename);
+			emp.setHiredate(hiredate);
+			emp.setJob(job);
+			emp.setDeptno(deptno);
+			emp.setMgr(mgr);
+			emp.setSal(sal);
+			emp.setComm(comm);
 			
-			conn = DBHelper.getConnection("oracle");
-			String sql = "insert into EMP (empno,ename,hiredate,job,deptno,mgr,sal,comm) values(?,?,?,?,?,?,?,?)";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, empno);
-			pstmt.setString(2, ename);
-			pstmt.setDate(3, hiredate);
-			pstmt.setString(4, job);
-			pstmt.setInt(5, deptno);
-			pstmt.setInt(6, mgr);
-			pstmt.setInt(7, sal);
-			pstmt.setInt(8, comm);
-			
+			EmpDao_lee dao = new EmpDao_lee();
+			dao.insertEmp(emp);
+			forward = new ActionForward();
+			forward.setPath("/index.jsp");
+									
 		}catch(Exception e) {
 			
 		}finally {
 			
 		}
 		
-		return null;
+		return forward;
 	}
 
 }
