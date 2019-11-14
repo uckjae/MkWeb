@@ -26,11 +26,9 @@ public class SalaryRankingServlet_won extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	private void doProcess(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
 
 		String command = request.getParameter("cmd");
 		
