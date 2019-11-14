@@ -44,8 +44,8 @@ public class SalaryRankingServlet extends HttpServlet {
 			JSONArray json = null;
 			try {
 				dao = new EmpDao();
-
-				List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(10);
+				int count =Integer.parseInt(request.getParameter("count")) ;
+				List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(count);
 				StringBuilder datalist = new StringBuilder();
 				datalist.append("[");
 				for (TotalSaleryChart salery : results)

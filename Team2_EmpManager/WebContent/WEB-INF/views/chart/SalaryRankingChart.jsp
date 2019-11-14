@@ -10,16 +10,32 @@
 	<script src="https://www.chartjs.org/dist/2.9.2/Chart.min.js"></script>
 	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
 	<style>
-		canvas {
-			-moz-user-select: none;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-		}
-	</style>
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+p {
+	font-size: xx-large;
+	font-weight: 700;
+}
+</style>
 	<script type="text/javascript">
 		$(function() {
+			//초기에 select 반영하기 위해
+			ajax($("#countOption option:selected").val());
+			
+			$("#countOption").change(function(){
+				let countOption=$("#countOption option:selected").val();
+				ajax(countOption);
+			});
+		})
+		
+		function ajax(countOption){
 			$.ajax({
-				url : "SalaryRanking.do?cmd=chart",
+				url : "SalaryRanking.do",
+				data:{cmd: "chart", count: countOption},
 				dataType : "json",
 				success : function(data){
 					console.log("success");
@@ -34,8 +50,7 @@
 					setChart(labels,datas);
 				}
 			});
-		})
-		
+		}
 		function setChart(labels, datas){
 			var barChartData = {
 					labels: labels,
@@ -57,7 +72,7 @@
 						position: 'top',
 					},
 					title: {
-						display: true,
+						display: false,
 						text: '상위 연봉 순위'
 					}
 				}
@@ -84,6 +99,16 @@
 
             <!-- Content -->
             <div class="container-fluid">
+            <div class="row">
+	             <p >상위 연봉 </p>&nbsp;&nbsp;&nbsp;
+	            <select id="countOption" class=”form-control“ style="height: 45px">
+	            	<option value="5">5</option>
+	            	<option value="10" selected>10</option>
+	            	<option value="15">15</option>
+	            </select>
+	            &nbsp;&nbsp;&nbsp;<p>명</p>
+            </div>
+           
                 <canvas id="canvas"></canvas>
             </div>
             
