@@ -84,10 +84,10 @@ public class FrontController extends HttpServlet {
 		// Register 화면
 
 		else if (url_Command.equals("/Register_won.do")) {
-			System.out.println("cmd .do 타고와서");
+			System.out.println(".do 타고와서");
 			forward = new ActionForward();
 			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
-			System.out.println("cmd 빠져나가고");
+			System.out.println("do 빠져나가고");
 		}
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk_won.do")) {
