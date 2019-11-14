@@ -29,13 +29,13 @@
     </style>
     <script type="text/javascript">
 	    $(function(){
+	    	
 	    	$.ajax({
 	    		url:"GetDeptNos",
 	    		dataType:"json",
 	    		success:function(data){
 	    			var dArray = [];
 	    			dArray = data.deptno;
-	    			
 	    			for(var i=0; i<dArray.length;i++){
 	    				var option = document.createElement("option");
 	    				$(option).text(dArray[i]);
@@ -43,6 +43,23 @@
 	    			}
 	    		}
 	    	});
+	    	
+	    	$.ajax({
+	    		url:"GetJobRegister",
+	    		dataType:"json",
+	    		success:function(data){
+	    			var jArray = [];
+	    			console.log(data);
+	    			jArray = data.job;
+	    			console.log("직종 에이젝스 :" + jArray);
+	    			for(var i=0; i<jArray.length;i++){
+	    				var option = document.createElement("option");
+	    				$(option).text(jArray[i]);
+	    				$("#jobSelect").append(option);
+	    			}
+	    		}
+	    	});
+	    	
 	    	
 	    	$.ajax({
 	    		url:"GetEmpnos",
@@ -82,19 +99,8 @@
 	    			});
 	    		}
 	    	});
-	    	$.ajax({
-	    		url:"GetJobRegister",
-	    		dataType:"json",
-	    		success:function(data){
-	    			$.each(data, function(index, element){
-	    				let option = $("<option></option>");
-	    				$(option).text(element.job);
-	    				$(option).val(element.job);
-	    				$("#mgrSelect").append(option);
-	    			})
-	    		}
-	    	});
 	    	
+
 	    })
     </script>
 </head>

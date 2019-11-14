@@ -51,7 +51,6 @@ public class GetDeptNosServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		out.print(jsonObject);
 	}
 

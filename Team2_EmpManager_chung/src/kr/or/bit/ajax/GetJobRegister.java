@@ -40,7 +40,7 @@ public class GetJobRegister extends HttpServlet {
 		List<String> result = emp.getJobRegister();
 		String resultString = "{";
 		for(String getjob : result) {
-			resultString += String.format("job", result);
+			resultString += String.format("job : %s,", getjob);
 		}
 		resultString += "}";
 		
@@ -50,8 +50,8 @@ public class GetJobRegister extends HttpServlet {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		System.out.println("job 에이젝스 :" +  json);
-		
+		out.print(json);
+		System.out.println(json);
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
