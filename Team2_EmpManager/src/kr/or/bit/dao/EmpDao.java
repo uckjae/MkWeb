@@ -273,12 +273,11 @@ public class EmpDao {
 	}
 
 	public List<AvgMaxMinSalaryByDept> ChartSalByDept() {
-		System.out.println("here");
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 
-		String sql = "select deptno, trunc(avg(sal),0) as '평균급여' , max(sal), min(sal) from emp group by deptno";
+		String sql = "select e.deptno as deptno, round(avg(e.sal),0) as avgsal , max(e.sal) as maxsal, min(e.sal) as minsal from emp e join dept d on e.deptno = d.deptno group by e.deptno";
 
 		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
 		try {
@@ -287,16 +286,15 @@ public class EmpDao {
 
 			while (resultSet.next()) {
 				AvgMaxMinSalaryByDept data = new AvgMaxMinSalaryByDept();
-				data.setDeptno(resultSet.getInt(1));
-				data.setAvg(resultSet.getInt(2));
-				data.setMax(3);
-				data.setMin(4);
+				data.setDeptno(resultSet.getInt("deptno"));
+				data.setAvg(resultSet.getInt("avgsal"));
+				data.setMax(resultSet.getInt("maxsal"));
+				data.setMin(resultSet.getInt("minsal"));
 
 				empdata.add(data);
 			}
-
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("wonbo dao exception");
 		} finally {
 			DBHelper.close(resultSet);
 			DBHelper.close(pstmt);
