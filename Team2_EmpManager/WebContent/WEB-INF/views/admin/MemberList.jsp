@@ -44,12 +44,7 @@
                                         <tr>
                                             <th>ENAME</th>
                                             <th>EMPNO</th>
-                                            <th>JOB</th>
-                                            <th>MGR</th>
                                             <th>HIREDATE</th>
-                                            <th>SAL</th>
-                                            <th>COMM</th>
-                                            <th>DEPTNO</th>
                                             <th class="iconColumn" data-orderable="false">EDIT</th>
                                             <th class="iconColumn" data-orderable="false">DELETE</th>
                                         </tr>
@@ -59,12 +54,7 @@
 										<tr>
 											<td class="sorting_1"><a href="MemberDetail.do?">${emp.ename}</a></td>
 											<td>${emp.empno}</td>
-											<td>${emp.job}</td>
-											<td>${emp.mgr}</td>
 											<td>${emp.hiredate}</td>
-											<td>${emp.sal}</td>
-											<td>${emp.comm}</td>
-											<td>${emp.deptno}</td>
 											<td class="iconColumn">
 												<a href="MemberEdit.do?">
 													<i class="fas fa-user-edit"></i>

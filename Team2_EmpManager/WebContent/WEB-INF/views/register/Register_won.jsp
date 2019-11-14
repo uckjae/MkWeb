@@ -29,7 +29,7 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="RegisterOk.do" method="post">
+                                        <form action="RegisterOk_won.do" method="post">
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">

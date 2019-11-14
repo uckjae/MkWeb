@@ -61,13 +61,14 @@ public class FrontController extends HttpServlet {
 		} 
 		//lee
 		// Register 화면
-		else if (url_Command.equals("/Register.do")) {
+		else if (url_Command.equals("/Register_lee.do")) {
 			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+			forward.setPath("/WEB-INF/views/register/Register_lee.jsp");
 		}
 		// Register 진행
-		else if (url_Command.equals("/RegisterOk.do")) {
-			
+		else if (url_Command.equals("/RegisterOk_lee.do")) {
+			forward = new ActionForward();
+			//forward.setPath(path);
 		} 
 		//choi
 		// Register 화면
@@ -81,13 +82,25 @@ public class FrontController extends HttpServlet {
 		} 
 		//won
 		// Register 화면
+
+		else if (url_Command.equals("/Register_won.do")) {
+			System.out.println("cmd .do 타고와서");
+			forward = new ActionForward();
+			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
+			System.out.println("cmd 빠져나가고");
+		}
+		// Register 진행
+		else if (url_Command.equals("/RegisterOk_won.do")) {
+			action = new RegisterOkService_won();
+			forward = action.execute(request, response);
+		}
 		else if (url_Command.equals("/Register.do")) {
 			forward = new ActionForward();
 			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
 		}
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk.do")) {
-			
+
 		} 
 		//kim
 		// Register 화면
@@ -123,7 +136,7 @@ public class FrontController extends HttpServlet {
 		else if (url_Command.equals("/MemberEdit.do")) {
 			action = new MemberEditService();
 			forward = action.execute(request, response);
-			System.out.println("수정");
+			System.out.println("너 안들어가?");
 		}
 		// MemberEdit 진행
 		else if (url_Command.equals("/MemberEditOk.do")) {
@@ -144,6 +157,8 @@ public class FrontController extends HttpServlet {
 		}
 
 		if (forward != null) {
+			System.out.println("1 : " + forward);
+			System.out.println("포워드가 null 값이 아니니?");
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {

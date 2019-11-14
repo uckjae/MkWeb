@@ -56,7 +56,7 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
-		String sql = "select empno, ename, job, mgr, hiredate, sal, comm, deptno, imagefilename from emp";
+		String sql = "select empno, ename, hiredate from emp";
 		
 		ArrayList<Emp> emplist = new ArrayList<Emp>();
 		try {
@@ -67,12 +67,7 @@ public class EmpDao {
 			Emp emp = new Emp();
 			emp.setEmpno(resultSet.getInt("empno"));
 			emp.setEname(resultSet.getString("ename"));
-			emp.setJob(resultSet.getString("job"));
-			emp.setMgr(resultSet.getInt("mgr"));
 			emp.setHiredate(resultSet.getDate("hiredate"));
-			emp.setSal(resultSet.getInt("sal"));
-			emp.setComm(resultSet.getInt("comm"));
-			emp.setDeptno(resultSet.getInt("deptno"));
 			emplist.add(emp);
 		}
 		}catch(Exception e) {
@@ -118,53 +113,75 @@ public class EmpDao {
 		return 0;
 	}
 	
-	public int getEdit(HttpServletRequest emp) {
+	public Emp getEdit(int no) {
 		
-		String no = emp.getParameter("empno");
-		String name = emp.getParameter("ename");
-		String job = emp.getParameter("job");
-		String mgr = emp.getParameter("mgr");
-		String date = emp.getParameter("date");
-		String sal = emp.getParameter("sal");
-		String comm = emp.getParameter("comm");
-		String dept = emp.getParameter("deptno");
-		
-		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
-		PreparedStatement pstmt = null;
-		ResultSet resultSet = null;
-		int row = 0;
-		String sql = "select empno, ename, job, hiredate, sal, comm, deptno, imagefilename from emp where ename=?";
-		String sql_update = "update emp set empno=? , ename=? , job=?," 
-				+ "sal=? ,comm =?,deptno = ? where idx=?";
-		try {
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setString(1,name);
-			resultSet = pstmt.executeQuery();
-			
-			while(resultSet.next()) {
-				pstmt = connection.prepareStatement(sql_update);
-				pstmt.setString(1,no);
-				pstmt.setString(2, name);
-				pstmt.setString(3, job);
-				pstmt.setString(4, sal);
-				pstmt.setString(5, comm);
-				pstmt.setString(6, dept);
-				pstmt.setString(7, no);
-				
-				row = pstmt.executeUpdate();
-			}
-			}catch(Exception e) {
-				System.out.println(e.getMessage());
-			}finally {
-				DBHelper.close(resultSet);
-				DBHelper.close(pstmt);
-				DBHelper.close(connection);
-			}
-		return row;
-			
-		
-		
+			Connection conn = DBHelper.getConnection("oracle");    
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+		      Emp emp = new Emp();
+		      try {
+		         String sql = "select empno,ename, job, mgr, hiredate, sal, deptno from Emp where empno=?";
 
+		         pstmt = conn.prepareStatement(sql);
+		         pstmt.setInt(1, no);
+		         rs = pstmt.executeQuery();
+		         if (rs.next()) {
+		            emp.setEmpno(rs.getInt("empno"));
+		            emp.setEname(rs.getString("ename"));
+		            emp.setJob(rs.getString("job"));
+		            emp.setMgr(rs.getInt("mgr"));
+		            emp.setHiredate(rs.getDate("hiredate"));
+		            emp.setSal(rs.getInt("sal"));
+		            emp.setDeptno(rs.getInt("deptno"));
+		            
+		          
+		         }
+		      } catch (Exception e) {
+
+		      } finally {
+		         try {
+					rs.close();
+					pstmt.close();
+			        conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		         
+		      }
+		      return emp;
+		      }
 	
+	   public int getEditOk(Emp emp) throws SQLException {
+		      Connection conn = null; 
+			PreparedStatement pstmt = null;
+		      int row = 0;
+//		       
+
+		      try {
+		         conn = DBHelper.getConnection("oracle");
+		         String sql = "update emp set ename=?, job=?,deptno=?,sal=?,mgr=?,empno=? where empno=?";
+		         pstmt = conn.prepareStatement(sql);
+
+		         pstmt.setString(1, emp.getEname());
+		         pstmt.setString(2, emp.getJob());
+		         pstmt.setInt(3, emp.getDeptno());
+		         pstmt.setInt(4, emp.getSal());
+		         pstmt.setInt(5, emp.getMgr());
+		         pstmt.setInt(6, emp.getEmpno());
+		         pstmt.setInt(7, emp.getEmpno());
+		         row = pstmt.executeUpdate();
+
+		      } catch (Exception e) {
+		         System.out.println(e.getMessage());
+		      } finally {
+		         pstmt.close();
+		         conn.close();
+		      }
+		      return row;
+		   }
+
+
+		
 	}
-}
+
