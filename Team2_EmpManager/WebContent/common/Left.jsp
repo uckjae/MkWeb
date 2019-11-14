@@ -52,7 +52,7 @@
 		            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 		                <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
 		                <a class="dropdown-item" href="SalaryRanking.do?cmd=show">Chart_1</a>
-		                <a class="dropdown-item" href="/SalaryRanking_won.do">원보연</a> <!-- 내가 선점 했음 여기 내자리 -->
+		                <a class="dropdown-item" href="/SalaryRanking_won.do?cmd=show">원보연</a> <!-- 내가 선점 했음 여기 내자리 -->
 		                <a class="dropdown-item" href="바꿔^^">Chart_3</a>
 		                <a class="dropdown-item" href="바꿔^^">Chart_4</a>
 		                <a class="dropdown-item" href="바꿔^^">Chart_5</a>
