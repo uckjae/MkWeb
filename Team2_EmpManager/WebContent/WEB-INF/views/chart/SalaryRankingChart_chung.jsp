@@ -42,19 +42,21 @@ p {
 					console.log("success");
 					console.log(typeof(data));
 					let labels = [];
-					let datas = [];
+					let avgdat = [];
+					let maxdat = [];
+					let mindat = [];
 					$.each(data, function(index, element){
 						labels.push(element.hiredate);
-						datas.push(element.avgsal);
-						datas.push(element.maxsal);
-						datas.push(element.minsal);
+						avgdat.push(element.avgsal);
+						maxdat.push(element.maxsal);
+						mindat.push(element.minsal);				
 					})
 					
-					setChart(labels,datas);
+					setChart(labels,avgdat,maxdat,mindat);
 				}
 			});
 		}
-		function setChart(labels, datas){
+		function setChart(labels, avgdat,maxdat,mindat){
 			var barChartData = {
 					labels: labels,
 					datasets: [{
@@ -62,21 +64,29 @@ p {
 						backgroundColor: getAnotherChartColor(0),
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
-						data: datas
+						data: 
+							$.each(avgdat,function(index,element) {
+								element;
+							})
 					},
 					{
 						label: 'maximum salary',
-						backgroundColor: getAnotherChartColor(0),
-						borderColor: getAnotherChartColor(0),
+						backgroundColor: getAnotherChartColor(1),
+						borderColor: getAnotherChartColor(1),
 						borderWidth: 1,
-						data: datas
+						data: 
+							$.each(maxdat,function(index,element) {
+								element;
+							})
 					},
 					{
 						label: 'minimum salary',
-						backgroundColor: getAnotherChartColor(0),
-						borderColor: getAnotherChartColor(0),
+						backgroundColor: getAnotherChartColor(2),
+						borderColor: getAnotherChartColor(2),
 						borderWidth: 1,
-						data: datas
+						data: $.each(mindat,function(index,element) {
+							element;
+						})
 					},
 					]
 				};
