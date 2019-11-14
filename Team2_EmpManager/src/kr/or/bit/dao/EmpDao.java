@@ -278,7 +278,7 @@ public class EmpDao {
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 
-		String sql = "select e.deptno as dept, round(avg(e.sal),0) as 평균급여 , max(e.sal) as 최대급여, min(e.sal) as 최소급여 from emp e join dept d on e.deptno = d.deptno group by e.deptno";
+		String sql = "select e.deptno as deptno, round(avg(e.sal),0) as 평균급여 , max(e.sal) as 최대급여, min(e.sal) as 최소급여 from emp e join dept d on e.deptno = d.deptno group by e.deptno";
 
 		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
 		try {
@@ -289,7 +289,7 @@ public class EmpDao {
 			while (resultSet.next()) {
 				System.out.println("while문 타러 왔니?");
 				AvgMaxMinSalaryByDept data = new AvgMaxMinSalaryByDept();
-				data.setDeptno(resultSet.getInt("dept"));
+				data.setDeptno(resultSet.getInt("deptno"));
 				data.setAvg(resultSet.getInt("avgsal"));
 				data.setMax(resultSet.getInt("maxsal"));
 				data.setMin(resultSet.getInt("minsal"));

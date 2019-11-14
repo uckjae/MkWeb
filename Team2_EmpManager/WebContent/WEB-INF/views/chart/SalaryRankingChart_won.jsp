@@ -15,6 +15,7 @@
 			-webkit-user-select: none;
 			-ms-user-select: none;
 		}
+		
 		p {
 			font-size: xx-large;
 			font-weight: 700;
@@ -22,10 +23,21 @@
 	</style>
 	<script type="text/javascript">
 		$(function() {
+			
+			ajax($("#countOption option:selected").val());
+			
+			$("#countOption").change(function(){
+				let countOption= $("#countOption option:selected").val();
+				ajax(countOption);
+			});
+		})
+		
+		function ajax(countOption){
+			
 			$.ajax({
 				url : "SalaryRanking_won.do",
+				data:{cmd: "chart", count: countOption},
 				dataType : "json",
-				data : {cmd : "chart"},
 				success : function(data){
 					let labels = [];
 					let avgsal = [];
@@ -41,8 +53,7 @@
 					setChart(labels, avgsal, maxsal, minsal);
 				}
 			});
-		})
-		
+		}
 		function setChart(labels, avgsal, maxsal, minsal){
 			var barChartData = {
 					labels: labels,
@@ -74,7 +85,7 @@
 						data: $.each(minsal,function(index,element) {
 							element;
 						})
-					}]
+					},]
 				};
 	
 			window.myBar = new Chart( $('#canvas'), {
