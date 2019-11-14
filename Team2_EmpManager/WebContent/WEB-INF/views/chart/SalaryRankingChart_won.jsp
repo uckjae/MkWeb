@@ -24,26 +24,52 @@
 				data : {cmd : "chart"},
 				success : function(data){
 					let labels = [];
-					let datas = [];
+					let avgsal = [];
+					let maxsal = [];
+					let minsal = [];
 					$.each(data, function(index, element){
-						labels.push(element.ename);
-						datas.push(element.totalsal);
+						labels.push(element.deptno);
+						avgdat.push(element.avgsal);
+						maxdat.push(element.maxsal);
+						mindat.push(element.minsal);	
 					})
 					
-					setChart(labels,datas);
+					setChart(labels, avgsal, maxsal, minsal);
 				}
 			});
 		})
 		
-		function setChart(labels, datas){
+		function setChart(labels, avgsal, maxsal, minsal){
 			var barChartData = {
 					labels: labels,
 					datasets: [{
-						label: 'Total Salery',
+						label: 'Average Salery',
 						backgroundColor: getAnotherChartColor(0),
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
-						data: datas
+						data: 
+							$.each(avgdat,function(index,element) {
+								element;
+							})
+					},
+					{
+						label: 'maximum salary',
+						backgroundColor: getAnotherChartColor(1),
+						borderColor: getAnotherChartColor(1),
+						borderWidth: 1,
+						data: 
+							$.each(maxdat,function(index,element) {
+								element;
+							})
+					},
+					{
+						label: 'minimum salary',
+						backgroundColor: getAnotherChartColor(2),
+						borderColor: getAnotherChartColor(2),
+						borderWidth: 1,
+						data: $.each(mindat,function(index,element) {
+							element;
+						})
 					}]
 				};
 	
