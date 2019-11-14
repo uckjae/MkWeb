@@ -61,7 +61,7 @@
 												</a>
 											</td>
 											<td class="iconColumn">
-												<a href="#" data-toggle="modal" data-target="#deleteModal">
+												<a href="#" data-toggle="modal" data-target="#deleteModal" data-delete-id="${emp.empno}">
 													<i class="fas fa-trash-alt"></i>
 												</a>
 											</td>

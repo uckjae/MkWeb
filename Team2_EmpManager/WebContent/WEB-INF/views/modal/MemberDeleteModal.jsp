@@ -4,13 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$("#deletebtn").click(function() {
-			
-		});
-	});
+   $(function(){
+      let deleteId="";
+      $('#deleteModal').on('show.bs.modal', function(event) {          
+         deleteId = $(event.relatedTarget).data('delete-id');
+         $(".modal-body").prepend("<b>[ "+deleteId+" ]</b>");
+         $("#deletebtn").attr("href","MemberDelete.do?empno="+deleteId);
+      });
+   });
 </script>
 </head>
 <body>

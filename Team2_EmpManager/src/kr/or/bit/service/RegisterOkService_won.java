@@ -21,7 +21,7 @@ public class RegisterOkService_won implements Action {
 		try {
 			Emp emp = new Emp();
 			String date = request.getParameter("hiredate");
-			SimpleDateFormat sdf = new SimpleDateFormat("yy/MM/dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Date hiredate = sdf.parse(date);
 			
 			emp.setEname(request.getParameter("ename"));

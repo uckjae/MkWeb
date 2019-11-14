@@ -1,63 +1,54 @@
 package kr.or.bit.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.bit.dto.Emp;
 import kr.or.bit.utils.DBHelper;
 
-public class EmpDao_won {
+public class EmpDao_lee {
 	public int insertEmp(Emp emp) {
-		Connection connection = null;
+		Connection conn = null;
+		System.out.println("done");
 		PreparedStatement pstmt = null;
 		int resultrow = 0;
-		
 		try {
-			System.out.println("dao 타고");
-			emp.toString();
-			//"insert into memo(id,email,content) values(?,?,?)";
-			connection = DBHelper.getConnection("oracle");
-			String sql = "insert into Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) value(?,?,?,?,?,?,?,?)";
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setInt(1, emp.getEmpno());
-			pstmt.setString(2, emp.getEname());
-			pstmt.setString(3, emp.getJob());
-			pstmt.setInt(4, emp.getMgr());
-			pstmt.setDate(5, (Date)emp.getHiredate());
-			pstmt.setInt(6, emp.getSal());
-			pstmt.setInt(7, emp.getComm());
-			pstmt.setInt(8, emp.getDeptno());
 			
+			
+			
+			conn = DBHelper.getConnection("oracle");
+			String sql = "insert into EMP (empno,ename,hiredate,job,deptno,mgr,sal,comm) values(?,?,?,?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, emp.getEmpno());
+			pstmt.setString(2,emp.getEname());
+			pstmt.setDate(3,(java.sql.Date)emp.getHiredate());
+			pstmt.setString(4, emp.getJob());
+			pstmt.setInt(5, emp.getDeptno());
+			pstmt.setInt(6, emp.getMgr());
+			pstmt.setInt(7, emp.getSal());
+			pstmt.setInt(8, emp.getComm());
 			resultrow = pstmt.executeUpdate();
-		}catch (Exception e) {
-			System.out.println("dao 에서 익셉션");
+			
+		}catch(Exception e) {
+			
 		}finally {
 			DBHelper.close(pstmt);
-			DBHelper.close(connection);
+			DBHelper.close(conn);
+			
 		}
-		
 		return resultrow;
 	}
 
 	public Emp getEmpByEmpno(int no) {
-		Connection connection = DBHelper.getConnection("oracle");
-		ResultSet resultSet = null;
-		PreparedStatement pstmt = null;
 		
-		String sql = "Select empno from emp where empno=?";
+		  return this.getEmpByEmpno(no);
 		
-		try {
-			pstmt = connection.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			resultSet = pstmt.executeQuery();
-		}catch (Exception e) {
-
-		}
-
-		return null;
 	}
 
 	public boolean checkAdminLogin(String userid, String pwd) {
@@ -91,7 +82,7 @@ public class EmpDao_won {
 		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
-		String sql = "select empno, ename, job, mgr, hiredate, sal, comm, deptno, imagefilename from emp";
+		String sql = "select empno, ename, hiredate from emp";
 		
 		ArrayList<Emp> emplist = new ArrayList<Emp>();
 		try {
@@ -102,12 +93,7 @@ public class EmpDao_won {
 			Emp emp = new Emp();
 			emp.setEmpno(resultSet.getInt("empno"));
 			emp.setEname(resultSet.getString("ename"));
-			emp.setJob(resultSet.getString("job"));
-			emp.setMgr(resultSet.getInt("mgr"));
 			emp.setHiredate(resultSet.getDate("hiredate"));
-			emp.setSal(resultSet.getInt("sal"));
-			emp.setComm(resultSet.getInt("comm"));
-			emp.setDeptno(resultSet.getInt("deptno"));
 			emplist.add(emp);
 		}
 		}catch(Exception e) {
@@ -129,5 +115,47 @@ public class EmpDao_won {
 		
 		return 0;
 	}
-  
+	
+	public int getEdit(HttpServletRequest emp) {
+		
+		String no = emp.getParameter("empno");
+		String name = emp.getParameter("ename");
+		String job = emp.getParameter("job");
+		String mgr = emp.getParameter("mgr");
+		String date = emp.getParameter("date");
+		String sal = emp.getParameter("sal");
+		String comm = emp.getParameter("comm");
+		String dept = emp.getParameter("deptno");
+		
+		System.out.println(no +" , " + name +" , " + job +" , " + mgr +" , " + date +" , " + sal +" , " + comm +" , " + dept);
+		
+		Connection connection = DBHelper.getConnection("oracle"); //객체 얻기
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		int row = 0;
+		String sql = "select empno, ename, job, hiredate, sal, comm, deptno, imagefilename from emp where ename=?";
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setString(1,name);
+			resultSet = pstmt.executeQuery();
+			
+			while(resultSet.next()) {
+			
+				
+				row = pstmt.executeUpdate();
+			}
+			}catch(Exception e) {
+				System.out.println(e.getMessage());
+			}finally {
+				DBHelper.close(resultSet);
+				DBHelper.close(pstmt);
+				DBHelper.close(connection);
+			}
+		return row;
+			
+		
+		
+
+	
+	}
 }
