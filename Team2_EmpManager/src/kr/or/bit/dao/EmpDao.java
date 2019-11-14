@@ -12,6 +12,7 @@ import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.LocDept;
+import kr.or.bit.dto.chart.StatisticsByMgr;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
 
@@ -273,21 +274,18 @@ public class EmpDao {
 	}
 
 	public List<AvgMaxMinSalaryByDept> ChartSalByDept() {
-		System.out.println("here");
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 
-		String sql = "select e.deptno as deptno, round(avg(e.sal),0) as 평균급여 , max(e.sal) as 최대급여, min(e.sal) as 최소급여 from emp e join dept d on e.deptno = d.deptno group by e.deptno";
+		String sql = "select e.deptno as deptno, round(avg(e.sal),0) as avgsal , max(e.sal) as maxsal, min(e.sal) as minsal from emp e join dept d on e.deptno = d.deptno group by e.deptno";
 
 		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultSet = pstmt.executeQuery();
-			System.out.println("쿼리는 되니?");
 
 			while (resultSet.next()) {
-				System.out.println("while문 타러 왔니?");
 				AvgMaxMinSalaryByDept data = new AvgMaxMinSalaryByDept();
 				data.setDeptno(resultSet.getInt("deptno"));
 				data.setAvg(resultSet.getInt("avgsal"));
@@ -296,11 +294,9 @@ public class EmpDao {
 
 				empdata.add(data);
 			}
-			System.out.println("while 타고 왔네?");
 		} catch (Exception e) {
 			System.out.println("wonbo dao exception");
 		} finally {
-			System.out.println("finally dbclose");
 			DBHelper.close(resultSet);
 			DBHelper.close(pstmt);
 			DBHelper.close(connection);
@@ -328,7 +324,7 @@ public class EmpDao {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("ㄷ : " + e.getMessage());
 		} finally {
 			DBHelper.close(rs);
 			DBHelper.close(pstmt);
@@ -336,5 +332,41 @@ public class EmpDao {
 		}
 		return locdatas;
 
+	}
+	
+	public List<StatisticsByMgr> statisticsByMgr(){
+		List<StatisticsByMgr> list = null ;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBHelper.getConnection("oracle");
+			String sql = "select e.ename as ename, statistics.\"mgrnum\" as empno, trunc(statistics.\"avg\",0) as avg, statistics.\"max\", statistics.\"min\" " + 
+					"from statistics join emp e " + 
+					"on statistics.\"mgrnum\" = e.empno";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<StatisticsByMgr>();
+			while(rs.next()) {
+				StatisticsByMgr data = new StatisticsByMgr();
+				data.setEname(rs.getString(1));
+				data.setEmpno(rs.getInt(2));
+				data.setAvg(rs.getInt(3));
+				data.setMax(rs.getInt(4));
+				data.setMin(rs.getInt(5));
+				list.add(data);
+			}
+			
+		}catch(Exception e) {
+			System.out.println("Error at statisticsByMgr : " + e.getMessage());
+		}finally {
+			DBHelper.close(rs);
+			DBHelper.close(pstmt);
+			DBHelper.close(conn);
+		}
+		
+		
+		return list;
 	}
 }
