@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class LocDeptServlet
  */
-@WebServlet("/Loc.do")
+@WebServlet("/LocCount.do")
 public class LocDeptServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,6 +27,8 @@ public class LocDeptServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 			
 		String command = request.getParameter("cmd");
+		
+		if(command.equals(""))
 		
     }
 

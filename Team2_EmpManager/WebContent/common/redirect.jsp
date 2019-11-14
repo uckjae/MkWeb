@@ -9,6 +9,7 @@
 	<script>
 		alert('<%= msg %>');		
 	    location.href='<%=url%>';
+	    console.log(url);
 	</script>
 	
 <%	  

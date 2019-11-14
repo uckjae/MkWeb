@@ -3,7 +3,6 @@ package kr.or.bit.ajax;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +15,6 @@ import org.codehaus.jettison.json.JSONArray;
 
 import kr.or.bit.dao.EmpDao;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
-import kr.or.bit.dto.chart.TotalSaleryChart;
 
 @WebServlet("/SalaryRanking_won.do")
 public class SalaryRankingServlet_won extends HttpServlet {

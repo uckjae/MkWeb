@@ -19,13 +19,17 @@ public class MemberDeleteService implements Action {
 		EmpDao dao = new EmpDao();
 		int row = dao.deleteEmpByEmpno(empno);		
 		String url = "";
+		String msg ="";
 		if(row > 0){
-			url="/WEB-INF/views/admin/MemberList.jsp";
+			url="MemberList.do";
+			msg= empno + "님이 삭제되었습니다";
 		} 
+	  	request.setAttribute("board_msg", msg);
+	  	request.setAttribute("board_url", url);
 		System.out.println("row: "+ row);	
-		//request.setAttribute("url", url);		
+	
 		forward.setRedirect(false);
-		forward.setPath(url);
+		forward.setPath("/common/redirect.jsp");
 		System.out.println("포워드: " + forward);
 		return forward;
 	}
