@@ -1,6 +1,8 @@
 package kr.or.bit.ajax;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +30,10 @@ public class LocDeptServlet extends HttpServlet {
 			
 		String command = request.getParameter("cmd");
 		
-		if(command.equals(""))
+		if(command.equals("show")) {
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/views/chart/LocDeptNo.jsp");
+			dis.forward(request, response);
+		}
 		
     }
 
