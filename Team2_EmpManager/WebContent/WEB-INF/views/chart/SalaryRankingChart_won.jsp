@@ -109,6 +109,9 @@
 
             <!-- Content -->
             <div class="container-fluid">
+            	<div class="row">
+	            	 <p >부서별 임금 그래프 </p>
+           		</div>
                 <canvas id="canvas"></canvas>
             </div>
             
