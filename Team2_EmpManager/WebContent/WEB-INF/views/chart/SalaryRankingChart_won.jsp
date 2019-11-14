@@ -53,7 +53,7 @@
 							})
 					},
 					{
-						label: 'maximum salary',
+						label: 'Maximum Salary',
 						backgroundColor: getAnotherChartColor(1),
 						borderColor: getAnotherChartColor(1),
 						borderWidth: 1,
@@ -63,7 +63,7 @@
 							})
 					},
 					{
-						label: 'minimum salary',
+						label: 'Minimum Salary',
 						backgroundColor: getAnotherChartColor(2),
 						borderColor: getAnotherChartColor(2),
 						borderWidth: 1,
@@ -109,6 +109,9 @@
 
             <!-- Content -->
             <div class="container-fluid">
+            	<div class="row">
+	            	 <p >부서별 임금 그래프 </p>
+           		</div>
                 <canvas id="canvas"></canvas>
             </div>
             
