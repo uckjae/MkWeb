@@ -23,8 +23,6 @@
 				dataType : "json",
 				data : {cmd : "chart"},
 				success : function(data){
-					console.log("success");
-					console.log(typeof(data));
 					let labels = [];
 					let datas = [];
 					$.each(data, function(index, element){

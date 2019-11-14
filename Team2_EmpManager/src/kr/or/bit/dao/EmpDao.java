@@ -290,8 +290,11 @@ public class EmpDao {
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}finally {
-			
+			DBHelper.close(resultSet);
+			DBHelper.close(pstmt);
+			DBHelper.close(connection);
 		}
 		return empdata;
 	}
+
 }

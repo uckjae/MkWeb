@@ -39,26 +39,23 @@ public class SalaryRankingServlet_won extends HttpServlet {
 		}else if (command.equals("chart")) {
 			PrintWriter out = response.getWriter();
 			String id = request.getParameter("id");
-			System.out.println(id);
 			EmpDao dao = null;
 			JSONArray json = null;
 			try {
 				dao = new EmpDao();
-				int count =Integer.parseInt(request.getParameter("count")) ;
 				List<AvgMaxMinSalaryByDept> results = dao.ChartSalByDept();
 				StringBuilder datalist = new StringBuilder();
 				datalist.append("[");
 				for (AvgMaxMinSalaryByDept salery : results)
 					datalist.append(
-							String.format("{ename : %s, totalsal : %d},", salery.getEname(), salery.getTotalSalery()));
+						String.format("{deptno : %d, avgsal : %d, maxsal : %d , minsal : %d},"
+										, salery.getDeptno(), salery.getAvg(), salery.getMax(), salery.getMin()));
 
 				datalist.append("]");
 				json = new JSONArray(datalist.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			System.out.println(json);
 			out.print(json);
 		}
 	}
