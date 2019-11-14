@@ -11,23 +11,7 @@
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script type="text/javascript">
 $(function(){
-	$.ajax({
-	url : "Loc.do",
-	dataType : "json",
-	data : {cmd : "chart"},
-	success : function(data){
-		console.log("success");
-		console.log(typeof(data));
-		let labels = [];
-		let datas = [];
-		$.each(data, function(index, element){
-			labels.push(element.ename);
-			datas.push(element.totalsal);
-		})
-		
-		setChart(labels,datas);
-	}
-})
+
 		Highcharts.chart('container', {
 		    chart: {
 		        plotBackgroundColor: null,
