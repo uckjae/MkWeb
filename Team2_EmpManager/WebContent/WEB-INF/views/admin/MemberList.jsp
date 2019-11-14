@@ -42,8 +42,8 @@
                                 <table class="table table-bordered" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>ENAME</th>
                                             <th>EMPNO</th>
+                                            <th>ENAME</th>
                                             <th>HIREDATE</th>
                                             <th class="iconColumn" data-orderable="false">EDIT</th>
                                             <th class="iconColumn" data-orderable="false">DELETE</th>
