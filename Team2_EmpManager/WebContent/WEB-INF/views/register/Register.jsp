@@ -7,6 +7,27 @@
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <jsp:include page="/common/HeadTag.jsp"/>
+    <style type="text/css">
+    	select{
+    		display: block;
+	    	width: 100%;
+	    	height: calc(1.5em + 0.75rem + 2px);
+	    	padding: 0.375rem 0.75rem;
+	    	font-size: 1rem;
+	    	font-weight: 400;
+	    	line-height: 1.5;
+	    	color: #495057;
+	    	background-color: #fff;
+	    	background-clip: padding-box;
+	    	border: 1px solid #ced4da;
+	    	border-radius: 0.25rem;
+	    	-webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+	    	transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    	}
+    
+    </style>
 </head>
 
 <body id="page-top">
@@ -68,8 +89,10 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="number" id="deptno" name="deptno" class="form-control" placeholder="Dept No" required="required">
-                                                            <label for="deptno">Dept No</label>
+                                                            <select id="deptSelect" style="height : 49px">
+                                                            	<option>선택하시오</option>
+                                                            </select>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -119,12 +142,49 @@
         </div>
     </div>
     
-    <script type="text/javascript">
-    	document.getElementById("empnoCheck").onclick(function(){
-    		if
-    	})
+<script type="text/javascript">
+    	$("#empnoCheck").click(function(){
+    		if($("#empno").val() == "" || $("#empno").val() == null){
+    			alert("EMPNO 입력하세요");
+    			$("#empno").focus();
+    		}else{
+    			$.ajax({
+    				url:"ec",
+    				data:{empno:$("#empno").val()},
+    				dataType: "html",
+    				success:function(responsedata){
+    					console.log(">"+responsedata+"<");
+    					if(responsedata == "true"){
+    						alert("사용가능");
+    						$("#ename").focuse();
+    					}else{
+    						alert("중복된 사원번호입니다");
+    						$("#empno").focus();
+    					}
+    				},
+    				error:function(){
+    					
+    				}
+    			});
+    		}
+    	});
+    	
+    	$.ajax({
+    		url:"GetDeptNos",
+    		dataType:"json",
+    		success:function(data){
+    			var dArray = [];
+    			dArray = data.deptno;
+    			
+    			for(var i=0; i<dArray.length;i++){
+    				var option = document.createElement("option");
+    				$(option).text(dArray[i]);
+    				$("#deptSelect").append(option);
+    			}
+    		}
+    	});
     
     </script>
-</body>
+    </body>
 
 </html>

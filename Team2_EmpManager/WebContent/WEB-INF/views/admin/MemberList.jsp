@@ -44,6 +44,7 @@
                                         <tr>
                                             <th>EMPNO</th>
                                             <th>ENAME</th>
+                                            <th>DEPTNO</th>
                                             <th>HIREDATE</th>
                                             <th class="iconColumn" data-orderable="false">EDIT</th>
                                             <th class="iconColumn" data-orderable="false">DELETE</th>
@@ -54,6 +55,7 @@
 										<tr>
 											<td class="sorting_1"><a href="MemberDetail.do?empno=${emp.empno }">${emp.empno}</a></td>
 											<td>${emp.ename}</td>
+											<td>${emp.deptno}</td>
 											<td>${emp.hiredate}</td>
 											<td class="iconColumn">
 												<a href="MemberEdit.do?empno=${emp.empno}">
