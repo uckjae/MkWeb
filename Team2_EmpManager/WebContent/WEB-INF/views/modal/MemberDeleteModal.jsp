@@ -6,14 +6,14 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
-<% String empno = request.getParameter("empno");
+<%-- <% String empno = request.getParameter("empno");
 System.out.println(empno);
 %>
 	$(function(){
 		$("#deletebtn").click(function() {
-			
+						 
 		});
-	});
+	}); --%>
 </script>
 </head>
 <body>
@@ -29,7 +29,7 @@ System.out.println(empno);
         </div>
         <div class="modal-body"> 회원을 삭제 하시겠습니까?</div>
         <div class="modal-footer">
-          <a id="deletebtn" class="btn btn-primary">Delete</a>
+          <a id="deletebtn" class="btn btn-primary" href="MemberDelete.do" >Delete</a>
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>

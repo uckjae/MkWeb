@@ -15,16 +15,18 @@ public class MemberDeleteService implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
 		int empno = Integer.parseInt(request.getParameter("empno"));
+		System.out.println(empno);
 		EmpDao dao = new EmpDao();
 		int row = dao.deleteEmpByEmpno(empno);		
 		String url = "";
-		//if(row > 0){
-			url="/MemberList.do";
-		//} else 
-			
+		if(row > 0){
+			url="/WEB-INF/views/admin/MemberList.jsp";
+		} 
+		System.out.println("row: "+ row);	
 		//request.setAttribute("url", url);		
 		forward.setRedirect(false);
 		forward.setPath(url);
+		System.out.println("포워드: " + forward);
 		return forward;
 	}
 }
