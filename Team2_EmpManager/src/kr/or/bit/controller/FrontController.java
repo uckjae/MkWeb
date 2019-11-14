@@ -68,7 +68,7 @@ public class FrontController extends HttpServlet {
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk_lee.do")) {
 			forward = new ActionForward();
-			forward.setPath(path);
+			//forward.setPath(path);
 		} 
 		//choi
 		// Register 화면
@@ -136,7 +136,7 @@ public class FrontController extends HttpServlet {
 		else if (url_Command.equals("/MemberEdit.do")) {
 			action = new MemberEditService();
 			forward = action.execute(request, response);
-			System.out.println("수정");
+			System.out.println("너 안들어가?");
 		}
 		// MemberEdit 진행
 		else if (url_Command.equals("/MemberEditOk.do")) {
@@ -155,6 +155,7 @@ public class FrontController extends HttpServlet {
 		}
 
 		if (forward != null) {
+			System.out.println("1 : " + forward);
 			System.out.println("포워드가 null 값이 아니니?");
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
