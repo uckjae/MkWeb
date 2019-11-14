@@ -20,9 +20,35 @@ public class EmpDao {
 	}
 
 	public Emp getEmpByEmpno(int no) {
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
-		  return this.getEmpByEmpno(no);
+		String sql = "select empno from emp where empno=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				rs.getInt(no);
+			}
+		}catch (Exception e) {
+			System.out.println("get : " + e.getMessage());
+		}finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
+		
+		
+		return null;
+	
 	}
 
 	public boolean checkAdminLogin(String userid, String pwd) {
@@ -90,17 +116,17 @@ public class EmpDao {
 		return 0;
 	}
 	
-	public Emp getEdit(int no) {
-		
-			Connection conn = DBHelper.getConnection("oracle");    
+	public Emp getEdit(int empno) {
+			Connection conn =  DBHelper.getConnection("oracle");  
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 		      Emp emp = new Emp();
 		      try {
 		         String sql = "select empno,ename, job, mgr, hiredate, sal, deptno from Emp where empno=?";
-
+		         
 		         pstmt = conn.prepareStatement(sql);
-		         pstmt.setInt(1, no);
+		         pstmt.setInt(1, empno);
+		         System.out.println("실행해?");
 		         rs = pstmt.executeQuery();
 		         if (rs.next()) {
 		            emp.setEmpno(rs.getInt("empno"));
@@ -114,22 +140,22 @@ public class EmpDao {
 		          
 		         }
 		      } catch (Exception e) {
-
+		    	  System.out.println("dao : " + e.getMessage());
 		      } finally {
 		         try {
 					rs.close();
 					pstmt.close();
 			        conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					
 				}
 		         
 		      }
 		      return emp;
 		      }
 	
-	   public int getEditOk(Emp emp) throws SQLException {
+	   public int getEditOk(Emp emp) {
 		      Connection conn = null; 
 			PreparedStatement pstmt = null;
 		      int row = 0;
@@ -152,8 +178,14 @@ public class EmpDao {
 		      } catch (Exception e) {
 		         System.out.println(e.getMessage());
 		      } finally {
-		         pstmt.close();
-		         conn.close();
+		         try {
+					pstmt.close();
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		         
 		      }
 		      return row;
 		   }
