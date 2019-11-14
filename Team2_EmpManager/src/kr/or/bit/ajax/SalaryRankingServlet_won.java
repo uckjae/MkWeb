@@ -48,7 +48,7 @@ public class SalaryRankingServlet_won extends HttpServlet {
 				List<AvgMaxMinSalaryByDept> results = dao.ChartSalByDept();
 				StringBuilder datalist = new StringBuilder();
 				datalist.append("[");
-				for (TotalSaleryChart salery : results)
+				for (AvgMaxMinSalaryByDept salery : results)
 					datalist.append(
 							String.format("{ename : %s, totalsal : %d},", salery.getEname(), salery.getTotalSalery()));
 

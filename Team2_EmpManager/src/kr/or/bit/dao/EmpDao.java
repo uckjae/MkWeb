@@ -265,7 +265,7 @@ public class EmpDao {
 		return results;
 	}
 	
-<<<<<<< HEAD
+
 	public List<AvgMaxMinSalaryByDept> ChartSalByDept() {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
@@ -294,8 +294,4 @@ public class EmpDao {
 		}
 		return empdata;
 	}
-=======
-	
-	
->>>>>>> bd7ded9a3d25e4ebb31afa5bc01ec50f18805013
 }
