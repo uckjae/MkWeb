@@ -19,7 +19,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$.ajax({
-				url : "SalaryRanking.do",
+				url : "SalaryRanking_won.do",
 				dataType : "json",
 				success : function(data){
 					console.log("success");
