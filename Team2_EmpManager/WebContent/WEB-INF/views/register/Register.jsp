@@ -112,7 +112,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                     <div class="input-group">
-												        <input type="number" id="empno" name="empno"  class="form-control" placeholder="No" aria-label="Search" aria-describedby="basic-addon2">
+												        <input type="number" id="empno" name="empno"  class="form-control" placeholder="No" aria-label="Search" aria-describedby="basic-addon2" style="height: 50px">
 												        <div class="input-group-append">
 												          <button class="btn btn-primary" type="button" id="empnoCheck">
 												            <i class="fas fa-check"></i>
