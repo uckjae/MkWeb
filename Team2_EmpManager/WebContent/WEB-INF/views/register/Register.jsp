@@ -7,6 +7,27 @@
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <jsp:include page="/common/HeadTag.jsp"/>
+    <style type="text/css">
+    	select{
+    		display: block;
+	    	width: 100%;
+	    	height: calc(1.5em + 0.75rem + 2px);
+	    	padding: 0.375rem 0.75rem;
+	    	font-size: 1rem;
+	    	font-weight: 400;
+	    	line-height: 1.5;
+	    	color: #495057;
+	    	background-color: #fff;
+	    	background-clip: padding-box;
+	    	border: 1px solid #ced4da;
+	    	border-radius: 0.25rem;
+	    	-webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+	    	transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    	}
+    
+    </style>
 </head>
 
 <body id="page-top">
@@ -68,8 +89,10 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="number" id="deptno" name="deptno" class="form-control" placeholder="Dept No" required="required">
-                                                            <label for="deptno">Dept No</label>
+                                                            <select id="deptSelect" style="height : 49px">
+                                                            	<option>선택하시오</option>
+                                                            </select>
+                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
@@ -143,6 +166,21 @@
     					
     				}
     			});
+    		}
+    	});
+    	
+    	$.ajax({
+    		url:"GetDeptNos",
+    		dataType:"json",
+    		success:function(data){
+    			var dArray = [];
+    			dArray = data.deptno;
+    			
+    			for(var i=0; i<dArray.length;i++){
+    				var option = document.createElement("option");
+    				$(option).text(dArray[i]);
+    				$("#deptSelect").append(option);
+    			}
     		}
     	});
     
