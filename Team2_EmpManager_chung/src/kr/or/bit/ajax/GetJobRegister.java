@@ -37,9 +37,9 @@ public class GetJobRegister extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		EmpDao emp = new EmpDao();
-		List<Integer> result = emp.getJobRegister();
+		List<String> result = emp.getJobRegister();
 		String resultString = "{";
-		for(Integer getjob : result) {
+		for(String getjob : result) {
 			resultString += String.format("job", result);
 		}
 		resultString += "}";
