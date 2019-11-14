@@ -325,7 +325,7 @@ public class EmpDao {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("ㄷ : " + e.getMessage());
 		} finally {
 			DBHelper.close(rs);
 			DBHelper.close(pstmt);

@@ -56,7 +56,7 @@
 		                <a class="dropdown-item" href="SalaryRanking_chung.do?cmd=show">Chart_3</a>
 		                <a class="dropdown-item" href="SalaryRanking_lee.do?cmd=show">Chart_4</a>
 		                <a class="dropdown-item" href="바꿔^^">Chart_5</a>
-		                <a class="dropdown-item" href="LocCount.do">Chart_6</a>
+		                <a class="dropdown-item" href="LocCount.do?cmd=show">Chart_6</a>
 		            </div>
 		        </li>
         	</c:when>
