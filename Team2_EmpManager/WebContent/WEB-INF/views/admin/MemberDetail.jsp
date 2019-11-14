@@ -25,7 +25,7 @@
 
         <div id="content-wrapper">
             <!-- !! Content !! -->
- 			<c:set var="emp" value=""/>
+ 			<c:set var="emp" value="${requestScope.empdetail}"/>
             <div class="container-fluid">
                 <div class="card mb-3">
                     <div class="card-header">
