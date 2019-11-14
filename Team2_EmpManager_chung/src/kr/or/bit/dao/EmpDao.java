@@ -66,7 +66,7 @@ public class EmpDao {
 				int sal = resultSet.getInt(6);
 				int comm = resultSet.getInt(7);
 				int deptno = resultSet.getInt(8);
-
+				
 				emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno);
 			}
 		} catch (Exception e) {
@@ -111,7 +111,7 @@ public class EmpDao {
 		PreparedStatement pstmt = null;
 
 		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO" + " FROM EMP";
-
+		
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultSet = pstmt.executeQuery();
@@ -124,7 +124,7 @@ public class EmpDao {
 				int sal = resultSet.getInt(6);
 				int comm = resultSet.getInt(7);
 				int deptno = resultSet.getInt(8);
-
+				
 				emps.add(new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno));
 			}
 		} catch (Exception e) {

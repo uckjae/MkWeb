@@ -51,7 +51,6 @@
 	    			var jArray = [];
 	    			console.log(data);
 	    			jArray = data.job;
-	    			console.log("직종 에이젝스 :" + jArray);
 	    			for(var i=0; i<jArray.length;i++){
 	    				var option = document.createElement("option");
 	    				$(option).text(jArray[i]);
@@ -126,7 +125,7 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="RegisterOk.do" method="post">
+                                        <form action="RegisterOk.do" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
@@ -199,6 +198,18 @@
                                                             <label for="comm">Commission</label>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            
+                                             <div class="form-group">
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                       			사진 등록
+                                                             <input type="file" name="filename" accept="image/*" >
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
 
