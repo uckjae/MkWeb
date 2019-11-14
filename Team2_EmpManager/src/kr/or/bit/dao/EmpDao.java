@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.TotalSaleryChart;
@@ -234,15 +233,34 @@ public class EmpDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
 		}
 		return data;
+	}
+	
+	public List<String> getDethNos() {
+		List<String> results= new ArrayList<String>();
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		String sql = "SELECT DNAME WHERE DEPT";
+		ResultSet rs = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				results.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
+		}
+		
+		return results;
 	}
 }
