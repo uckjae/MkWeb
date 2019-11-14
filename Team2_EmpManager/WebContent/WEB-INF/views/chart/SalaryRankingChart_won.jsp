@@ -21,6 +21,7 @@
 			$.ajax({
 				url : "SalaryRanking_won.do",
 				dataType : "json",
+				data : {cmd : "chart"},
 				success : function(data){
 					console.log("success");
 					console.log(typeof(data));

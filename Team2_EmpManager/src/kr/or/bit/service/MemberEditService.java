@@ -9,23 +9,22 @@ import kr.or.bit.dao.EmpDao;
 import kr.or.bit.dto.Emp;
 
 public class MemberEditService implements Action {
-	   public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		      ActionForward forward = new ActionForward();
-		      
-		      int no = Integer.parseInt(request.getParameter("empno"));
-		      System.out.println("no : "+no);
-		      EmpDao dao = new EmpDao();
-		      try {
-		    	  
-		         Emp emp = dao.getEmpByEmpno(no);
-		         System.out.println(emp.getEname());
-		             request.setAttribute("emp",emp);
-		             forward.setPath("/WEB-INF/views/admin/MemberEdit.jsp");
-		             
-		      } catch (Exception e) {
-		         e.printStackTrace();
-		      }
-		      return forward;
-		   }
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		ActionForward forward = new ActionForward();
+
+		int no = Integer.parseInt(request.getParameter("empno"));
+		EmpDao dao = new EmpDao();
+		try {
+
+			Emp emp = dao.getEmpByEmpno(no);
+
+			request.setAttribute("emp", emp);
+			forward.setPath("/WEB-INF/views/admin/MemberEdit.jsp");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return forward;
+	}
 
 }

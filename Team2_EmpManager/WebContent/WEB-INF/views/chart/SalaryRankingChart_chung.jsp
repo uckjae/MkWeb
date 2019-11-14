@@ -27,12 +27,13 @@ p {
 			ajax($("#countOption option:selected").val());
 			
 			$("#countOption").change(function(){
-				let countOption=$("#countOption option:selected").val();
+				let countOption= $("#countOption option:selected").val();
 				ajax(countOption);
 			});
 		})
 		
 		function ajax(countOption){
+			
 			$.ajax({
 				url : "SalaryRanking_chung.do",
 				data:{cmd: "chart", count: countOption},
@@ -43,8 +44,10 @@ p {
 					let labels = [];
 					let datas = [];
 					$.each(data, function(index, element){
-						labels.push(element.ename);
-						datas.push(element.totalsal);
+						labels.push(element.hiredate);
+						datas.push(element.avgsal);
+						datas.push(element.maxsal);
+						datas.push(element.minsal);
 					})
 					
 					setChart(labels,datas);
@@ -55,12 +58,27 @@ p {
 			var barChartData = {
 					labels: labels,
 					datasets: [{
-						label: 'Total Salery',
+						label: 'average salary',
 						backgroundColor: getAnotherChartColor(0),
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
 						data: datas
-					}]
+					},
+					{
+						label: 'maximum salary',
+						backgroundColor: getAnotherChartColor(0),
+						borderColor: getAnotherChartColor(0),
+						borderWidth: 1,
+						data: datas
+					},
+					{
+						label: 'minimum salary',
+						backgroundColor: getAnotherChartColor(0),
+						borderColor: getAnotherChartColor(0),
+						borderWidth: 1,
+						data: datas
+					},
+					]
 				};
 	
 			window.myBar = new Chart( $('#canvas'), {
@@ -69,7 +87,7 @@ p {
 				options: {
 					responsive: true,
 					legend: {
-						position: 'top',
+						position: 'top',						
 					},
 					title: {
 						display: false,
@@ -100,13 +118,7 @@ p {
             <!-- Content -->
             <div class="container-fluid">
             <div class="row">
-	             <p >상위 연봉 </p>&nbsp;&nbsp;&nbsp;
-	            <select id="countOption" class=”form-control“ style="height: 45px">
-	            	<option value="5">5</option>
-	            	<option value="10" selected>10</option>
-	            	<option value="15">15</option>
-	            </select>
-	            &nbsp;&nbsp;&nbsp;<p>명</p>
+	             <p >입사년도별 임금 그래프 </p>
             </div>
            
                 <canvas id="canvas"></canvas>
