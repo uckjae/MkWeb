@@ -278,26 +278,29 @@ public class EmpDao {
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
 
-		String sql = "select deptno, trunc(avg(sal),0) as '평균급여' , max(sal), min(sal) from emp group by deptno";
+		String sql = "select e.deptno as dept, round(avg(e.sal),0) as 평균급여 , max(e.sal) as 최대급여, min(e.sal) as 최소급여 from emp e join dept d on e.deptno = d.deptno group by e.deptno";
 
 		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultSet = pstmt.executeQuery();
+			System.out.println("쿼리는 되니?");
 
 			while (resultSet.next()) {
+				System.out.println("while문 타러 왔니?");
 				AvgMaxMinSalaryByDept data = new AvgMaxMinSalaryByDept();
-				data.setDeptno(resultSet.getInt(1));
-				data.setAvg(resultSet.getInt(2));
-				data.setMax(3);
-				data.setMin(4);
+				data.setDeptno(resultSet.getInt("dept"));
+				data.setAvg(resultSet.getInt("avgsal"));
+				data.setMax(resultSet.getInt("maxsal"));
+				data.setMin(resultSet.getInt("minsal"));
 
 				empdata.add(data);
 			}
-
+			System.out.println("while 타고 왔네?");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.out.println("wonbo dao exception");
 		} finally {
+			System.out.println("finally dbclose");
 			DBHelper.close(resultSet);
 			DBHelper.close(pstmt);
 			DBHelper.close(connection);

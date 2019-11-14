@@ -15,6 +15,10 @@
 			-webkit-user-select: none;
 			-ms-user-select: none;
 		}
+		p {
+			font-size: xx-large;
+			font-weight: 700;
+		}
 	</style>
 	<script type="text/javascript">
 		$(function() {
@@ -48,26 +52,26 @@
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
 						data: 
-							$.each(avgdat,function(index,element) {
+							$.each(avgsal,function(index,element) {
 								element;
 							})
 					},
 					{
-						label: 'maximum salary',
+						label: 'Maximum Salary',
 						backgroundColor: getAnotherChartColor(1),
 						borderColor: getAnotherChartColor(1),
 						borderWidth: 1,
 						data: 
-							$.each(maxdat,function(index,element) {
+							$.each(maxsal,function(index,element) {
 								element;
 							})
 					},
 					{
-						label: 'minimum salary',
+						label: 'Minimum Salary',
 						backgroundColor: getAnotherChartColor(2),
 						borderColor: getAnotherChartColor(2),
 						borderWidth: 1,
-						data: $.each(mindat,function(index,element) {
+						data: $.each(minsal,function(index,element) {
 							element;
 						})
 					}]
@@ -109,6 +113,9 @@
 
             <!-- Content -->
             <div class="container-fluid">
+            	<div class="row">
+	            	 <p >부서별 임금 그래프 </p>
+           		</div>
                 <canvas id="canvas"></canvas>
             </div>
             
