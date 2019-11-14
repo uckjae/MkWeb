@@ -58,6 +58,8 @@ public class FrontController extends HttpServlet {
 		}
 		// MemberDetail 화면
 		else if (url_Command.equals("/MemberDetail.do")) {
+			action = new MemberEditService();
+			forward = action.execute(request, response);
 			
 		}
 		// MemberEdit 화면
