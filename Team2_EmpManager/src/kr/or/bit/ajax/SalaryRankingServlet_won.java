@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,27 +35,33 @@ public class SalaryRankingServlet_won extends HttpServlet {
 		String command = request.getParameter("cmd");
 		
 		if(command.equals("show")) {
-			
-		}
-		EmpDao dao = null;
-		JSONArray json = null;
-		try {
-			dao = new EmpDao();
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/views/chart/SalaryRankingChart_won.jsp");
+			dis.forward(request, response);
+		}else if (command.equals("chart")) {
+			PrintWriter out = response.getWriter();
+			String id = request.getParameter("id");
+			System.out.println(id);
+			EmpDao dao = null;
+			JSONArray json = null;
+			try {
+				dao = new EmpDao();
+				int count =Integer.parseInt(request.getParameter("count")) ;
+				List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(count);
+				StringBuilder datalist = new StringBuilder();
+				datalist.append("[");
+				for (TotalSaleryChart salery : results)
+					datalist.append(
+							String.format("{ename : %s, totalsal : %d},", salery.getEname(), salery.getTotalSalery()));
 
-			List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(10);
-			StringBuilder datalist = new StringBuilder();
-			datalist.append("[");
-			for (TotalSaleryChart salery : results)
-				datalist.append( String.format("{ename : %s, totalsal : %d},", salery.getEname(), salery.getTotalSalery()));
+				datalist.append("]");
+				json = new JSONArray(datalist.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 
-			datalist.append("]");
-			json = new JSONArray(datalist.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(json);
+			out.print(json);
 		}
-		
-		System.out.println(json);
-		out.print(json); 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
