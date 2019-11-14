@@ -306,7 +306,7 @@ public class EmpDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<LocDept> locdatas = new ArrayList<LocDept>();
-		String sql = "select d.loc , count(d.loc) from emp e join dept d on e.deptno = d.deptno group by loc;";
+		String sql = "select d.loc , count(d.loc) from emp e join dept d on e.deptno = d.deptno group by loc";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
