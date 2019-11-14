@@ -119,12 +119,34 @@
         </div>
     </div>
     
-    <script type="text/javascript">
-    	document.getElementById("empnoCheck").onclick(function(){
-    		if
-    	})
+<script type="text/javascript">
+    	$("#empnoCheck").click(function(){
+    		if($("#empno").val() == "" || $("#empno").val() == null){
+    			alert("EMPNO 입력하세요");
+    			$("#empno").focus();
+    		}else{
+    			$.ajax({
+    				url:"ec",
+    				data:{empno:$("#empno").val()},
+    				dataType: "html",
+    				success:function(responsedata){
+    					console.log(">"+responsedata+"<");
+    					if(responsedata == "true"){
+    						alert("사용가능");
+    						$("#ename").focuse();
+    					}else{
+    						alert("중복된 사원번호입니다");
+    						$("#empno").focus();
+    					}
+    				},
+    				error:function(){
+    					
+    				}
+    			});
+    		}
+    	});
     
     </script>
-</body>
+    </body>
 
 </html>
