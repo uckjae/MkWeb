@@ -345,11 +345,8 @@ public class EmpDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			System.out.println("while 전");
 			while(rs.next()) {
-				System.out.println("while 후 ");
-				emps.add(rs.getInt(1), "job");
-				System.out.println("emps.toString" + emps.toString());
+				emps.add(rs.getString(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

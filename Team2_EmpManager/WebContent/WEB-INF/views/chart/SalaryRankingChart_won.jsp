@@ -14,10 +14,8 @@
 			-moz-user-select: none;
 			-webkit-user-select: none;
 			-ms-user-select: none;
-			width:100%;
-			height:100%; 
 		}
-		
+
 		p {
 			font-size: xx-large;
 			font-weight: 700;
@@ -126,14 +124,11 @@
 
 			<!-- Content -->
 			<div class="container">
-				<div class="text-center row" style="width:75%;margin:0 auto;">
-					<div class="row">
-						<p>부서별 임금 그래프</p>
-					</div>
-					<canvas id="canvas"></canvas>
-				</div>
-			</div>
-
+	            <div class="text-center row">
+		            <p>부서별 임금 그래프</p>
+	            </div>
+                <canvas id="canvas"></canvas>
+            </div>
 			<!-- Bottom -->
 			<jsp:include page="/common/Bottom.jsp"></jsp:include>
 		</div>

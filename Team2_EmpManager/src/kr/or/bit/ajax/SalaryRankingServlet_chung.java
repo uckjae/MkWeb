@@ -60,7 +60,6 @@ public class SalaryRankingServlet_chung extends HttpServlet {
 				e.printStackTrace();
 			}
 			out.print(json);
-			System.out.println(json);
 		}
 	}
 
