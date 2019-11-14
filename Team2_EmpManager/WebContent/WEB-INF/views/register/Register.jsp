@@ -26,8 +26,64 @@
 	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     	}
-    
     </style>
+    <script type="text/javascript">
+	    $(function(){
+	    	$.ajax({
+	    		url:"GetDeptNos",
+	    		dataType:"json",
+	    		success:function(data){
+	    			var dArray = [];
+	    			dArray = data.deptno;
+	    			
+	    			for(var i=0; i<dArray.length;i++){
+	    				var option = document.createElement("option");
+	    				$(option).text(dArray[i]);
+	    				$("#deptSelect").append(option);
+	    			}
+	    		}
+	    	});
+	    	
+	    	$.ajax({
+	    		url:"GetEmpnos",
+	    		dataType:"json",
+	    		success:function(data){
+	    			$.each(data, function(index, element){
+	    				let option = $("<option></option>");
+	    				$(option).text(element.empno+" : "+element.ename);
+	    				$(option).val(element.empno);
+	    				$("#mgrSelect").append(option);
+	    			})
+	    		}
+	    	});
+	    	
+	    	$("#empnoCheck").click(function(){
+	    		if($("#empno").val() == "" || $("#empno").val() == null){
+	    			alert("EMPNO 입력하세요");
+	    			$("#empno").focus();
+	    		}else{
+	    			$.ajax({
+	    				url:"ec",
+	    				data:{empno:$("#empno").val()},
+	    				dataType: "html",
+	    				success:function(responsedata){
+	    					console.log(">"+responsedata+"<");
+	    					if(responsedata == "true"){
+	    						alert("사용가능");
+	    						$("#ename").focuse();
+	    					}else{
+	    						alert("중복된 사원번호입니다");
+	    						$("#empno").focus();
+	    					}
+	    				},
+	    				error:function(){
+	    					
+	    				}
+	    			});
+	    		}
+	    	});
+	    })
+    </script>
 </head>
 
 <body id="page-top">
@@ -89,16 +145,16 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <select id="deptSelect" style="height : 49px">
+                                                            <select id="deptSelect" name="deptno" style="height : 49px">
                                                             	<option>선택하시오</option>
                                                             </select>
-                                                            
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                        	<input type="number" id="mgr" name="mgr" class="form-control" placeholder="Manager" required="required">
-                                                        	<label for="mgr">Manager</label>
+                                                        	<select id="mgrSelect" name="mgr" style="height : 49px">
+                                                            	<option>선택하시오</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,50 +197,5 @@
             <jsp:include page="/common/Bottom.jsp"></jsp:include>
         </div>
     </div>
-    
-<script type="text/javascript">
-    	$("#empnoCheck").click(function(){
-    		if($("#empno").val() == "" || $("#empno").val() == null){
-    			alert("EMPNO 입력하세요");
-    			$("#empno").focus();
-    		}else{
-    			$.ajax({
-    				url:"ec",
-    				data:{empno:$("#empno").val()},
-    				dataType: "html",
-    				success:function(responsedata){
-    					console.log(">"+responsedata+"<");
-    					if(responsedata == "true"){
-    						alert("사용가능");
-    						$("#ename").focuse();
-    					}else{
-    						alert("중복된 사원번호입니다");
-    						$("#empno").focus();
-    					}
-    				},
-    				error:function(){
-    					
-    				}
-    			});
-    		}
-    	});
-    	
-    	$.ajax({
-    		url:"GetDeptNos",
-    		dataType:"json",
-    		success:function(data){
-    			var dArray = [];
-    			dArray = data.deptno;
-    			
-    			for(var i=0; i<dArray.length;i++){
-    				var option = document.createElement("option");
-    				$(option).text(dArray[i]);
-    				$("#deptSelect").append(option);
-    			}
-    		}
-    	});
-    
-    </script>
     </body>
-
 </html>

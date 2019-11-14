@@ -7,11 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
-import kr.or.bit.dto.chart.LocDept;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
 
@@ -23,7 +21,7 @@ public class EmpDao {
 
 		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)"
 				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-
+		System.out.println("in deptwrfdsf");
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmpno());
@@ -215,17 +213,18 @@ public class EmpDao {
 
 		return results;
 	}
+
 	public List<DataByYear> dataByYear() {
 		Connection conn = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
-		String sql = "select to_char(hiredate,'YYYY')as hiredate, round(avg(sal),0) as avgsal ,max(sal) as maxsal ,min(sal)as minsal" + 
-				" from emp group by to_char(hiredate,'YYYY') order by hiredate";
+		String sql = "select to_char(hiredate,'YYYY')as hiredate, round(avg(sal),0) as avgsal ,max(sal) as maxsal ,min(sal)as minsal"
+				+ " from emp group by to_char(hiredate,'YYYY') order by hiredate";
 		ResultSet rs = null;
 		List<DataByYear> data = new ArrayList<DataByYear>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				DataByYear yearchart = new DataByYear();
 				yearchart.setHiredate(rs.getString("hiredate"));
 				yearchart.setAvgsal(rs.getInt("avgsal"));
@@ -242,9 +241,9 @@ public class EmpDao {
 		}
 		return data;
 	}
-	
+
 	public List<Integer> getDethNos() {
-		List<Integer> results= new ArrayList<Integer>();
+		List<Integer> results = new ArrayList<Integer>();
 		Connection conn = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 		String sql = "SELECT DEPTNO FROM DEPT";
@@ -253,7 +252,7 @@ public class EmpDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				results.add(rs.getInt(1));
 			}
 		} catch (SQLException e) {
@@ -263,81 +262,40 @@ public class EmpDao {
 			DBHelper.close(rs);
 			DBHelper.close(conn);
 		}
-		
+
 		return results;
 	}
-	
 
 	public List<AvgMaxMinSalaryByDept> ChartSalByDept() {
 		System.out.println("here");
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 		ResultSet resultSet = null;
-		
+
 		String sql = "select deptno, trunc(avg(sal),0) as '평균급여' , max(sal), min(sal) from emp group by deptno";
-		
+
 		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
 		try {
 			pstmt = connection.prepareStatement(sql);
 			resultSet = pstmt.executeQuery();
-			
-			while(resultSet.next()) {
+
+			while (resultSet.next()) {
 				AvgMaxMinSalaryByDept data = new AvgMaxMinSalaryByDept();
 				data.setDeptno(resultSet.getInt(1));
 				data.setAvg(resultSet.getInt(2));
 				data.setMax(3);
 				data.setMin(4);
-				
+
 				empdata.add(data);
 			}
-			System.out.println("empdata:"+empdata.get(0));
-			System.out.println(empdata.get(1));
-			System.out.println(empdata.get(2));
-			System.out.println(empdata.get(3));
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}finally {
+		} finally {
 			DBHelper.close(resultSet);
 			DBHelper.close(pstmt);
 			DBHelper.close(connection);
 		}
 		return empdata;
 	}
-	
-	public List<LocDept> LocChart(){
-		Connection conn = DBHelper.getConnection("oracle");
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		List<LocDept> locdata = new ArrayList<LocDept>();
-		String sql = "select d.loc , count(d.loc) from emp e join dept d on e.deptno = d.deptno group by loc;";
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				LocDept ld = new LocDept();
-				ld.setCity(rs.getString(1));
-				ld.setCount(rs.getInt(2));
-				
-				locdata.add(ld);
-			}
-			
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}finally {
-			try {
-				conn.close();
-				pstmt.close();
-				rs.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		return locdata;
-		
-	}
-
 }
