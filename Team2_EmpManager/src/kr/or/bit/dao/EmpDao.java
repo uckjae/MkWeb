@@ -81,8 +81,31 @@ public class EmpDao {
 	}
 
 	public int deleteEmpByEmpno(int empno) {
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		int row = 0;
 		
-		return  0;
+		String sql = "delete from emp where empno=?";
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, empno);
+			row = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		}
+		
+	
+		return  row;
 	}
 
 	public int updateEmp(Emp emp) {

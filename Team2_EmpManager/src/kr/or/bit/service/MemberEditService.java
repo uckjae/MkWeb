@@ -20,7 +20,7 @@ public class MemberEditService implements Action {
 		         Emp emp = dao.getEdit(no);
 		         System.out.println(emp.getEname());
 		             request.setAttribute("emp",emp);
-		             forward.setPath("/WEB-INF/views/empEdit.jsp");
+		             forward.setPath("/WEB-INF/views/admin/MemberEdit.jsp");
 		             
 		      } catch (Exception e) {
 		         e.printStackTrace();
