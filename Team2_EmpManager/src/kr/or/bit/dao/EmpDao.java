@@ -11,6 +11,7 @@ import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.bit.dto.Emp;
+import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
 
 public class EmpDao {
@@ -158,7 +159,30 @@ public class EmpDao {
 		      return row;
 		   }
 
+	public List<TotalSaleryChart> ChartDataByTotalSalery(int count) {
+		List<TotalSaleryChart> results = new ArrayList<TotalSaleryChart>();
+		Connection connection = DBHelper.getConnection("oracle");
+		ResultSet resultSet = null;
+		PreparedStatement pstmt = null;
 
-		
+		String sql = "SELECT ENAME, totalSal" + "  FROM (SELECT ENAME, SAL+NVL(COMM,0) AS totalSal"
+				+ "           FROM EMP ORDER BY totalSal DESC)" + "WHERE ROWNUM <= ?";
+
+		try {
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, count);
+			resultSet = pstmt.executeQuery();
+			while (resultSet.next()) {
+				results.add(new TotalSaleryChart(resultSet.getString(1), resultSet.getInt(2)));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(connection);
+		}
+
+		return results;
 	}
+}
 
