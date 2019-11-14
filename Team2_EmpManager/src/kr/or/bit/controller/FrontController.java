@@ -82,7 +82,7 @@ public class FrontController extends HttpServlet {
 		} 
 		//won
 		// Register 화면
-<<<<<<< HEAD
+
 		else if (url_Command.equals("/Register_won.do")) {
 			System.out.println("cmd .do 타고와서");
 			forward = new ActionForward();
@@ -93,15 +93,14 @@ public class FrontController extends HttpServlet {
 		else if (url_Command.equals("/RegisterOk_won.do")) {
 			action = new RegisterOkService_won();
 			forward = action.execute(request, response);
-=======
+		}
 		else if (url_Command.equals("/Register.do")) {
 			forward = new ActionForward();
 			forward.setPath("/WEB-INF/views/register/Register_won.jsp");
 		}
 		// Register 진행
 		else if (url_Command.equals("/RegisterOk.do")) {
-			
->>>>>>> 011d085e11bb08125010cfc6966b9ebe5ca02443
+
 		} 
 		//kim
 		// Register 화면
