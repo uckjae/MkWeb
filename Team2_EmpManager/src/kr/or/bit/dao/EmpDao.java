@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import kr.or.bit.dto.Emp;
+import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
@@ -240,18 +241,18 @@ public class EmpDao {
 		return data;
 	}
 	
-	public List<String> getDethNos() {
-		List<String> results= new ArrayList<String>();
+	public List<Integer> getDethNos() {
+		List<Integer> results= new ArrayList<Integer>();
 		Connection conn = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
-		String sql = "SELECT DNAME WHERE DEPT";
+		String sql = "SELECT DEPTNO FROM DEPT";
 		ResultSet rs = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				results.add(rs.getString(1));
+				results.add(rs.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -262,5 +263,35 @@ public class EmpDao {
 		}
 		
 		return results;
+	}
+	
+
+	public List<AvgMaxMinSalaryByDept> ChartSalByDept() {
+		Connection connection = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet resultSet = null;
+		
+		String sql = "select deptno, trunc(avg(sal),0) as '평균급여' , max(sal), min(sal) from emp group by deptno";
+		
+		List<AvgMaxMinSalaryByDept> empdata = new ArrayList<AvgMaxMinSalaryByDept>();
+		try {
+			pstmt = connection.prepareStatement(sql);
+			resultSet = pstmt.executeQuery();
+			
+			while(resultSet.next()) {
+				AvgMaxMinSalaryByDept data = new AvgMaxMinSalaryByDept();
+				data.setDeptno(resultSet.getInt(1));
+				data.setAvg(resultSet.getInt(2));
+				data.setMax(3);
+				data.setMin(4);
+				
+				empdata.add(data);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			
+		}
+		return empdata;
 	}
 }

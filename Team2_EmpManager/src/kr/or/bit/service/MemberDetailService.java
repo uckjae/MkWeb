@@ -13,7 +13,22 @@ public class MemberDetailService implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		return null;
+		ActionForward forward = null;
+		Emp emp = new Emp();
+		try {
+			EmpDao empdao = new EmpDao();
+			emp =empdao.getEmpByEmpno(Integer.parseInt(request.getParameter("empno")));
+			request.setAttribute("empdetail", emp);
+			
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/WEB-INF/views/admin/MemberDetail.jsp");
+	
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			
+		}	
+		return forward;
 	}
 }
