@@ -4,23 +4,22 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.codehaus.jettison.json.JSONArray;
+import org.apache.tomcat.util.json.JSONParser;
 import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 import kr.or.bit.dao.EmpDao;
-import kr.or.bit.dto.chart.TotalSaleryChart;
 
 /**
  * Servlet implementation class GetDeptNosServlet
  */
-@WebServlet("/GetDeptNo")
+@WebServlet("/GetDeptNos")
 public class GetDeptNosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,31 +33,29 @@ public class GetDeptNosServlet extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("in dept");
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 
 		PrintWriter out = response.getWriter();
-		String id = request.getParameter("id");
-		System.out.println(id);
 		EmpDao dao = null;
-		JSONArray json = null;
 		dao = new EmpDao();
-		int count = Integer.parseInt(request.getParameter("count"));
-		List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(count);
-		StringBuilder datalist = new StringBuilder();
-		datalist.append("[");
-		for (TotalSaleryChart salery : results)
-			datalist.append(String.format("{ename : %s, totalsal : %d},", salery.getEname(), salery.getTotalSalery()));
-
-		datalist.append("]");
+		List<Integer> results = dao.getDethNos();
+		String resultString = "{";
+		for(Integer deptno : results) {
+			resultString+=String.format("deptno : %d,", deptno);
+		}
+		resultString+="}";
+		
+		JSONObject jsonObject=null;
 		try {
-			json = new JSONArray(datalist.toString());
+			jsonObject = new JSONObject(resultString);
 		} catch (JSONException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println(json);
-		out.print(json);
+		
+		out.print(jsonObject);
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

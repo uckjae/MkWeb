@@ -241,18 +241,18 @@ public class EmpDao {
 		return data;
 	}
 	
-	public List<String> getDethNos() {
-		List<String> results= new ArrayList<String>();
+	public List<Integer> getDethNos() {
+		List<Integer> results= new ArrayList<Integer>();
 		Connection conn = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
-		String sql = "SELECT DNAME WHERE DEPT";
+		String sql = "SELECT DEPTNO FROM DEPT";
 		ResultSet rs = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				results.add(rs.getString(1));
+				results.add(rs.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
