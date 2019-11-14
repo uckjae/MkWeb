@@ -14,8 +14,8 @@
 			-moz-user-select: none;
 			-webkit-user-select: none;
 			-ms-user-select: none;
-			width:80vw;
-			height:60vh; 
+			width:100%;
+			height:100%; 
 		}
 		
 		p {
@@ -126,7 +126,7 @@
 
 			<!-- Content -->
 			<div class="container">
-				<div class="text-center row">
+				<div class="text-center row" style="width:75%;margin:0 auto;">
 					<div class="row">
 						<p>부서별 임금 그래프</p>
 					</div>
