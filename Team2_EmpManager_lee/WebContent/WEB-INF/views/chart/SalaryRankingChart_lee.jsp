@@ -35,7 +35,7 @@ p {
 		function ajax(countOption){
 			
 			$.ajax({
-				url : "SalaryRanking_chung.do",
+				url : "SalaryRanking_lee.do",
 				data:{cmd: "chart", count: countOption},
 				dataType : "json",
 				success : function(data){
@@ -46,10 +46,10 @@ p {
 					let maxdat = [];
 					let mindat = [];
 					$.each(data, function(index, element){
-						labels.push(element.hiredate);
-						avgdat.push(element.avgsal);
-						maxdat.push(element.maxsal);
-						mindat.push(element.minsal);				
+						labels.push(element.empno + element.ename);
+						avgdat.push(element.avg);
+						maxdat.push(element.max);
+						mindat.push(element.min);				
 					})
 					
 					setChart(labels,avgdat,maxdat,mindat);
@@ -128,7 +128,7 @@ p {
             <!-- Content -->
             <div class="container-fluid">
             <div class="row">
-	             <p >입사년도별 임금 그래프 </p>
+	             <p >사수별 임금 그래프 </p>
             </div>
            
                 <canvas id="canvas"></canvas>
