@@ -23,7 +23,6 @@ public class EmpDao {
 
 		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)"
 				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		System.out.println("in deptwrfdsf");
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmpno());
@@ -335,5 +334,30 @@ public class EmpDao {
 		}
 		return locdatas;
 		
+	}
+	
+	public List<String> getJobRegister() {
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> emps = new ArrayList<String>();
+		String sql = "select distinct job from emp";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			System.out.println("while 전");
+			while(rs.next()) {
+				System.out.println("while 후 ");
+				emps.add(rs.getInt(1), "job");
+				System.out.println("emps.toString" + emps.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
+		}
+		return emps;		
 	}
 }

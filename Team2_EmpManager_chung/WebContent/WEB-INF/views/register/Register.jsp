@@ -82,6 +82,19 @@
 	    			});
 	    		}
 	    	});
+	    	$.ajax({
+	    		url:"GetJobRegister",
+	    		dataType:"json",
+	    		success:function(data){
+	    			$.each(data, function(index, element){
+	    				let option = $("<option></option>");
+	    				$(option).text(element.job);
+	    				$(option).val(element.job);
+	    				$("#mgrSelect").append(option);
+	    			})
+	    		}
+	    	});
+	    	
 	    })
     </script>
 </head>
@@ -138,8 +151,10 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="text" id="job" name="job" class="form-control" placeholder="Job" required="required">
-                                                            <label for="job">Job</label>
+                                                        	 <select id="jobSelect" name="job" style="height : 49px">
+                                                        	 <option hidden>직종 선택</option>                                                          
+                                                             </select>
+                                                            <label for="job"></label>
                                                         </div>
                                                     </div>
                                                 </div>
