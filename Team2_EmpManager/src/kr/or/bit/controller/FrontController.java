@@ -26,7 +26,6 @@ public class FrontController extends HttpServlet {
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
 		String url_Command = requestURI.substring(contextPath.length());
-		System.out.println("3 : " + url_Command);
 		ActionForward forward = null;
 		Action action = null;
 
@@ -58,13 +57,12 @@ public class FrontController extends HttpServlet {
 		}
 		// MemberDetail 화면
 		else if (url_Command.equals("/MemberDetail.do")) {
-			action = new MemberEditService();
+			action = new MemberDetailService();
 			forward = action.execute(request, response);
 			
 		}
 		// MemberEdit 화면
 		else if (url_Command.equals("/MemberEdit.do")) {
-			System.out.println("너 안들어가?");
 			action = new MemberEditService();
 			forward = action.execute(request, response);	
 		}

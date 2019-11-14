@@ -52,15 +52,15 @@ public class SalaryRankingServlet_chung extends HttpServlet {
 				datalist.append("[");
 				for (DataByYear data : chart)
 					datalist.append(
-	String.format("{hiredate : %s, avgsal : %d, minsal : %d, maxsal : %d},", data.getHiredate(), data.getAvgsal(), data.getMinsal(),data.getMaxsal()));
+	String.format("{hiredate : %s, avgsal : %d, maxsal : %d, minsal : %d},", data.getHiredate(), data.getAvgsal(), data.getMaxsal(),data.getMinsal()));
 
 				datalist.append("]");
 				json = new JSONArray(datalist.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println(json);
 			out.print(json);
+			System.out.println(json);
 		}
 	}
 
