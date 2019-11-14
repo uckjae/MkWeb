@@ -60,14 +60,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="date" id="hiredate" name="hiredate" class="form-control" placeholder="Hire Date" required="required"
-                                                            			value="">
+                                                            			value="${emp.hiredate}">
 	                                                        <label for="hiredate">Hire Date</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="text" id="job" name="job" class="form-control" placeholder="Job" required="required"
-                                                            		value="">
+                                                            		value="${emp.job}">
                                                             <label for="job">Job</label>
                                                         </div>
                                                     </div>
@@ -78,14 +78,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="number" id="deptno" name="deptno" class="form-control" placeholder="Dept No" required="required"
-                                                            			value="">
+                                                            			value="${emp.deptno}">
                                                             <label for="deptno">Dept No</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                         	<input type="number" id="mgr" name="mgr" class="form-control" placeholder="Manager" required="required"
-                                                        				value="">
+                                                        				value="${emp.mgr}">
                                                         	<label for="mgr">Manager</label>
                                                         </div>
                                                     </div>
@@ -96,14 +96,14 @@
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="number" id="sal" name="sal" class="form-control" placeholder="Sal" required="required"
-                                                            			value="">
+                                                            			value="${emp.sal}">
                                                             <label for="sal">Salary</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
                                                             <input type="number" id="comm" name="comm" class="form-control" placeholder="Commission" required="required"
-                                                            			value="">
+                                                            			value="${emp.comm}">
                                                             <label for="comm">Commission</label>
                                                         </div>
                                                     </div>
