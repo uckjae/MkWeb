@@ -1,5 +1,8 @@
 package kr.or.bit.service;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,12 +17,12 @@ public class MemberEditOkService implements Action {
 	   public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 	      ActionForward forward = null;
 	      try {
-  
 	         EmpDao dao = new EmpDao();
 	         Emp emp = new Emp();
 	         emp.setEmpno(Integer.parseInt(request.getParameter("empno")));
 	         emp.setEname(request.getParameter("ename"));
 	         emp.setJob(request.getParameter("job"));
+	         emp.setHiredate(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hiredate")));
 	         emp.setMgr(Integer.parseInt(request.getParameter("mgr")));
 	         emp.setSal(Integer.parseInt(request.getParameter("sal")));
 	         emp.setComm(Integer.parseInt(request.getParameter("comm")));
@@ -27,14 +30,11 @@ public class MemberEditOkService implements Action {
 	         
 	         int result = dao.updateEmp(emp);
 	         
-	         if(result > 0 ) {
-
-	         }else {
-
-	         }
+	         
 	         	 forward = new ActionForward();
 	         	 forward.setRedirect(false);
-	             forward.setPath("/WEB-INF/views/admin/MemberList.jsp");
+	             forward.setPath("/MemberList.do");
+	             
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
