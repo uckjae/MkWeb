@@ -27,8 +27,8 @@
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-user-edit"></i>
-<c:forEach var="emp" items="emplist"> </c:forEach>
-                        회원 정보 수정 [<b>${emp.getName() }님</b>]
+<c:set var="emp" value="${requestScope.emp }"/>
+                        회원 정보 수정 [<b>${emp.ename }님</b>]
                
                     </div>
                     <div class="card-body">
