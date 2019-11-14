@@ -46,14 +46,14 @@ public class SalaryRankingServlet_won extends HttpServlet {
 				datalist.append("[");
 				for (AvgMaxMinSalaryByDept salery : chart)
 					datalist.append(
-						String.format("{deptno : %d, avgsal : %d, maxsal : %d , minsal : %d},"
-										, salery.getDeptno(), salery.getAvg(), salery.getMax(), salery.getMin()));
+						String.format("{deptno : %d, avgsal : %d, maxsal : %d , minsal : %d},", salery.getDeptno(), salery.getAvg(), salery.getMax(), salery.getMin()));
 					datalist.append("]");
 				json = new JSONArray(datalist.toString());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			out.print(json);
+			System.out.println(json);
 		}
 	}
 
