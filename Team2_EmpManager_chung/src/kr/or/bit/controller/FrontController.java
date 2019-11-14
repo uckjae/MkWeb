@@ -52,7 +52,6 @@ public class FrontController extends HttpServlet {
 		
 		// MemberList 화면
 		else if (url_Command.equals("/MemberList.do")) {
-			System.out.println("오니?");
 			action = new MemberListService();
 			forward = action.execute(request, response);
 		}
@@ -84,7 +83,6 @@ public class FrontController extends HttpServlet {
 		}
 
 		if (forward != null) {
-			System.out.println("포워드가 null 값이 아니니?");
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {
