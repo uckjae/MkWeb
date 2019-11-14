@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.bit.dto.Emp;
-import kr.or.bit.dto.YearChart;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
