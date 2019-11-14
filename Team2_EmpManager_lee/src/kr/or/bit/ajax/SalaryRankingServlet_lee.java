@@ -16,6 +16,7 @@ import org.codehaus.jettison.json.JSONArray;
 
 import kr.or.bit.dao.EmpDao;
 import kr.or.bit.dto.chart.DataByYear;
+import kr.or.bit.dto.chart.StatisticsByMgr;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 
 @WebServlet("/SalaryRanking_lee.do")
@@ -35,24 +36,21 @@ public class SalaryRankingServlet_lee extends HttpServlet {
 		String command = request.getParameter("cmd");
 
 		if (command.equals("show")) { // 화면 보기
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/views/chart/SalaryRankingChart_chung.jsp");
+			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/views/chart/SalaryRankingChart_lee.jsp");
 			dis.forward(request, response);
 		} else if (command.equals("chart")) {
 			PrintWriter out = response.getWriter();
-			String id = request.getParameter("id");
-			System.out.println(id);
 			EmpDao dao = null;
 			JSONArray json = null;
 			try {
 				dao = new EmpDao();
-			//	int count =Integer.parseInt(request.getParameter("count")) ;
-			//	List<TotalSaleryChart> results = dao.ChartDataByTotalSalery(count);
-				List<DataByYear> chart = dao.dataByYear();
+				List<StatisticsByMgr> chart = dao.statisticsByMgr();
+				System.out.println("SalaryRankingServlet_lee 48"+chart);
 				StringBuilder datalist = new StringBuilder();
 				datalist.append("[");
-				for (DataByYear data : chart)
+				for (StatisticsByMgr data : chart)
 					datalist.append(
-	String.format("{hiredate : %s, avgsal : %d, maxsal : %d, minsal : %d},", data.getHiredate(), data.getAvgsal(), data.getMaxsal(),data.getMinsal()));
+					String.format("{ename : %s, empno : %d, avg : %d, max : %d, min : %d},", data.getEname(), data.getEmpno(), data.getAvg(),data.getMax(),data.getMin()));
 
 				datalist.append("]");
 				json = new JSONArray(datalist.toString());
@@ -60,7 +58,6 @@ public class SalaryRankingServlet_lee extends HttpServlet {
 				e.printStackTrace();
 			}
 			out.print(json);
-			System.out.println(json);
 		}
 	}
 
