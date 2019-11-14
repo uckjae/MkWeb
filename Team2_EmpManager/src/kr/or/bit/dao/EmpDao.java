@@ -216,7 +216,7 @@ public class EmpDao {
 		Connection conn = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 		String sql = "select to_char(hiredate,'YYYY')as hiredate, round(avg(sal),0) as avgsal ,max(sal) as maxsal ,min(sal)as minsal" + 
-				" from emp group by to_char(hiredate,'YYYY')";
+				" from emp group by to_char(hiredate,'YYYY') order by hiredate";
 		ResultSet rs = null;
 		List<DataByYear> data = new ArrayList<DataByYear>();
 		try {
@@ -263,4 +263,7 @@ public class EmpDao {
 		
 		return results;
 	}
+	
+	
+	
 }
