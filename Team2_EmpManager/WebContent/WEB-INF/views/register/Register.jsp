@@ -145,15 +145,17 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
+                                                        Dept No 
                                                             <select id="deptSelect" name="deptno" style="height : 49px">
-                                                            	<option>선택하시오</option>
+                                                            	<option hidden>부서번호 선택</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
+                                                        Manager 
                                                         	<select id="mgrSelect" name="mgr" style="height : 49px">
-                                                            	<option>선택하시오</option>
+                                                            	<option hidden >Manager 선택</option>
                                                             </select>
                                                         </div>
                                                     </div>
