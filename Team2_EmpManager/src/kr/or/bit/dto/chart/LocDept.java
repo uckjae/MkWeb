@@ -1,36 +1,21 @@
 package kr.or.bit.dto.chart;
 
 public class LocDept {
-	private int Newyork;
-	private int Dallas;
-	private int Chicago;
+	private String city;
+	private int count;
 	
 	
-	
-	public int getNewyork() {
-		return Newyork;
+	public String getCity() {
+		return city;
 	}
-	public void setNewyork(int newyork) {
-		Newyork = newyork;
+	public void setCity(String city) {
+		this.city = city;
 	}
-	public int getDallas() {
-		return Dallas;
+	public int getCount() {
+		return count;
 	}
-	public void setDallas(int dallas) {
-		Dallas = dallas;
+	public void setCount(int count) {
+		this.count = count;
 	}
-	public int getChicago() {
-		return Chicago;
-	}
-	public void setChicago(int chicago) {
-		Chicago = chicago;
-	}
-	
-	@Override
-	public String toString() {
-		return "LocDept [Newyork=" + Newyork + ", Dallas=" + Dallas + ", Chicago=" + Chicago + "]";
-	}
-
-	
 	
 }

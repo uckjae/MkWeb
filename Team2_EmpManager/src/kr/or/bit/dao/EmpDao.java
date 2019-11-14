@@ -7,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
+import kr.or.bit.dto.chart.LocDept;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 import kr.or.bit.utils.DBHelper;
 
@@ -297,5 +299,41 @@ public class EmpDao {
 			DBHelper.close(connection);
 		}
 		return empdata;
+	}
+	
+	public List<LocDept> LocChart(){
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<LocDept> locdatas = new ArrayList<LocDept>();
+		String sql = "select d.loc , count(d.loc) from emp e join dept d on e.deptno = d.deptno group by loc;";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				LocDept ld = new LocDept();
+				ld.setCity(rs.getString(1));
+				ld.setCount(rs.getInt(2));
+				
+				locdatas.add(ld);
+			}
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				conn.close();
+				pstmt.close();
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return locdatas;
+		
 	}
 }
