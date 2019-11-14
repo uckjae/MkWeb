@@ -14,7 +14,6 @@ public class MemberDeleteService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		System.out.println("리퀘스트 empno: " + request.getParameter("emp.empno"));
 		int empno = Integer.parseInt(request.getParameter("empno"));
 		System.out.println(empno);
 		EmpDao dao = new EmpDao();
