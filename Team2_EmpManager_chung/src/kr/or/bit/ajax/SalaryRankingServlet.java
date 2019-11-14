@@ -39,7 +39,6 @@ public class SalaryRankingServlet extends HttpServlet {
 		} else if (command.equals("chart")) {
 			PrintWriter out = response.getWriter();
 			String id = request.getParameter("id");
-			System.out.println(id);
 			EmpDao dao = null;
 			JSONArray json = null;
 			try {
