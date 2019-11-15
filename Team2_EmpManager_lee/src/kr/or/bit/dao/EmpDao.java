@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import kr.or.bit.dto.Emp;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
@@ -22,9 +24,8 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 
-		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)"
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		System.out.println("in deptwrfdsf");
+		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, IMAGEFILENAME)"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmpno());
@@ -35,7 +36,7 @@ public class EmpDao {
 			pstmt.setInt(6, emp.getSal());
 			pstmt.setInt(7, emp.getComm());
 			pstmt.setInt(8, emp.getDeptno());
-
+			pstmt.setString(9, emp.getImagefilename());
 			resultRow = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -54,7 +55,7 @@ public class EmpDao {
 		ResultSet resultSet = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO" + " FROM EMP WHERE EMPNO=?";
+		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO , IMAGEFILENAME" + " FROM EMP WHERE EMPNO=?";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
@@ -68,8 +69,9 @@ public class EmpDao {
 				int sal = resultSet.getInt(6);
 				int comm = resultSet.getInt(7);
 				int deptno = resultSet.getInt(8);
-
+				String imagefilename = resultSet.getString(9);
 				emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+				emp.setImagefilename(imagefilename);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -10,20 +10,20 @@
 	<script src="https://www.chartjs.org/dist/2.9.2/Chart.min.js"></script>
 	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
 	<style>
-		canvas {
-			-moz-user-select: none;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-		}
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
 
-		p {
-			font-size: xx-large;
-			font-weight: 700;
-		}
-	</style>
+p {
+	font-size: xx-large;
+	font-weight: 700;
+}
+</style>
 	<script type="text/javascript">
 		$(function() {
-			
+			//초기에 select 반영하기 위해
 			ajax($("#countOption option:selected").val());
 			
 			$("#countOption").change(function(){
@@ -35,70 +35,73 @@
 		function ajax(countOption){
 			
 			$.ajax({
-				url : "SalaryRanking_won.do",
+				url : "SalaryRanking_Choi.do",
 				data:{cmd: "chart", count: countOption},
 				dataType : "json",
 				success : function(data){
+					console.log("success");
+					console.log(typeof(data));
 					let labels = [];
-					let avgsal = [];
-					let maxsal = [];
-					let minsal = [];
+					let avgdat = [];
+					let maxdat = [];
+					let mindat = [];
 					$.each(data, function(index, element){
-						labels.push(element.deptno);
-						avgsal.push(element.avgsal);
-						maxsal.push(element.maxsal);
-						minsal.push(element.minsal);	
+						labels.push(element.job);
+						avgdat.push(element.avgsal);
+						maxdat.push(element.maxsal);
+						mindat.push(element.minsal);				
 					})
-					console.log("here?");
-					setChart(labels, avgsal, maxsal, minsal);
+					
+					setChart(labels,avgdat,maxdat,mindat);
 				}
 			});
 		}
-		function setChart(labels, avgsal, maxsal, minsal){
+		function setChart(labels, avgdat,maxdat,mindat){
 			var barChartData = {
 					labels: labels,
 					datasets: [{
-						label: 'Average Salery',
+						label: 'average salary',
 						backgroundColor: getAnotherChartColor(0),
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
 						data: 
-							$.each(avgsal,function(index,element) {
+							$.each(avgdat,function(index,element) {
 								element;
 							})
 					},
 					{
-						label: 'Maximum Salary',
+						label: 'maximum salary',
 						backgroundColor: getAnotherChartColor(1),
 						borderColor: getAnotherChartColor(1),
 						borderWidth: 1,
 						data: 
-							$.each(maxsal,function(index,element) {
+							$.each(maxdat,function(index,element) {
 								element;
 							})
 					},
 					{
-						label: 'Minimum Salary',
+						label: 'minimum salary',
 						backgroundColor: getAnotherChartColor(2),
 						borderColor: getAnotherChartColor(2),
 						borderWidth: 1,
-						data: $.each(minsal,function(index,element) {
+						data: $.each(mindat,function(index,element) {
 							element;
 						})
-					},]
+					},
+					]
 				};
 	
 			window.myBar = new Chart( $('#canvas'), {
 				type: 'bar',
 				data: barChartData,
 				options: {
-					responsive: false,
+					responsive: true,
 					legend: {
-						position: 'top',
+						position: 'top',						
 					},
 					title: {
-						display: true,
-						text: '상위 연봉 순위'
+						display: false,
+						text: '직군별 연봉'
 					}
 				}
 			});
@@ -114,25 +117,27 @@
 </head>
 
 <body id="page-top">
-	<!-- Top -->
-	<jsp:include page="/common/Top.jsp"></jsp:include>
-	<div id="wrapper">
-		<!-- Left Menu -->
-		<jsp:include page="/common/Left.jsp"></jsp:include>
+    <!-- Top -->
+    <jsp:include page="/common/Top.jsp"></jsp:include>
+    <div id="wrapper">
+        <!-- Left Menu -->
+        <jsp:include page="/common/Left.jsp"></jsp:include>
 
-		<div id="content-wrapper">
+        <div id="content-wrapper">
 
-			<!-- Content -->
-			 <div class="container">
-	            <div class="text-center row">
-		             <p>부서별 연봉</p>
-	            </div>
+            <!-- Content -->
+            <div class="container">
+            <div class="row">
+	             <p >직군별 연봉 </p>
+            </div>
+           
                 <canvas id="canvas"></canvas>
             </div>
-			<!-- Bottom -->
-			<jsp:include page="/common/Bottom.jsp"></jsp:include>
-		</div>
-	</div>
+            
+            <!-- Bottom -->
+            <jsp:include page="/common/Bottom.jsp"></jsp:include>
+        </div>
+    </div>
 </body>
 
 </html>
