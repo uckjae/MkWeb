@@ -9,17 +9,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://www.chartjs.org/dist/2.9.2/Chart.min.js"></script>
 	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	<style>
-canvas {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-}
+<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
 
-p {
-	font-size: xx-large;
-	font-weight: 700;
-}
+	p {
+		font-size: xx-large;
+		font-weight: 700;
+	}
 </style>
 	<script type="text/javascript">
 		$(function() {

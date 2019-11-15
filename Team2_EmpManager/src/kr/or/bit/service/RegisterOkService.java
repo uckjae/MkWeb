@@ -22,16 +22,18 @@ public class RegisterOkService implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
 		try {
-			
+			//물리적 경로 얻기
 			String imagefilename = "";
 			
-			ServletContext application = request.getServletContext();
+			ServletContext application = request.getServletContext(); 
 			
-			String uploadpath = application.getRealPath("upload");
+			String uploadpath = application.getRealPath("upload");//물적경로
+			//업로드 파일 크기
 			int size = 1024*1024*10;
 			
 			MultipartRequest multi = new MultipartRequest(request, uploadpath,size,"utf-8",new DefaultFileRenamePolicy());
-			
+			//기전에 있는  request 객체의 주소값, 실 저장 경로 (배포경로), 10M,한글,파일 중복처리 
+			//여기까지 수행하면 업로드 폴더에 파일이 저장
 			int empno = Integer.parseInt(multi.getParameter("empno"));
 			String ename = multi.getParameter("ename");
 			String job = multi.getParameter("job");
