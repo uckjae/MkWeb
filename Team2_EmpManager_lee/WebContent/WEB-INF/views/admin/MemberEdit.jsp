@@ -6,12 +6,29 @@
 
 <!DOCTYPE html>
 <html>
-<script type="text/javascript">
-	
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <jsp:include page="/common/HeadTag.jsp"></jsp:include>
+    <script type="text/javascript">
+
+    $(function(){
+    	 $("#photo").change(function(){
+    			var reader = new FileReader();
+
+    		    reader.onload = function (e) {
+    		        // get loaded data and render thumbnail.
+    		        document.getElementById("viewPhoto").src = e.target.result;
+    		    };
+
+    		    // read the image file as a data URL.
+    		    reader.readAsDataURL(this.files[0]);
+    		});
+    });
+    
+   
+</script>
 </head>
 
 <body id="page-top">
@@ -41,7 +58,7 @@
                                                 		<div class="form-row">
                                                    			<div class="col-md-6">
                                                         		<div class="form-label-group">
-                                                            		<img id="viewPhoto" name="viewPhoto" src="upload/${emp.imagefilename}" alt="프로필사진" onerror="this.src='images/defaultProfile.png'" style="width:10em; height:100%;">
+                                                            		<img id="viewPhoto" name="viewPhoto" src="upload/${emp.imagefilename}" alt="프로필사진"  style="width:10em; height:100%;">
                                                         		</div>
                                                     		</div>
                                                     		<div class="col-md-6">

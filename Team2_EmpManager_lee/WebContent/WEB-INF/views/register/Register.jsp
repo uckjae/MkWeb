@@ -93,7 +93,22 @@
 
 	    	    // read the image file as a data URL.
 	    	    reader.readAsDataURL(this.files[0]);
-	    	})
+	    	});
+	    	
+	    	$.ajax({
+	    		url:"GetJobRegister",
+	    		dataType:"json",
+	    		success:function(data){
+	    			var jArray = [];
+	    			console.log(data);
+	    			jArray = data.job;
+	    			for(var i=0; i<jArray.length;i++){
+	    				var option = document.createElement("option");
+	    				$(option).text(jArray[i]);
+	    				$("#jobSelect").append(option);
+	    			}
+	    		}
+	    	});
 	    });
     </script>
 </head>
@@ -165,8 +180,10 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <input type="text" id="job" name="job" class="form-control" placeholder="Job" required="required">
-                                                            <label for="job">Job</label>
+                                                        	 <select id="jobSelect" name="job" style="height : 49px">
+                                                        	 <option hidden>직종 선택</option>                                                          
+                                                             </select>
+                                                            <label for="job"></label>
                                                         </div>
                                                     </div>
                                                 </div>

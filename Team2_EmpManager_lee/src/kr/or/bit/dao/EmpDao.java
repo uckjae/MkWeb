@@ -83,7 +83,29 @@ public class EmpDao {
 
 		return emp;
 	}
-
+	
+	public List<String> getJobRegister() {
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> emps = new ArrayList<String>();
+		String sql = "select distinct job from emp";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				emps.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
+		}
+		return emps;		
+	}
+	
 	public boolean checkAdminLogin(String userid, String pwd) {
 		boolean result = false;
 
