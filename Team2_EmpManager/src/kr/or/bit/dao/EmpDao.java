@@ -274,11 +274,10 @@ public class EmpDao {
 		return data;
 	}
 	
-	public List<AvgMaxMinEmpByJob>avgMaxMinEmpByjobs(){
+		public List<AvgMaxMinEmpByJob>avgMaxMinEmpByjobs(){
 		Connection conn = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt =null;
-		String sql="select job, trunc(avg(sal),0)as avgsal,max(sal)as maxsal,min(sal)as minsal"+ 
-				    "from emp group by job";
+		String sql="select job, trunc(avg(sal),0)as avgsal,max(sal)as maxsal,min(sal)as minsal from emp group by job";
 		ResultSet rs =null;
 		
 		List<AvgMaxMinEmpByJob>jobdata = new ArrayList<AvgMaxMinEmpByJob>();
