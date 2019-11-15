@@ -15,13 +15,29 @@
 			-webkit-user-select: none;
 			-ms-user-select: none;
 		}
+
+		p {
+			font-size: xx-large;
+			font-weight: 700;
+		}
 	</style>
 	<script type="text/javascript">
 		$(function() {
+			
+			ajax($("#countOption option:selected").val());
+			
+			$("#countOption").change(function(){
+				let countOption= $("#countOption option:selected").val();
+				ajax(countOption);
+			});
+		})
+		
+		function ajax(countOption){
+			
 			$.ajax({
 				url : "SalaryRanking_won.do",
+				data:{cmd: "chart", count: countOption},
 				dataType : "json",
-				data : {cmd : "chart"},
 				success : function(data){
 					let labels = [];
 					let avgsal = [];
@@ -29,16 +45,15 @@
 					let minsal = [];
 					$.each(data, function(index, element){
 						labels.push(element.deptno);
-						avgdat.push(element.avgsal);
-						maxdat.push(element.maxsal);
-						mindat.push(element.minsal);	
+						avgsal.push(element.avgsal);
+						maxsal.push(element.maxsal);
+						minsal.push(element.minsal);	
 					})
-					
+					console.log("here?");
 					setChart(labels, avgsal, maxsal, minsal);
 				}
 			});
-		})
-		
+		}
 		function setChart(labels, avgsal, maxsal, minsal){
 			var barChartData = {
 					labels: labels,
@@ -48,36 +63,36 @@
 						borderColor: getAnotherChartColor(0),
 						borderWidth: 1,
 						data: 
-							$.each(avgdat,function(index,element) {
+							$.each(avgsal,function(index,element) {
 								element;
 							})
 					},
 					{
-						label: 'maximum salary',
+						label: 'Maximum Salary',
 						backgroundColor: getAnotherChartColor(1),
 						borderColor: getAnotherChartColor(1),
 						borderWidth: 1,
 						data: 
-							$.each(maxdat,function(index,element) {
+							$.each(maxsal,function(index,element) {
 								element;
 							})
 					},
 					{
-						label: 'minimum salary',
+						label: 'Minimum Salary',
 						backgroundColor: getAnotherChartColor(2),
 						borderColor: getAnotherChartColor(2),
 						borderWidth: 1,
-						data: $.each(mindat,function(index,element) {
+						data: $.each(minsal,function(index,element) {
 							element;
 						})
-					}]
+					},]
 				};
 	
 			window.myBar = new Chart( $('#canvas'), {
 				type: 'bar',
 				data: barChartData,
 				options: {
-					responsive: true,
+					responsive: false,
 					legend: {
 						position: 'top',
 					},
@@ -99,23 +114,25 @@
 </head>
 
 <body id="page-top">
-    <!-- Top -->
-    <jsp:include page="/common/Top.jsp"></jsp:include>
-    <div id="wrapper">
-        <!-- Left Menu -->
-        <jsp:include page="/common/Left.jsp"></jsp:include>
+	<!-- Top -->
+	<jsp:include page="/common/Top.jsp"></jsp:include>
+	<div id="wrapper">
+		<!-- Left Menu -->
+		<jsp:include page="/common/Left.jsp"></jsp:include>
 
-        <div id="content-wrapper">
+		<div id="content-wrapper">
 
-            <!-- Content -->
-            <div class="container-fluid">
+			<!-- Content -->
+			 <div class="container">
+            <div class="row">
+	             <p>부서별 임금 그래프 </p>
+            </div>
                 <canvas id="canvas"></canvas>
             </div>
-            
-            <!-- Bottom -->
-            <jsp:include page="/common/Bottom.jsp"></jsp:include>
-        </div>
-    </div>
+			<!-- Bottom -->
+			<jsp:include page="/common/Bottom.jsp"></jsp:include>
+		</div>
+	</div>
 </body>
 
 </html>
