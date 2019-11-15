@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <jsp:include page="/common/HeadTag.jsp"/>
+    <link href="css/profileImageBox.css" rel="stylesheet">
     <style type="text/css">
         .form-radio {
             background-color: #e9ecef
@@ -37,6 +38,18 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
+                                    <div class="uploadBox">
+                                      
+                                    <c:choose>
+	                                    <c:when test ="${emp.imagefilename == null}">
+	                                    	<c:set var="path" value="images/user.png"></c:set>
+										</c:when>
+                                    	<c:otherwise>
+                                    		<c:set var="path" value="upload/${emp.imagefilename}"></c:set>
+										</c:otherwise>
+                                    </c:choose> 
+                                     <img id="profileimg" class="profile" alt="Emp image" src="${path}">        
+                                           </div>
                                         <form action="MemberList.do" method="post">
                                             <div class="form-group">
                                                 <div class="form-row">
