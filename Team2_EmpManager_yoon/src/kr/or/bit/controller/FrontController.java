@@ -84,10 +84,10 @@ public class FrontController extends HttpServlet {
 		}
 
 		if (forward != null) {
-			System.out.println("포워드가 null 값이 아니니?");
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());
 			} else {
+				System.out.println(forward.getPath());
 				RequestDispatcher dis = request.getRequestDispatcher(forward.getPath());
 				dis.forward(request, response);
 			}

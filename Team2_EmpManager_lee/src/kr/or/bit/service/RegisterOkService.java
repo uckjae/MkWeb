@@ -26,10 +26,11 @@ public class RegisterOkService implements Action {
 			int deptno = Integer.parseInt(request.getParameter("deptno"));
 			Date hiredate= new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("hiredate"));
 			String imagefilename = request.getParameter("oriphoto");
-			
+			System.out.println("done"+imagefilename);
 			
 			EmpDao dao = new EmpDao();
 			Emp emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+			emp.setImagefilename(imagefilename);
 			int result = dao.insertEmp(emp);
 
 			String msg = "";

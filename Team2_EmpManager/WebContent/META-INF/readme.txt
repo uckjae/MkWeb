@@ -5,3 +5,11 @@
 다정		sal+comm 랭킹				Register
 욱재		사수별 부사수 sal+comm 평균		Register
 
+원보 차트 쿼리문 : 
+create view dname
+as
+  select d.deptno as dept, round(avg(e.sal),0) as avgsal , max(e.sal) as maxsal, min(e.sal) as minsal
+  from emp e join dept d on e.deptno = d.deptno
+  group by d.deptno;
+
+select d.dname, n.dept, n.avgsal, n.maxsal, n.minsal from dept d join dname n on d.deptno = n.dept;
