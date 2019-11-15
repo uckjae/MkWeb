@@ -18,7 +18,7 @@ import kr.or.bit.dto.chart.LocDept;
 /**
  * Servlet implementation class LocDeptServlet
  */
-@WebServlet("/LocCount.do")
+@WebServlet("/LocCount")
 public class LocDeptServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

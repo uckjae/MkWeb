@@ -11,6 +11,7 @@ import java.util.List;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
 import kr.or.bit.dto.Emp;
+import kr.or.bit.dto.chart.AvgMaxMinEmpByJob;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.LocDept;
@@ -271,6 +272,35 @@ public class EmpDao {
 			DBHelper.close(conn);
 		}
 		return data;
+	}
+	
+	public List<AvgMaxMinEmpByJob>avgMaxMinEmpByjobs(){
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt =null;
+		String sql="select job, trunc(avg(sal),0)as avgsal,max(sal)as maxsal,min(sal)as minsal"+ 
+				    "from emp group by job";
+		ResultSet rs =null;
+		
+		List<AvgMaxMinEmpByJob>jobdata = new ArrayList<AvgMaxMinEmpByJob>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				AvgMaxMinEmpByJob empjob = new AvgMaxMinEmpByJob();
+				empjob.setJob(rs.getString("job"));
+				empjob.setAvgsal(rs.getInt("avgsal"));
+				empjob.setMaxsal(rs.getInt("maxsal"));
+				empjob.setMinsal(rs.getInt("minsal"));
+				jobdata.add(empjob);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
+		}
+		return jobdata;
 	}
 
 	public List<Integer> getDethNos() {

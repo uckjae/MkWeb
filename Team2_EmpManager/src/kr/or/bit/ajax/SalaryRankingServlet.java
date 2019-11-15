@@ -17,7 +17,7 @@ import org.codehaus.jettison.json.JSONArray;
 import kr.or.bit.dao.EmpDao;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 
-@WebServlet("/SalaryRanking.do")
+@WebServlet("/SalaryRanking")
 public class SalaryRankingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
