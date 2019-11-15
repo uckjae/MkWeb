@@ -3,15 +3,15 @@ package kr.or.bit.dto.chart;
 public class AvgMaxMinEmpByJob {
 	private String job;
 	private int avgsal;
-	private int minsal;
 	private int maxsal;
+	private int minsal;
 	
-	public AvgMaxMinEmpByJob(String job, int avgsal, int minsal, int maxsal){	
+	public AvgMaxMinEmpByJob(String job, int avgsal, int maxsal, int minsal){	
     super();
 	this.job=job;
     this.avgsal=avgsal;
-    this.minsal=minsal;
     this.maxsal=maxsal;
+    this.minsal=minsal;
 	}
 	public AvgMaxMinEmpByJob() {
 		
@@ -33,20 +33,20 @@ public class AvgMaxMinEmpByJob {
 		this.avgsal = avgsal;
 	}
 
-	public int getMinsal() {
-		return minsal;
-	}
-
-	public void setMinsal(int minsal) {
-		this.minsal = minsal;
-	}
-
 	public int getMaxsal() {
 		return maxsal;
 	}
 
 	public void setMaxsal(int maxsal) {
 		this.maxsal = maxsal;
+	}
+	
+	public int getMinsal() {
+		return minsal;
+	}
+
+	public void setMinsal(int minsal) {
+		this.minsal = minsal;
 	}
 	
 

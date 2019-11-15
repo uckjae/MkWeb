@@ -35,7 +35,7 @@ p {
 		function ajax(countOption){
 			
 			$.ajax({
-				url : "SalaryRanking_chung.do",
+				url : "SalaryRanking_chung",
 				data:{cmd: "chart", count: countOption},
 				dataType : "json",
 				success : function(data){

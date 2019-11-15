@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <jsp:include page="/common/HeadTag.jsp"/>
@@ -20,32 +21,101 @@ p {
 	font-weight: 700;
 }
 </style>
-<script type="text/javascript">
-$(function() {
-	//초기에 select 반영하기 위해
-	ajax($("#countOption option:selected").val());
+	<script type="text/javascript">
+		$(function() {
+			//초기에 select 반영하기 위해
+			ajax($("#countOption option:selected").val());
+			
+			$("#countOption").change(function(){
+				let countOption= $("#countOption option:selected").val();
+				ajax(countOption);
+			});
+		})
+		
+		function ajax(countOption){
+			
+			$.ajax({
+				url : "SalaryRanking_Choi",
+				data:{cmd: "chart", count: countOption},
+				dataType : "json",
+				success : function(data){
+					console.log("success");
+					console.log(typeof(data));
+					let labels = [];
+					let avgdat = [];
+					let maxdat = [];
+					let mindat = [];
+					$.each(data, function(index, element){
+						labels.push(element.job);
+						avgdat.push(element.avgsal);
+						maxdat.push(element.maxsal);
+						mindat.push(element.minsal);				
+					})
+					
+					setChart(labels,avgdat,maxdat,mindat);
+				}
+			});
+		}
+		function setChart(labels, avgdat,maxdat,mindat){
+			var barChartData = {
+					labels: labels,
+					datasets: [{
+						label: 'average salary',
+						backgroundColor: getAnotherChartColor(0),
+						borderColor: getAnotherChartColor(0),
+						borderWidth: 1,
+						data: 
+							$.each(avgdat,function(index,element) {
+								element;
+							})
+					},
+					{
+						label: 'maximum salary',
+						backgroundColor: getAnotherChartColor(1),
+						borderColor: getAnotherChartColor(1),
+						borderWidth: 1,
+						data: 
+							$.each(maxdat,function(index,element) {
+								element;
+							})
+					},
+					{
+						label: 'minimum salary',
+						backgroundColor: getAnotherChartColor(2),
+						borderColor: getAnotherChartColor(2),
+						borderWidth: 1,
+						data: $.each(mindat,function(index,element) {
+							element;
+						})
+					},
+					]
+				};
 	
-	$("#countOption").change(function(){
-		let countOption=$("#countOption option:selected").val();
-		ajax(countOption);
-	});
-})
-
-function ajax(conOption){
-	 $.ajax({
-		 url:"SalaryRanking_Choi.do",
-		 data:{cmd:"chart",count:countOPtion},
-	     dataType:"json",
-		 success: function(data){
-			 console.log('success');
-			 console.log(typeof(data));
-			 
-		 }
-	 });
-}
-
-</script>
+			window.myBar = new Chart( $('#canvas'), {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',						
+					},
+					title: {
+						display: false,
+						text: '직군별 연봉'
+					}
+				}
+			});
+		}
+		
+		let colorNames = Object.keys(window.chartColors);
+		function getAnotherChartColor(dataLength){
+			let colorName = colorNames[dataLength % colorNames.length];
+			let dsColor = window.chartColors[colorName];
+			return window.chartColors[colorName];
+		}
+	</script>
 </head>
+
 <body id="page-top">
     <!-- Top -->
     <jsp:include page="/common/Top.jsp"></jsp:include>
@@ -56,9 +126,9 @@ function ajax(conOption){
         <div id="content-wrapper">
 
             <!-- Content -->
-            <div class="container-fluid">
+            <div class="container">
             <div class="row">
-	             <p >직군별 임금 그래프 </p>
+	             <p >직군별 연봉 </p>
             </div>
            
                 <canvas id="canvas"></canvas>
@@ -69,4 +139,5 @@ function ajax(conOption){
         </div>
     </div>
 </body>
+
 </html>

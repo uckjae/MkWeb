@@ -17,10 +17,7 @@ import org.codehaus.jettison.json.JSONArray;
 import kr.or.bit.dao.EmpDao;
 import kr.or.bit.dto.chart.AvgMaxMinEmpByJob;
 
-
-
-
-@WebServlet("/SalaryRankingServlet_Choi")
+@WebServlet("/SalaryRanking_Choi")
 public class SalaryRankingServlet_Choi extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

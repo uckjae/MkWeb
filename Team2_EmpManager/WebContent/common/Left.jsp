@@ -51,12 +51,12 @@
 		            </a>
 		            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
 		                <!-- <h6 class="dropdown-header">Login Screens:</h6> -->
-		                <a class="dropdown-item" href="SalaryRanking?cmd=show">Chart_1</a>
-		                <a class="dropdown-item" href="SalaryRanking_won?cmd=show">원보연</a> <!-- 내가 선점 했음 여기 내자리 -->
-		                <a class="dropdown-item" href="SalaryRanking_chung?cmd=show">Chart_3</a>
-		                <a class="dropdown-item" href="SalaryRanking_lee?cmd=show">Chart_4</a>
-		                <a class="dropdown-item" href="SalaryRanking_Choi?cmd=show">Chart_5</a>
-		                <a class="dropdown-item" href="LocCount">Chart_6</a>
+		                <a class="dropdown-item" href="SalaryRanking?cmd=show">상위 연봉</a>
+		                <a class="dropdown-item" href="SalaryRanking_won?cmd=show">부서별 임금</a> <!-- 내가 선점 했음 여기 내자리 -->
+		                <a class="dropdown-item" href="SalaryRanking_chung?cmd=show">입사년도별 임금</a>
+		                <a class="dropdown-item" href="SalaryRanking_lee?cmd=show">사수별 임금</a>
+		                <a class="dropdown-item" href="SalaryRanking_Choi?cmd=show">직군별 임금</a>
+		                <a class="dropdown-item" href="LocCount">올려라 일겸아</a>
 		            </div>
 		        </li>
         	</c:when>
