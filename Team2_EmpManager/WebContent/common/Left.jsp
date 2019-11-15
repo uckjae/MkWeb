@@ -56,7 +56,7 @@
 		                <a class="dropdown-item" href="SalaryRanking_chung?cmd=show">입사년도별 임금</a>
 		                <a class="dropdown-item" href="SalaryRanking_lee?cmd=show">사수별 임금</a>
 		                <a class="dropdown-item" href="SalaryRanking_Choi?cmd=show">직군별 임금</a>
-		                <a class="dropdown-item" href="LocCount">올려라 일겸아</a>
+		                <a class="dropdown-item" href="LocCount?cmd=show">나라별 직원비율</a>
 		            </div>
 		        </li>
         	</c:when>
