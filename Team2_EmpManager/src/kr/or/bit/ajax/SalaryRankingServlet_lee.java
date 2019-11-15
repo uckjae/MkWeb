@@ -19,7 +19,7 @@ import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.StatisticsByMgr;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 
-@WebServlet("/SalaryRanking_lee.do")
+@WebServlet("/SalaryRanking_lee")
 public class SalaryRankingServlet_lee extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

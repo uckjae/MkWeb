@@ -18,7 +18,7 @@ import kr.or.bit.dao.EmpDao;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.TotalSaleryChart;
 
-@WebServlet("/SalaryRanking_chung.do")
+@WebServlet("/SalaryRanking_chung")
 public class SalaryRankingServlet_chung extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
