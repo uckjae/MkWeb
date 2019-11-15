@@ -173,7 +173,7 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 
-		String sql = "UPDATE EMP SET ENAME=?, JOB=?, MGR=?, HIREDATE=?, SAL=?, COMM=?, DEPTNO=? " + " WHERE EMPNO=?";
+		String sql = "UPDATE EMP SET ENAME=?, JOB=?, MGR=?, HIREDATE=?, SAL=?, COMM=?, DEPTNO=?, IMAGEFILENAME=? " + " WHERE EMPNO=?";
 
 		try {
 			pstmt = connection.prepareStatement(sql);
@@ -184,8 +184,8 @@ public class EmpDao {
 			pstmt.setInt(5, emp.getSal());
 			pstmt.setInt(6, emp.getComm());
 			pstmt.setInt(7, emp.getDeptno());
-			pstmt.setInt(8, emp.getEmpno());
-
+			pstmt.setInt(9, emp.getEmpno());
+			pstmt.setString(8, emp.getImagefilename());
 			resultRow = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -47,7 +47,7 @@
                                             <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                            <img src="upload/${emp.imagefilename}"> <!-- onerror="this.src='images/defaultProfile.png'" -->
+                                                            <img src="upload/${emp.imagefilename}" onerror="this.src='images/defaultProfile.png'" style="width:10em; height:100%;">
                                                         </div>
                                                     </div>
                                             </div> 
