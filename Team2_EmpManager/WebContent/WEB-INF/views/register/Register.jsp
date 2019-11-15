@@ -57,6 +57,21 @@
 	    		}
 	    	});
 	    	
+	    	$.ajax({
+	    		url:"GetJob",
+	    		dataType:"json",
+	    		success:function(data){
+	    			console.log(data);
+	    			var jArray = [];
+	    			jArray = data.jobs
+	    			for(var i=0; i<jArray.length;i++){
+	    				var option = document.createElement("option");
+	    				$(option).text(jArray[i]);
+	    				$("#jobSelect").append(option);
+	    			}
+	    		}
+	    	});
+	    	
 	    	$("#empnoCheck").click(function(){
 	    		if($("#empno").val() == "" || $("#empno").val() == null){
 	    			alert("EMPNO 입력하세요");
@@ -136,12 +151,14 @@
 	                                                        <label for="hiredate">Hire Date</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-label-group">
-                                                            <input type="text" id="job" name="job" class="form-control" placeholder="Job" required="required">
-                                                            <label for="job">Job</label>
-                                                        </div>
-                                                    </div>
+                                                   <div class="col-md-6">
+														<div class="form-label-group">
+															<select id="jobSelect" name="job"
+																style="height: 49px">
+																<option hidden>Job 선택</option>
+															</select>
+														</div>
+													</div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
