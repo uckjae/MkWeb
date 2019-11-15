@@ -51,7 +51,6 @@ public class GetJobRegister extends HttpServlet {
 			e.printStackTrace();
 		}
 		out.print(json);
-		System.out.println(json);
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

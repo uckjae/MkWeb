@@ -123,9 +123,9 @@
 		<div id="content-wrapper">
 
 			<!-- Content -->
-			<div class="container">
+			 <div class="container">
 	            <div class="text-center row">
-		            <p>부서별 임금 그래프</p>
+		             <p>부서별 연봉</p>
 	            </div>
                 <canvas id="canvas"></canvas>
             </div>

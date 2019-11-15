@@ -21,8 +21,8 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 
-		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)"
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO,imagefilename)"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmpno());
@@ -33,7 +33,8 @@ public class EmpDao {
 			pstmt.setInt(6, emp.getSal());
 			pstmt.setInt(7, emp.getComm());
 			pstmt.setInt(8, emp.getDeptno());
-
+			pstmt.setString(9, emp.getImagefilename());
+			
 			resultRow = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
