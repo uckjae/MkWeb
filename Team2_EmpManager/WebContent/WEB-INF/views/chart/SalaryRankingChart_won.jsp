@@ -92,7 +92,7 @@
 				type: 'bar',
 				data: barChartData,
 				options: {
-					responsive: false,
+					responsive: true,
 					legend: {
 						position: 'top',
 					},
