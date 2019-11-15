@@ -28,8 +28,7 @@
     	}
     </style>
     <script type="text/javascript">
-	    $(function(){
-	    	
+	    $(function(){	    	
 	    	$.ajax({
 	    		url:"GetDeptNos",
 	    		dataType:"json",

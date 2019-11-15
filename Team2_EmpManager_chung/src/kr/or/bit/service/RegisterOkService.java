@@ -26,7 +26,6 @@ public class RegisterOkService implements Action {
 	//	String uploadpath = request.getRealPath("upload");
 		ServletContext application = request.getServletContext();
 	    String uploadpath  = application.getRealPath("upload"); //이미지 저장 실경로
-	    System.out.println("uploadpath: " + uploadpath);
 		MultipartRequest multi  = null;
 		try {
 			multi = new MultipartRequest(
@@ -45,11 +44,9 @@ public class RegisterOkService implements Action {
 			int comm = Integer.parseInt(multi.getParameter("comm"));
 			int deptno = Integer.parseInt(multi.getParameter("deptno"));
 			Date hiredate= new SimpleDateFormat("yyyy-MM-dd").parse(multi.getParameter("hiredate"));
-		//	String imagefilename = multi.getFilesystemName("filename");
 			Enumeration filenames = multi.getFileNames();
 			String file2 = (String)filenames.nextElement();
 			String imagefilename = multi.getFilesystemName(file2);
-			System.out.println("파일이름: " + imagefilename);
 			
 			EmpDao dao = new EmpDao();
 			Emp emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno,imagefilename);
