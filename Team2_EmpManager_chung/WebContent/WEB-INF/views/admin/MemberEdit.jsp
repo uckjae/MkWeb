@@ -139,8 +139,8 @@ document.getElementById("files").onchange = function () {
                                                     <input type="submit" class="btn btn-primary btn-block" value="Edit">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="button" class="btn btn-danger btn-block" value="Cancel"
-                                                        		onClick="MemberList.do">
+                                                    <input type="reset" class="btn btn-danger btn-block" value="Cancel"
+                                                        		onClick="location.href='MemberList.do'">
                                                 </div>
                                                
                                             </div>

@@ -147,7 +147,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <input type="button" class="btn btn-danger btn-block" value="Cancel"
-                                                        		onClick="MemberList.do">
+                                                        		onClick="location.href='MemberList.do'">
                                                 </div>
                                                
                                             </div>
