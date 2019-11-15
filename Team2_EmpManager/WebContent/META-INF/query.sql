@@ -74,3 +74,10 @@ as
   select e.empno as "mgrnum", avg(m.sal + nvl(m.comm,0)) as "avg", max(m.sal + nvl(m.comm,0)) as "max", min(m.sal + nvl(m.comm,0)) as "min"
   from emp e join emp m on e.empno = m.mgr 
   group by e.empno;
+  
+  
+create view dname
+as
+  select d.deptno as dept, round(avg(e.sal),0) as avgsal , max(e.sal) as maxsal, min(e.sal) as minsal
+  from emp e join dept d on e.deptno = d.deptno
+  group by d.deptno;
