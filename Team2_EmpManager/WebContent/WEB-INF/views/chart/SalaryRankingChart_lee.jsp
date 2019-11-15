@@ -126,7 +126,7 @@ p {
         <div id="content-wrapper">
 
             <!-- Content -->
-            <div class="container">
+            <div class="container-fluid">
             <div class="row">
 	             <p >사수별 임금 그래프 </p>
             </div>

@@ -11,6 +11,7 @@ public class Emp {
 	private int sal;
 	private int comm;
 	private int deptno;
+	private String imagefilename;
 
 	public int getEmpno() {
 		return empno;
@@ -86,6 +87,15 @@ public class Emp {
 
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
+	}
+	
+	
+	
+	public String getImagefilename() {
+		return imagefilename;
+	}
+	public void setImagefilename(String imagefilename) {
+		this.imagefilename = imagefilename;
 	}
 	@Override
 	public String toString() {

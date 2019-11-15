@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,34 +33,24 @@ public class LocDeptServlet extends HttpServlet {
     private void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-	
-		String command = request.getParameter("cmd");
-		if(command.equals("show")) {
-			RequestDispatcher dis = request.getRequestDispatcher("/WEB-INF/views/chart/LocDeptNo.jsp");
-			dis.forward(request, response);
-		}else if(command.equals("chart")) {
+		System.out.println("서블릿으로 와?");
+		PrintWriter out = response.getWriter();	
+		EmpDao dao = null;
+		dao = new EmpDao();
+		List<LocDept> locdatas = dao.LocChart();
+		JSONArray json = null;
+		StringBuilder loclist = new StringBuilder();
+		try {
+			loclist.append("[");
+			for(LocDept loc : locdatas)
+				loclist.append(String.format("{Loc : %d , Count : %s ", loc.getCity(),loc.getCount()));
+			loclist.append("]");
+			json = new JSONArray(loclist.toString());
 			
-			PrintWriter out = response.getWriter();	
-			EmpDao dao = null;
-			dao = new EmpDao();
-			List<LocDept> locdatas = dao.LocChart();
-			JSONArray json = null;
-			StringBuilder loclist = new StringBuilder();
-			
-			try {
-				loclist.append("[");
-				for(LocDept loc : locdatas)
-					loclist.append(String.format("{Loc : %s , Count : %d },", loc.getCity() , loc.getCount()));
-				loclist.append("]");
-				json = new JSONArray(loclist.toString());
-			}catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-			
-			out.print(json);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
-
-		
+		out.print(json);
 		
     }
 

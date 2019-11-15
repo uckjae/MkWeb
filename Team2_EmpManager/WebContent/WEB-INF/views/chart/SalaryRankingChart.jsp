@@ -98,16 +98,17 @@ p {
         <div id="content-wrapper">
 
             <!-- Content -->
-            <div class="container">
-	            <div class="text-center row">
-		             <p >상위 연봉 </p>&nbsp;&nbsp;&nbsp;
-		            <select id="countOption" class=”form-control“ style="height: 45px">
-		            	<option value="5">5</option>
-		            	<option value="10" selected>10</option>
-		            	<option value="15">15</option>
-		            </select>
-		            &nbsp;&nbsp;&nbsp;<p>명</p>
-	            </div>
+            <div class="container-fluid">
+            <div class="row">
+	             <p >상위 연봉 </p>&nbsp;&nbsp;&nbsp;
+	            <select id="countOption" class=”form-control“ style="height: 45px">
+	            	<option value="5">5</option>
+	            	<option value="10" selected>10</option>
+	            	<option value="15">15</option>
+	            </select>
+	            &nbsp;&nbsp;&nbsp;<p>명</p>
+            </div>
+           
                 <canvas id="canvas"></canvas>
             </div>
             

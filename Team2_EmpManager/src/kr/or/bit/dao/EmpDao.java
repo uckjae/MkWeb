@@ -8,8 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import kr.or.bit.dto.Emp;
-import kr.or.bit.dto.chart.AvgMaxMinEmpByJob;
 import kr.or.bit.dto.chart.AvgMaxMinSalaryByDept;
 import kr.or.bit.dto.chart.DataByYear;
 import kr.or.bit.dto.chart.LocDept;
@@ -23,9 +24,8 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 
-		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO)"
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		System.out.println("in deptwrfdsf");
+		String sql = "INSERT INTO EMP(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO, IMAGEFILENAME)"
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, emp.getEmpno());
@@ -36,7 +36,7 @@ public class EmpDao {
 			pstmt.setInt(6, emp.getSal());
 			pstmt.setInt(7, emp.getComm());
 			pstmt.setInt(8, emp.getDeptno());
-
+			pstmt.setString(9, emp.getImagefilename());
 			resultRow = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -55,7 +55,7 @@ public class EmpDao {
 		ResultSet resultSet = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO" + " FROM EMP WHERE EMPNO=?";
+		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO , IMAGEFILENAME" + " FROM EMP WHERE EMPNO=?";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
@@ -69,8 +69,9 @@ public class EmpDao {
 				int sal = resultSet.getInt(6);
 				int comm = resultSet.getInt(7);
 				int deptno = resultSet.getInt(8);
-
+				String imagefilename = resultSet.getString(9);
 				emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+				emp.setImagefilename(imagefilename);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -82,7 +83,29 @@ public class EmpDao {
 
 		return emp;
 	}
-
+	
+	public List<String> getJobRegister() {
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> emps = new ArrayList<String>();
+		String sql = "select distinct job from emp";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				emps.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
+		}
+		return emps;		
+	}
+	
 	public boolean checkAdminLogin(String userid, String pwd) {
 		boolean result = false;
 
@@ -172,7 +195,7 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 
-		String sql = "UPDATE EMP SET ENAME=?, JOB=?, MGR=?, HIREDATE=?, SAL=?, COMM=?, DEPTNO=? " + " WHERE EMPNO=?";
+		String sql = "UPDATE EMP SET ENAME=?, JOB=?, MGR=?, HIREDATE=?, SAL=?, COMM=?, DEPTNO=?, IMAGEFILENAME=? " + " WHERE EMPNO=?";
 
 		try {
 			pstmt = connection.prepareStatement(sql);
@@ -183,8 +206,8 @@ public class EmpDao {
 			pstmt.setInt(5, emp.getSal());
 			pstmt.setInt(6, emp.getComm());
 			pstmt.setInt(7, emp.getDeptno());
-			pstmt.setInt(8, emp.getEmpno());
-
+			pstmt.setInt(9, emp.getEmpno());
+			pstmt.setString(8, emp.getImagefilename());
 			resultRow = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -249,35 +272,6 @@ public class EmpDao {
 		}
 		return data;
 	}
-	
-	public List<AvgMaxMinEmpByJob>avgMaxMinEmpByjobs(){
-		Connection conn = DBHelper.getConnection("oracle");
-		PreparedStatement pstmt =null;
-		String sql="select job, trunc(avg(sal),0)as avgsal,max(sal)as maxsal,min(sal)as minsal from emp group by job";
-		ResultSet rs =null;
-		
-		List<AvgMaxMinEmpByJob>jobdata = new ArrayList<AvgMaxMinEmpByJob>();
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				AvgMaxMinEmpByJob empjob = new AvgMaxMinEmpByJob();
-				empjob.setJob(rs.getString("job"));
-				empjob.setAvgsal(rs.getInt("avgsal"));
-				empjob.setMaxsal(rs.getInt("maxsal"));
-				empjob.setMinsal(rs.getInt("minsal"));
-				jobdata.add(empjob);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			DBHelper.close(pstmt);
-			DBHelper.close(rs);
-			DBHelper.close(conn);
-		}
-		return jobdata;
-	}
-	
 
 	public List<Integer> getDethNos() {
 		List<Integer> results = new ArrayList<Integer>();
@@ -354,7 +348,7 @@ public class EmpDao {
 			}
 
 		} catch (Exception e) {
-			System.out.println("ㄷ : " + e.getMessage());
+			System.out.println(e.getMessage());
 		} finally {
 			DBHelper.close(rs);
 			DBHelper.close(pstmt);
@@ -398,28 +392,5 @@ public class EmpDao {
 		
 		
 		return list;
-	}
-	
-	public List<String> getJobs() {
-		List<String> results = new ArrayList<String>();
-		Connection conn = DBHelper.getConnection("oracle");
-		PreparedStatement pstmt = null;
-		String sql = "select DISTINCT job from emp";
-		ResultSet rs = null;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				results.add(rs.getString(1));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBHelper.close(pstmt);
-			DBHelper.close(rs);
-			DBHelper.close(conn);
-		}
-		return results;
-		
 	}
 }

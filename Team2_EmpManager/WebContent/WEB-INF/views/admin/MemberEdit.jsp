@@ -7,80 +7,28 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	
-	$.ajax({
-		url:"GetDeptNos",
-		dataType:"json",
-		success:function(data){
-			var dArray = [];
-			dArray = data.deptno;
-			
-			for(var i=0; i<dArray.length;i++){
-				var option = document.createElement("option");
-				$(option).text(dArray[i]);
-				$("#deptSelect").append(option);
-			}
-		}
-	});
-	
-	    $.ajax({
-		url:"GetJob",
-		dataType:"json",
-		success:function(data){
-			console.log(data);
-			var jArray = [];
-			jArray = data.jobs
-			for(var i=0; i<jArray.length;i++){
-				var option = document.createElement("option");
-				$(option).text(jArray[i]);
-				$("#jobSelect").append(option);
-			}
-		}
-	});
-	
-	$.ajax({
-		url:"GetEmpnos",
-		dataType:"json",
-		success:function(data){
-			$.each(data, function(index, element){
-				let option = $("<option></option>");
-				$(option).text(element.empno+" : "+element.ename);
-				$(option).val(element.empno);
-				$("#mgrSelect").append(option);
-			})
-		}
-	});
-})
-</script>
-<style type="text/css">
-select {
-	display: block;
-	width: 100%;
-	height: calc(1.5em + 0.75rem + 2px);
-	padding: 0.375rem 0.75rem;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #495057;
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid #ced4da;
-	border-radius: 0.25rem;
-	-webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow
-		0.15s ease-in-out;
-	transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s
-		ease-in-out;
-	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,
-		-webkit-box-shadow 0.15s ease-in-out;
-		
-}
-</style>
+
 <head>
     <meta charset="UTF-8">
     <jsp:include page="/common/HeadTag.jsp"></jsp:include>
+    <script type="text/javascript">
+
+    $(function(){
+    	 $("#photo").change(function(){
+    			var reader = new FileReader();
+
+    		    reader.onload = function (e) {
+    		        // get loaded data and render thumbnail.
+    		        document.getElementById("viewPhoto").src = e.target.result;
+    		    };
+
+    		    // read the image file as a data URL.
+    		    reader.readAsDataURL(this.files[0]);
+    		});
+    });
+    
+   
+</script>
 </head>
 
 <body id="page-top">
@@ -105,7 +53,22 @@ select {
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="MemberEditOk.do" method="post">
+                                        <form action="MemberEditOk.do" method="post" enctype="multipart/form-data">
+                                        	<div class="form-group">
+                                                		<div class="form-row">
+                                                   			<div class="col-md-6">
+                                                        		<div class="form-label-group">
+                                                            		<img id="viewPhoto" name="viewPhoto" src="upload/${emp.imagefilename}" alt="프로필사진"  style="width:10em; height:100%;">
+                                                        		</div>
+                                                    		</div>
+                                                    		<div class="col-md-6">
+                                                        		<div class="form-label-group">
+                                                            		<input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+                                                            		<label for="photo">photo</label>
+                                                        		</div>
+                                                    		</div>
+                                                		</div>
+                                            		</div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
@@ -134,35 +97,32 @@ select {
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-														<div class="form-label-group">
-															<select id="jobSelect" name="job"
-																style="height: 49px">
-																<option hidden>${emp.job}</option>
-															</select>
-														</div>
-													</div>
+                                                        <div class="form-label-group">
+                                                            <input type="text" id="job" name="job" class="form-control" placeholder="Job" required="required"
+                                                            		value="${emp.job}">
+                                                            <label for="job">Job</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                           <div class="form-group">
-												<div class="form-row">
-													<div class="col-md-6">
-														<div class="form-label-group">
-															Dept No <select id="deptSelect" name="deptno"
-																style="height: 49px">
-																<option hidden>${emp.deptno}</option>
-															</select>
-														</div>
-													</div>
-													<div class="col-md-6">
-														<div class="form-label-group">
-															Manager <select id="mgrSelect" name="mgr"
-																style="height: 49px">
-																<option hidden>${emp.mgr}</option>
-															</select>
-														</div>
-													</div>
-												</div>
-											</div>
+                                            <div class="form-group">
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                            <input type="number" id="deptno" name="deptno" class="form-control" placeholder="Dept No" required="required"
+                                                            			value="${emp.deptno}">
+                                                            <label for="deptno">Dept No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                        	<input type="number" id="mgr" name="mgr" class="form-control" placeholder="Manager" required="required"
+                                                        				value="${emp.mgr}">
+                                                        	<label for="mgr">Manager</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">

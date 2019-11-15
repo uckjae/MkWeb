@@ -10,17 +10,17 @@
 	<script src="https://www.chartjs.org/dist/2.9.2/Chart.min.js"></script>
 	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
 	<style>
-		canvas {
-			-moz-user-select: none;
-			-webkit-user-select: none;
-			-ms-user-select: none;
-		}
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
 
-		p {
-			font-size: xx-large;
-			font-weight: 700;
-		}
-	</style>
+p {
+	font-size: xx-large;
+	font-weight: 700;
+}
+</style>
 	<script type="text/javascript">
 		$(function() {
 			
@@ -125,8 +125,9 @@
 			<!-- Content -->
 			 <div class="container">
             <div class="row">
-	             <p>부서별 임금 그래프 </p>
+	             <p >부서별 임금 그래프 </p>
             </div>
+           
                 <canvas id="canvas"></canvas>
             </div>
 			<!-- Bottom -->

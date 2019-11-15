@@ -57,21 +57,6 @@
 	    		}
 	    	});
 	    	
-	    	$.ajax({
-	    		url:"GetJob",
-	    		dataType:"json",
-	    		success:function(data){
-	    			console.log(data);
-	    			var jArray = [];
-	    			jArray = data.jobs
-	    			for(var i=0; i<jArray.length;i++){
-	    				var option = document.createElement("option");
-	    				$(option).text(jArray[i]);
-	    				$("#jobSelect").append(option);
-	    			}
-	    		}
-	    	});
-	    	
 	    	$("#empnoCheck").click(function(){
 	    		if($("#empno").val() == "" || $("#empno").val() == null){
 	    			alert("EMPNO 입력하세요");
@@ -97,7 +82,34 @@
 	    			});
 	    		}
 	    	});
-	    })
+	    	
+	    	$("#photo").change(function(){
+	    		var reader = new FileReader();
+
+	    	    reader.onload = function (e) {
+	    	        // get loaded data and render thumbnail.
+	    	        document.getElementById("viewPhoto").src = e.target.result;
+	    	    };
+
+	    	    // read the image file as a data URL.
+	    	    reader.readAsDataURL(this.files[0]);
+	    	});
+	    	
+	    	$.ajax({
+	    		url:"GetJobRegister",
+	    		dataType:"json",
+	    		success:function(data){
+	    			var jArray = [];
+	    			console.log(data);
+	    			jArray = data.job;
+	    			for(var i=0; i<jArray.length;i++){
+	    				var option = document.createElement("option");
+	    				$(option).text(jArray[i]);
+	    				$("#jobSelect").append(option);
+	    			}
+	    		}
+	    	});
+	    });
     </script>
 </head>
 
@@ -122,7 +134,22 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="RegisterOk.do" method="post">
+                                        <form action="RegisterOk.do" method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                		<div class="form-row">
+                                                   			<div class="col-md-6">
+                                                        		<div class="form-label-group">
+                                                            		<img id="viewPhoto" name="viewPhoto" src="images/defaultProfile.png" alt="" style="width:10em; height:100%;">
+                                                        		</div>
+                                                    		</div>
+                                                    		<div class="col-md-6">
+                                                        		<div class="form-label-group">
+                                                            		<input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+                                                            		<label for="photo">photo</label>
+                                                        		</div>
+                                                    		</div>
+                                                		</div>
+                                            		</div>
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
@@ -151,14 +178,14 @@
 	                                                        <label for="hiredate">Hire Date</label>
                                                         </div>
                                                     </div>
-                                                   <div class="col-md-6">
-														<div class="form-label-group">
-															<select id="jobSelect" name="job"
-																style="height: 49px">
-																<option hidden>Job 선택</option>
-															</select>
-														</div>
-													</div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                        	 <select id="jobSelect" name="job" style="height : 49px">
+                                                        	 <option hidden>직종 선택</option>                                                          
+                                                             </select>
+                                                            <label for="job"></label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
