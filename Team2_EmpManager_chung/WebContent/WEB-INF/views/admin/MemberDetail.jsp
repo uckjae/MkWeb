@@ -110,6 +110,17 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                         <div class="form-group">
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                           						
+                                                            <img src="upload/${emp.imagefilename}"/>사진 보기
+                                                      <!--      <label for="imagefilename">사진</label> --> 
+                                                        </div>
+                                                    </div>
+   												 </div>
+                                               </div>
                                             <input type="submit" class="btn btn-primary btn-block" value="Ok" onClick="MemberList.do">
                                         </form>
                                     </div>
