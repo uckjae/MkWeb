@@ -53,7 +53,7 @@ public class EmpDao {
 		ResultSet resultSet = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO" + " FROM EMP WHERE EMPNO=?";
+		String sql = "SELECT EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO,imagefilename" + " FROM EMP WHERE EMPNO=?";
 		try {
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, no);
@@ -67,8 +67,9 @@ public class EmpDao {
 				int sal = resultSet.getInt(6);
 				int comm = resultSet.getInt(7);
 				int deptno = resultSet.getInt(8);
+				String imagefilename = resultSet.getString(9);
 				
-				emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno);
+				emp = new Emp(empno, ename, job, mgr, hiredate, sal, comm, deptno,imagefilename);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -166,7 +167,7 @@ public class EmpDao {
 		Connection connection = DBHelper.getConnection("oracle");
 		PreparedStatement pstmt = null;
 
-		String sql = "UPDATE EMP SET ENAME=?, JOB=?, MGR=?, HIREDATE=?, SAL=?, COMM=?, DEPTNO=? " + " WHERE EMPNO=?";
+		String sql = "UPDATE EMP SET ENAME=?, JOB=?, MGR=?, HIREDATE=?, SAL=?, COMM=?, DEPTNO=?, imagefilename=? " + " WHERE EMPNO=?";
 
 		try {
 			pstmt = connection.prepareStatement(sql);
@@ -177,7 +178,8 @@ public class EmpDao {
 			pstmt.setInt(5, emp.getSal());
 			pstmt.setInt(6, emp.getComm());
 			pstmt.setInt(7, emp.getDeptno());
-			pstmt.setInt(8, emp.getEmpno());
+			pstmt.setString(8, emp.getImagefilename());
+			pstmt.setInt(9, emp.getEmpno());
 
 			resultRow = pstmt.executeUpdate();
 		} catch (Exception e) {

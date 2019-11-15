@@ -81,7 +81,6 @@ public class FrontController extends HttpServlet {
 			action = new LogoutService();
 			forward = action.execute(request, response);
 		}
-
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

@@ -6,8 +6,23 @@
 
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+$(function() {
 	
+
+document.getElementById("files").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+});
 </script>
 <head>
     <meta charset="UTF-8">
@@ -36,7 +51,7 @@
                             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <form action="MemberEditOk.do" method="post">
+                                        <form action="MemberEditOk.do" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <div class="form-row">
                                                     <div class="col-md-6">
@@ -109,6 +124,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                             <div class="form-group">
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-label-group">
+                                                            <img src="upload/${emp.imagefilename}" id="image" onerror="this.src='images/defaultProfile.png'" style="width:10em; height:100%;"/>
+                                                            <input type="file" name="filename" accept="image/*" id="files" >
+                                                        </div>
+                                                    </div>
+   												 </div>
+                                               </div>
                                             <div class="form-row">
                                            		 <div class="col-md-6">
                                                     <input type="submit" class="btn btn-primary btn-block" value="Edit">

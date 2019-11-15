@@ -114,8 +114,7 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                           						
-                                                            <img src="upload/${emp.imagefilename}"/>사진 보기
+                                                            <img src="upload/${emp.imagefilename}" onerror="this.src='images/defaultProfile.png'" style="width:10em; height:100%;"/>
                                                       <!--      <label for="imagefilename">사진</label> --> 
                                                         </div>
                                                     </div>

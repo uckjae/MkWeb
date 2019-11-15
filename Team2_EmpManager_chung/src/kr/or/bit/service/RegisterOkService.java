@@ -69,7 +69,6 @@ public class RegisterOkService implements Action {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
 		return forward;
 	}
 

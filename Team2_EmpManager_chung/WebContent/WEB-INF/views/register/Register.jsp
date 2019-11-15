@@ -27,6 +27,7 @@
 	    	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
     	}
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
 	    $(function(){	    	
 	    	$.ajax({
@@ -97,7 +98,19 @@
 	    			});
 	    		}
 	    	});
-	    	
+	    		
+
+	    		document.getElementById("files").onchange = function () {
+	    		    var reader = new FileReader();
+
+	    		    reader.onload = function (e) {
+	    		        // get loaded data and render thumbnail.
+	    		        document.getElementById("image").src = e.target.result;
+	    		    };
+
+	    		    // read the image file as a data URL.
+	    		    reader.readAsDataURL(this.files[0]);
+	    		};
 
 	    })
     </script>
@@ -204,8 +217,8 @@
                                                 <div class="form-row">
                                                     <div class="col-md-6">
                                                         <div class="form-label-group">
-                                                       			사진 등록
-                                                             <input type="file" name="filename" accept="image/*" >
+                                                       		<img id="image" />
+                                                             <input type="file" name="filename" accept="image/*" id="files">
                                                         </div>
                                                     </div>
 
