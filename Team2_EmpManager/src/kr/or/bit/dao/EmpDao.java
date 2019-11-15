@@ -369,4 +369,27 @@ public class EmpDao {
 		
 		return list;
 	}
+	
+	public List<String> getJobs() {
+		List<String> results = new ArrayList<String>();
+		Connection conn = DBHelper.getConnection("oracle");
+		PreparedStatement pstmt = null;
+		String sql = "select DISTINCT job from emp";
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				results.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBHelper.close(pstmt);
+			DBHelper.close(rs);
+			DBHelper.close(conn);
+		}
+		return results;
+		
+	}
 }
